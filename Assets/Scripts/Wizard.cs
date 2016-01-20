@@ -5,11 +5,16 @@ public class Wizard : MonoBehaviour {
 	[HideInInspector] public bool facingRight = true;
 	[HideInInspector] public bool movingRight = false;
 	[HideInInspector] public bool movingLeft = false;
+	[HideInInspector] public bool jumping = true;
 
 	public float moveSpeed = 1;
 	public GameObject StaffAttackPoint;
 	public Transform BoltSpawnpoint;
 	public GameObject Bolt;
+	public int maxJumpIterations = 5;
+	public int jumpIterations;
+	public float jumpSpeed;
+	public float jumpAccel;
 
 	private Animator wiz_anim;
 	private Rigidbody2D rb;
@@ -23,7 +28,9 @@ public class Wizard : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		jumpSpeed = moveSpeed;
+		jumpIterations = maxJumpIterations;
+		jumpAccel = jumpSpeed / maxJumpIterations;
 	}
 	
 	// Update is called once per frame
@@ -38,19 +45,30 @@ public class Wizard : MonoBehaviour {
 	void handleMovement()
 	{
 		float h = Input.GetAxis ("Horizontal");
+		float v = Input.GetAxis ("Vertical");
 
 		if (h != 0 && !attacking) {
 			wiz_anim.SetBool ("Walking", true);
 			transform.position += Vector3.right * h * moveSpeed * Time.deltaTime;
-		}
-		else {
+		} else {
 			wiz_anim.SetBool ("Walking", false);
 		}
 
-		if (h > 0 && !facingRight)
+		if (h > 0 && !facingRight) {
 			Flip ();
-		else if (h < 0 && facingRight)
+		} else if (h < 0 && facingRight) {
 			Flip ();
+		}
+			
+		if (v > 0 && jumping == true && jumpIterations < maxJumpIterations) {
+			transform.position += Vector3.up * v * (jumpSpeed - (jumpIterations * jumpAccel)) * Time.deltaTime;
+			jumpIterations += 1;
+		} else if (v > 0 && jumping == false) {
+			jumping = true;
+		} else if (jumping == true && rb.velocity.y == 0) {
+			jumping = false;
+			jumpIterations = 0;
+		}
 	}
 
 	void handleMagicAttack()
