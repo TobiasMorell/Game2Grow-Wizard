@@ -5,10 +5,15 @@ public class CamController : MonoBehaviour {
 	[HideInInspector] public Vector3 startPoint;
 	[HideInInspector] public bool inTransistion = false;
 
-	public Vector3 Target;
+	private Vector3 Target;
 	public float smoothTime;
 
 	private Vector3 velocity = new Vector3 ();
+
+    void Awake()
+    {
+        Target = GetComponentInParent<Transform>().position;
+    }
 
 	public void pointTo(Vector2 worldPosition)
 	{

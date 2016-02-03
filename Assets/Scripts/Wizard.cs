@@ -11,12 +11,9 @@ public class Wizard : MonoBehaviour {
 	public GameObject StaffAttackPoint;
 	public Transform BoltSpawnpoint;
 	public GameObject Bolt;
-	public int maxJumpIterations = 5;
-	public int jumpIterations;
-	public float jumpSpeed;
-	public float jumpAccel;
+	public float jumpForce;
 
-	private Animator wiz_anim;
+    private Animator wiz_anim;
 	private Rigidbody2D rb;
 	private bool attacking = false;
 
@@ -27,10 +24,9 @@ public class Wizard : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
-		jumpSpeed = moveSpeed;
-		jumpIterations = maxJumpIterations;
-		jumpAccel = jumpSpeed / maxJumpIterations;
+	void Start ()
+    {
+
 	}
 	
 	// Update is called once per frame
@@ -41,11 +37,10 @@ public class Wizard : MonoBehaviour {
 
 		checkDeath ();
 	}
-	#region attack
+	#region Control
 	void handleMovement()
 	{
 		float h = Input.GetAxis ("Horizontal");
-		float v = Input.GetAxis ("Vertical");
 
 		if (h != 0 && !attacking) {
 			wiz_anim.SetBool ("Walking", true);
@@ -58,16 +53,6 @@ public class Wizard : MonoBehaviour {
 			Flip ();
 		} else if (h < 0 && facingRight) {
 			Flip ();
-		}
-			
-		if (v > 0 && jumping == true && jumpIterations < maxJumpIterations) {
-			transform.position += Vector3.up * v * (jumpSpeed - (jumpIterations * jumpAccel)) * Time.deltaTime;
-			jumpIterations += 1;
-		} else if (v > 0 && jumping == false) {
-			jumping = true;
-		} else if (jumping == true && rb.velocity.y == 0) {
-			jumping = false;
-			jumpIterations = 0;
 		}
 	}
 
@@ -137,8 +122,15 @@ public class Wizard : MonoBehaviour {
 		}
 	}
 	void FixedUpdate(){
-		
-	}
+        if (Input.GetButtonDown("Jump") && !jumping)
+        {
+            jumping = true;
+            rb.AddForce(Vector2.up * jumpForce);
+        }
+        else if (!Input.GetButton("Jump") && rb.velocity.y < Mathf.Epsilon)
+            jumping = false;
+            
+    }
 
 	void Flip(){
 		facingRight = !facingRight;
