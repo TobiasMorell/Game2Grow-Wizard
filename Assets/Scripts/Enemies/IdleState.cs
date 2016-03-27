@@ -8,24 +8,37 @@ namespace Assets.Scripts.Enemies
 {
 	class IdleState : IEnemyState
 	{
+		private Enemy enemy;
+		private float minIdleDuration = 2f;
+		private float idleTimer = 0f;
+
 		public void Enter(Enemy enemy)
 		{
-			throw new NotImplementedException();
+			Debug.Log ("Entered IdleState");
+			this.enemy = enemy;
 		}
 
 		public void Execute()
 		{
 			Debug.Log("Executing in Idle");
+
+			if (enemy.Target != null)
+				enemy.ChangeState (new AttackState ());
+
+			//Add to the timer and give random chance that the bat will start to move
+			idleTimer += Time.deltaTime;
+			if (idleTimer >= minIdleDuration && UnityEngine.Random.value > 0.95f)
+				enemy.ChangeState (new MoveState ());
 		}
 
 		public void Exit()
 		{
-			throw new NotImplementedException();
+			Debug.Log ("Exited IdleState");
 		}
 
-		public void OnTriggerEnter(Collider other)
+		public void OnTriggerEnter(Collider2D other)
 		{
-			throw new NotImplementedException();
+			Debug.Log ("OnTriggerEnter in IdleState");
 		}
 	}
 }

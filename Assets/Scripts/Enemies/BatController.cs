@@ -14,15 +14,4 @@ public class BatController : Enemy {
 	protected override void Update () {
 		base.Update();
 	}
-
-	private void moveHorizontal(float direction)
-	{
-		//mayby check for obstacles
-		transform.position += Vector3.right * direction * Time.deltaTime;
-	}
-
-	private void moveVertical(int direction)
-	{
-		transform.position += Vector3.up * direction * Time.deltaTime;
-	}
 }

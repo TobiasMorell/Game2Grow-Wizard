@@ -11,6 +11,6 @@ namespace Assets.Scripts.Enemies
 		void Execute();
 		void Enter(Enemy enemy);
 		void Exit();
-		void OnTriggerEnter(Collider other);
+		void OnTriggerEnter(Collider2D other);
 	}
 }

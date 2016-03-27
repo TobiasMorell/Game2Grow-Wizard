@@ -6,6 +6,7 @@ public class Wizard : MonoBehaviour {
 	[HideInInspector] public bool movingRight = false;
 	[HideInInspector] public bool movingLeft = false;
 	[HideInInspector] public bool jumping = true;
+	[HideInInspector] public bool attacking = false;
 
 	public float moveSpeed = 1;
 	public GameObject StaffAttackPoint;
@@ -15,7 +16,7 @@ public class Wizard : MonoBehaviour {
 
     private Animator wiz_anim;
 	private Rigidbody2D rb;
-	private bool attacking = false;
+	private int hp = 100;
 
 	void Awake(){
 		wiz_anim = GetComponent<Animator> ();
@@ -59,68 +60,58 @@ public class Wizard : MonoBehaviour {
 	void handleMagicAttack()
 	{
 		if (Input.GetButtonDown ("Fire1")) {
-			wiz_anim.SetBool ("Walking", false);
 			wiz_anim.SetTrigger ("Magic_attack");
-			attacking = true;
-
-			//Spawn a bolt at end of hand after animation
-			StartCoroutine(waitAndSpawnBolt(0.45f));
 		} 
 	}
 
 	void handleStaffAttack()
 	{
-		if (Input.GetButtonDown ("Fire2")) {
-			wiz_anim.SetBool ("Walking", false);
+		if (Input.GetButton("Fire2"))
 			wiz_anim.SetBool ("Staff_attacking", true);
-			attacking = true;
-
-			StartCoroutine(waitAndSpawnFlames (0.45f));
-		} else if (!Input.GetButton ("Fire2") && StaffAttackPoint.activeSelf) {
+		else if (Input.GetButtonUp("Fire2"))
 			wiz_anim.SetBool ("Staff_attacking", false);
-			attacking = false;
-
-			StaffAttackPoint.SetActive (false);
-		}
-	}
-
-	IEnumerator waitAndSpawnFlames(float waittime)
-	{
-		yield return new WaitForSeconds (waittime);
-		StaffAttackPoint.SetActive (true);
-	}
-
-	IEnumerator waitAndSpawnBolt(float waittime)
-	{
-		yield return new WaitForSeconds (waittime);
-		var bolt = Instantiate (Bolt);
-		var boltScrpt = bolt.GetComponent<Bolt> ();
-		if (boltScrpt != null)
-			boltScrpt.movingRight = facingRight;
-		attacking = false;
-		bolt.gameObject.transform.position = BoltSpawnpoint.transform.position;
 	}
 	#endregion
+
+	public void TakeDamage(int damage)
+	{
+		this.hp -= damage;
+	}
 
 	private void checkDeath()
 	{
 		checkDeathFromFalling ();
+
+		if (hp <= 0)
+			die ();
 	}
 
 	private void checkDeathFromFalling()
 	{
 		if (transform.position.y < -20) {
-			var cam = GetComponentInChildren<Camera> ();
-			if (cam != null) {
-				cam.transform.parent = null;
-				CamController cc = cam.GetComponent<CamController> ();
-				if (cc != null) {
-					cc.startPoint = this.transform.position;
-					cc.inTransistion = true;
-				}
+			die();
+		}
+	}
+
+	private void die()
+	{
+		pointCamToSpawn();
+		this.gameObject.SetActive(false);
+	}
+
+	private void pointCamToSpawn()
+	{
+		var cam = GetComponentInChildren<Camera> ();
+		if (cam != null) {
+			cam.transform.parent = null;
+			CamController cc = cam.GetComponent<CamController> ();
+			if (cc != null) {
+				cc.startPoint = this.transform.position;
+				cc.inTransistion = true;
 			}
 		}
 	}
+
 	void FixedUpdate(){
         if (Input.GetButtonDown("Jump") && !jumping)
         {

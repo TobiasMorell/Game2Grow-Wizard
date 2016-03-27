@@ -8,24 +8,42 @@ namespace Assets.Scripts.Enemies
 {
 	class AttackState : IEnemyState
 	{
+		private Enemy enemy;
+
 		public void Enter(Enemy enemy)
 		{
-			throw new NotImplementedException();
+			Debug.Log ("Entered AttackState");
+			this.enemy = enemy;
 		}
 
 		public void Execute()
 		{
-			throw new NotImplementedException();
+			Debug.Log ("Executing in AttackState");
+
+			if (enemy.Target == null)
+				enemy.ChangeState (new IdleState ());
+
+			followPlayer ();
+		}
+
+		private void followPlayer()
+		{
+			float xDir = enemy.Target.transform.position.x - enemy.transform.position.x;
+
+			if (xDir < 0 && enemy.facingRight || xDir > 0 && !enemy.facingRight)
+				enemy.ChangeDirection ();
+
+			enemy.Move ();
 		}
 
 		public void Exit()
 		{
-			throw new NotImplementedException();
+			Debug.Log ("Exited AttackState");
 		}
 
-		public void OnTriggerEnter(Collider other)
+		public void OnTriggerEnter(Collider2D other)
 		{
-			throw new NotImplementedException();
+			Debug.Log ("OnTriggerEnter in AttackState");
 		}
 	}
 }
