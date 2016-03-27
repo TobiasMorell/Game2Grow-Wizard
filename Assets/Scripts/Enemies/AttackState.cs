@@ -9,21 +9,28 @@ namespace Assets.Scripts.Enemies
 	class AttackState : IEnemyState
 	{
 		private Enemy enemy;
+		private Vector2 previousPosition = Vector2.zero;
+		private Vector2 targetPosition;
+
+		private bool onCooldown = false;
+		private bool attacking = false;
 
 		public void Enter(Enemy enemy)
 		{
-			Debug.Log ("Entered AttackState");
 			this.enemy = enemy;
 		}
 
 		public void Execute()
 		{
-			Debug.Log ("Executing in AttackState");
-
-			if (enemy.Target == null)
+			//Debug.Log ("enemy.inAttackRange is " + enemy.inAttackRange);
+			if (enemy.inAttackRange && !onCooldown)
+				attack ();
+			else if (onCooldown)
+				cooldown();
+			else if (enemy.Target == null)
 				enemy.ChangeState (new IdleState ());
-
-			followPlayer ();
+			else if (!attacking && !onCooldown) 
+				followPlayer ();
 		}
 
 		private void followPlayer()
@@ -34,6 +41,35 @@ namespace Assets.Scripts.Enemies
 				enemy.ChangeDirection ();
 
 			enemy.Move ();
+		}
+
+		private void attack()
+		{
+			//Setup target and indicate start of attack
+			if (!attacking) {
+				targetPosition = enemy.Target.transform.position;
+				previousPosition = enemy.transform.position;
+
+				attacking = true;
+			}
+
+			//Move the sprite closer to the player and trigger cooldown, when close enough
+			enemy.transform.position = Vector2.Lerp (enemy.transform.position, targetPosition, 0.2f);
+
+			if (Vector2.Distance (enemy.transform.position, targetPosition) < 0.1f) {
+				attacking = false;
+				onCooldown = true;
+			}
+		}
+
+		private void cooldown()
+		{
+			enemy.transform.position = Vector2.Lerp (enemy.transform.position, previousPosition, 0.2f);
+
+			if (Vector2.Distance (enemy.transform.position, previousPosition) < 0.01f) {
+				//Debug.Log ("Reset cooldown - ready to attack");
+				onCooldown = false;
+			}
 		}
 
 		public void Exit()

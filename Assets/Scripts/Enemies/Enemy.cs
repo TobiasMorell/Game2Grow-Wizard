@@ -10,10 +10,10 @@ namespace Assets.Scripts
 	public abstract class Enemy : MonoBehaviour
 	{
 		public float MovementSpeed;
+		[SerializeField] protected float attackRange;
 
 		protected IEnemyState currentState;
-		[HideInInspector]
-		public bool facingRight;
+		[HideInInspector] public bool facingRight;
 		protected Animator anim;
 
 		protected Vector2 Direction
@@ -23,6 +23,15 @@ namespace Assets.Scripts
 			}
 		}
 		public GameObject Target { get; set; }
+		public virtual bool inAttackRange{
+			get {
+				if (Target != null) {
+					return Vector2.Distance (transform.position, Target.transform.position) <= attackRange;
+				}
+				//No target:
+				return false;
+			}
+		}
 
 		protected virtual void Start()
 		{

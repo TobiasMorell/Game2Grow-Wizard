@@ -20,7 +20,7 @@ namespace Assets.Scripts.Enemies
 
 		public void Execute()
 		{
-			Debug.Log ("Executing in FollowState");
+			//Debug.Log ("Executing in FollowState");
 
 			if (enemy.Target == null) {
 				//Move at random

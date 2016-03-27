@@ -20,7 +20,7 @@ namespace Assets.Scripts.Enemies
 
 		public void Execute()
 		{
-			Debug.Log("Executing in Idle");
+			//Debug.Log("Executing in Idle");
 
 			if (enemy.Target != null)
 				enemy.ChangeState (new AttackState ());

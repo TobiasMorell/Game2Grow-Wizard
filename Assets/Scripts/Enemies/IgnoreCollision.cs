@@ -2,11 +2,10 @@
 using System.Collections;
 
 public class IgnoreCollision : MonoBehaviour {
-	[SerializeField]
-	private Collider2D other;
-
 	// Use this for initialization
-	void Awake () {
-		Physics2D.IgnoreCollision (GetComponent<Collider2D> (), other, true);
+	void Start () {
+		GameObject player = GameObject.FindGameObjectWithTag ("Player");
+		Physics2D.IgnoreCollision (GetComponent<Collider2D> (), player.GetComponent<Collider2D> ());
+		//Physics.IgnoreCollision (GetComponent<Collider2D>(), player.GetComponent<Collider2D>(), true);
 	}
 }
