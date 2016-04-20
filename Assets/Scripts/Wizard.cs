@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Wizard : MonoBehaviour {
 	[HideInInspector] public bool facingRight = true;
@@ -13,10 +14,14 @@ public class Wizard : MonoBehaviour {
 	public Transform BoltSpawnpoint;
 	public GameObject Bolt;
 	public float jumpForce;
+	[SerializeField] private Slider health;
+	[SerializeField] private Slider mana;
 
     private Animator wiz_anim;
 	private Rigidbody2D rb;
-	private int hp = 100;
+	private float manaTimer = 0f;
+	private float imuniTimer = 0f;
+	public bool immune = false;
 
 	void Awake(){
 		wiz_anim = GetComponent<Animator> ();
@@ -27,7 +32,7 @@ public class Wizard : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-
+		Bolt.GetComponent<Bolt> ().damage = 2;
 	}
 	
 	// Update is called once per frame
@@ -35,6 +40,14 @@ public class Wizard : MonoBehaviour {
 		handleMovement ();
 		handleMagicAttack ();
 		handleStaffAttack ();
+
+		//Generates one mana every third second
+		if (mana.value < mana.maxValue && manaTimer >= 3f) {
+			mana.value++;
+			manaTimer = 0;
+		}
+		else
+			manaTimer += Time.deltaTime;
 
 		checkDeath ();
 	}
@@ -59,8 +72,9 @@ public class Wizard : MonoBehaviour {
 
 	void handleMagicAttack()
 	{
-		if (Input.GetButtonDown ("Fire1")) {
+		if (Input.GetButtonDown ("Fire1") && mana.value >= 3) {
 			wiz_anim.SetTrigger ("Magic_attack");
+			mana.value -= 3;
 		} 
 	}
 
@@ -75,14 +89,23 @@ public class Wizard : MonoBehaviour {
 
 	public void TakeDamage(int damage)
 	{
-		this.hp -= damage;
+		if (!immune) {
+			this.health.value -= damage;
+			this.immune = true;
+			this.imuniTimer = 0f;
+
+			//Show that the player is immune in some way
+		} else if (immune && imuniTimer < 2f)
+			imuniTimer += Time.deltaTime;
+		else
+			immune = false;
 	}
 
 	private void checkDeath()
 	{
 		checkDeathFromFalling ();
 
-		if (hp <= 0)
+		if (health.value <= 0)
 			die ();
 	}
 

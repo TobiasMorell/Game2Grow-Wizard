@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Movement : MonoBehaviour
 {
-
+	public GameObject brik;
     Rigidbody2D rb;
 
     // Use this for initialization

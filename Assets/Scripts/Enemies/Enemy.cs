@@ -10,11 +10,14 @@ namespace Assets.Scripts
 	public abstract class Enemy : MonoBehaviour
 	{
 		public float MovementSpeed;
+		public int attackDamage;
 		[SerializeField] protected float attackRange;
 
 		protected IEnemyState currentState;
 		[HideInInspector] public bool facingRight;
 		protected Animator anim;
+
+		[SerializeField] protected int hp;
 
 		protected Vector2 Direction
 		{
@@ -33,14 +36,19 @@ namespace Assets.Scripts
 			}
 		}
 
+		public void TakeDamage(int damage)
+		{
+			this.hp -= damage;
+
+			if (hp < 0)
+				Destroy (this);
+		}
+
 		protected virtual void Start()
 		{
 			anim = this.GetComponent<Animator> ();
 
 			facingRight = true;
-
-			//Starts in Idle state
-			ChangeState(new IdleState());
 		}
 
 		protected virtual void Update()
@@ -65,6 +73,11 @@ namespace Assets.Scripts
 			//Enters new
 			currentState = newState;
 			currentState.Enter(this);
+		}
+
+		public void PlayAnimation(string animatorString)
+		{
+			anim.SetTrigger (animatorString);
 		}
 
 		public virtual void Move()

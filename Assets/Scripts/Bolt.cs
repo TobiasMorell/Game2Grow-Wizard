@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts;
 
 public class Bolt : MonoBehaviour {
-	public float speed;
-	public float lifetime = 1.5f;
+	[SerializeField] private float speed;
+	public int damage;
+	[SerializeField] private float lifetime = 1.5f;
 	[HideInInspector] public bool movingRight;
 
 	// Use this for initialization
@@ -24,5 +26,14 @@ public class Bolt : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position += Vector3.right * speed * Time.deltaTime;
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "Hostile") {
+			//Maybe some particle effect
+
+			other.GetComponent<Enemy>().TakeDamage (damage);
+		}
 	}
 }

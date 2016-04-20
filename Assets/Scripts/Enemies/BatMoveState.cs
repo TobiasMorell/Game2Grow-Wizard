@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Enemies
 {
-	class MoveState : IEnemyState
+	class BatMoveState : IEnemyState
 	{
 		private Enemy enemy;
 		private float moveTimer;
@@ -23,16 +23,21 @@ namespace Assets.Scripts.Enemies
 			//Debug.Log ("Executing in FollowState");
 
 			if (enemy.Target == null) {
-				//Move at random
-				enemy.Move ();
-				if (UnityEngine.Random.value > .99f)
-					enemy.ChangeDirection ();
-				moveTimer += Time.deltaTime;
-				if (moveTimer >= moveDuration)
-					enemy.ChangeState (new IdleState ());
+				moveAtRandom();
 			}
 			else
-				enemy.ChangeState (new AttackState ());
+				enemy.ChangeState (new BatAttackState ());
+		}
+
+		private void moveAtRandom()
+		{
+			//Move at random
+			enemy.Move ();
+			if (UnityEngine.Random.value > .99f)
+				enemy.ChangeDirection ();
+			moveTimer += Time.deltaTime;
+			if (moveTimer >= moveDuration)
+				enemy.ChangeState (new BatIdleState ());
 		}
 
 		public void Exit()
