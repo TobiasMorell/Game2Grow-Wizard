@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Enemies
 {
-	class AttackState : IEnemyState
+	class BatAttackState : IEnemyState
 	{
 		private Enemy enemy;
 		private Vector2 previousPosition = Vector2.zero;
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Enemies
 			else if (onCooldown)
 				cooldown();
 			else if (enemy.Target == null)
-				enemy.ChangeState (new IdleState ());
+				enemy.ChangeState (new BatIdleState ());
 			else if (!attacking && !onCooldown) 
 				followPlayer ();
 		}
@@ -47,10 +47,19 @@ namespace Assets.Scripts.Enemies
 		{
 			//Setup target and indicate start of attack
 			if (!attacking) {
+				//Store target and current position (used for a smooth attack animation)
 				targetPosition = enemy.Target.transform.position;
 				previousPosition = enemy.transform.position;
 
+				//Disable ground-checker and physics-based rigidbody to prevents physics going crazy
+				enemy.GetComponentInChildren<BoxCollider2D>().enabled = false;
+				enemy.GetComponent<Rigidbody2D> ().isKinematic = true;
+
+				//Set the boolean attacking (such that the bat cannot attack twice in a row
 				attacking = true;
+
+				//Play attack animation
+				//enemy.PlayAnimation("attack");
 			}
 
 			//Move the sprite closer to the player and trigger cooldown, when close enough
@@ -64,22 +73,25 @@ namespace Assets.Scripts.Enemies
 
 		private void cooldown()
 		{
+			//Move sprite back from the player to the previous position
 			enemy.transform.position = Vector2.Lerp (enemy.transform.position, previousPosition, 0.2f);
 
 			if (Vector2.Distance (enemy.transform.position, previousPosition) < 0.01f) {
-				//Debug.Log ("Reset cooldown - ready to attack");
 				onCooldown = false;
+
+				//reset rigidbody and collider to resume normal behaviour
+				enemy.GetComponentInChildren<BoxCollider2D>().enabled = true;
+				enemy.GetComponent<Rigidbody2D> ().isKinematic = false;
 			}
 		}
 
 		public void Exit()
-		{
-			Debug.Log ("Exited AttackState");
-		}
+		{		}
 
 		public void OnTriggerEnter(Collider2D other)
 		{
-			Debug.Log ("OnTriggerEnter in AttackState");
+			if (other.tag == "Player")
+				other.GetComponent<Wizard>().TakeDamage (enemy.attackDamage);
 		}
 	}
 }

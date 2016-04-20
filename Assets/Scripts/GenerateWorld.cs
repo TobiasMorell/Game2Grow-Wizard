@@ -28,7 +28,7 @@ public class GenerateWorld : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		//1. Open and read file - store in an array
 		string[] lines = System.IO.File.ReadAllLines(System.Environment.CurrentDirectory + @"/Assets/Maps/Sample.txt");
 		int height = lines.Length;
@@ -53,15 +53,15 @@ public class GenerateWorld : MonoBehaviour {
 
     private void placePlayer(float startX, int height)
     {
-        var pl = Instantiate(player);
-        pl.transform.position = new Vector2(startX + 3 * TileScale, (height * TileScale));
+        /*var pl = Instantiate(player);
+        pl.transform.position = new Vector2(startX + 3 * TileScale, (height * TileScale));*/
     }
 
     private void SpawnNPCs()
     {
         foreach (var npc in NPCs)
         {
-            Instantiate(npc);
+			Instantiate(npc);
         }
     }
 	
