@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -12,6 +13,7 @@ namespace Assets.Scripts
 		public float MovementSpeed;
 		public int attackDamage;
 		[SerializeField] protected float attackRange;
+		[SerializeField] protected Slider healthBar;
 
 		protected IEnemyState currentState;
 		[HideInInspector] public bool facingRight;
@@ -39,14 +41,18 @@ namespace Assets.Scripts
 		public void TakeDamage(int damage)
 		{
 			this.hp -= damage;
+			this.healthBar.value = hp;
 
 			if (hp < 0)
-				Destroy (this);
+				Destroy (this.gameObject);
 		}
 
 		protected virtual void Start()
 		{
 			anim = this.GetComponent<Animator> ();
+
+			this.healthBar.maxValue = hp;
+			this.healthBar.value = hp;
 
 			facingRight = true;
 		}
