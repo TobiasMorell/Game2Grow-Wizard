@@ -19,9 +19,10 @@ public class Wizard : MonoBehaviour {
 
     private Animator wiz_anim;
 	private Rigidbody2D rb;
+	private SpriteRenderer sprite_renderer;
 	private float manaTimer = 0f;
 	private float imuniTimer = 0f;
-	public bool immune = false;
+	private bool immune = false;
 
 	void Awake(){
 		wiz_anim = GetComponent<Animator> ();
@@ -33,6 +34,7 @@ public class Wizard : MonoBehaviour {
 	void Start ()
     {
 		Bolt.GetComponent<Bolt> ().damage = 2;
+		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -101,6 +103,24 @@ public class Wizard : MonoBehaviour {
 			immune = false;
 	}
 
+	public void ApplyEffect(Effects effectToApply)
+	{
+		switch (effectToApply) {
+		case Effects.Poison:
+			sprite_renderer.color = Color.green;
+
+			break;
+		case Effects.Fire:
+
+			break;
+		case Effects.Freeze:
+
+			break;
+		default:
+			break;
+		}
+	}
+
 	private void checkDeath()
 	{
 		checkDeathFromFalling ();
@@ -152,4 +172,6 @@ public class Wizard : MonoBehaviour {
 		scale.x *= -1;
 		transform.localScale = scale;
 	}
+
+
 }

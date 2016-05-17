@@ -20,6 +20,10 @@ namespace Assets.Scripts.Enemies
 			this.enemy = enemy;
 		}
 
+		public void method_name(int number_parameter){
+			Console.WriteLine (number_parameter + 5);
+		}
+
 		public void Execute()
 		{
 			//Debug.Log ("enemy.inAttackRange is " + enemy.inAttackRange);
