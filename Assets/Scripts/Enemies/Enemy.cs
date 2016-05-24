@@ -95,7 +95,8 @@ namespace Assets.Scripts
 
 		void OnTriggerEnter2D(Collider2D other)
 		{
-			currentState.OnTriggerEnter (other);
+			if(currentState != null)
+				currentState.OnTriggerEnter (other);
 		}
 
 	}

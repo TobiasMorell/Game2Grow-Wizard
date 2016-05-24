@@ -12,6 +12,11 @@ public class EnemySight : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
+		if (enemy == null)
+			Debug.Log ("Enemy is null");
+		if (other == null)
+			Debug.Log ("other is null");
+		
 		if (other.tag == "Player") {
 			enemy.Target = other.gameObject;
 		}
@@ -19,6 +24,11 @@ public class EnemySight : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D other)
 	{
+		if (enemy == null)
+			Debug.Log ("Enemy is null");
+		if (other == null)
+			Debug.Log ("other is null");
+		
 		if (other.tag == "Player")
 			enemy.Target = null;
 	}

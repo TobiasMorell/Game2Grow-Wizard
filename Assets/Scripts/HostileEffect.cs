@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public enum Effects
 {
@@ -15,6 +16,11 @@ public class HostileEffect
 	public bool IsOver()
 	{
 		return timer >= duration;
+	}
+
+	public void onUpdate()
+	{
+		timer += Time.deltaTime;
 	}
 }
 

@@ -15,14 +15,19 @@ public class Wizard : MonoBehaviour {
 	public GameObject Bolt;
 	public float jumpForce;
 	[SerializeField] private Slider health;
-	[SerializeField] private Slider mana;
+	public Slider mana;
 
     private Animator wiz_anim;
 	private Rigidbody2D rb;
 	private SpriteRenderer sprite_renderer;
 	private float manaTimer = 0f;
-	private float imuniTimer = 0f;
+	private int imuniTimer = 2;
 	private bool immune = false;
+
+	#region Attributes
+	public int mana_regen_multiplier = 1;
+	public int bolt_damage = 2;
+	#endregion
 
 	void Awake(){
 		wiz_anim = GetComponent<Animator> ();
@@ -33,7 +38,7 @@ public class Wizard : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-		Bolt.GetComponent<Bolt> ().damage = 2;
+		Bolt.GetComponent<Bolt> ().damage = bolt_damage;
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 	}
 	
@@ -45,7 +50,7 @@ public class Wizard : MonoBehaviour {
 
 		//Generates one mana every third second
 		if (mana.value < mana.maxValue && manaTimer >= 3f) {
-			mana.value++;
+			mana.value += 1 * mana_regen_multiplier;
 			manaTimer = 0;
 		}
 		else
@@ -74,10 +79,8 @@ public class Wizard : MonoBehaviour {
 
 	void handleMagicAttack()
 	{
-		if (Input.GetButtonDown ("Fire1") && mana.value >= 3) {
+		if (Input.GetButtonDown ("Fire1") && mana.value >= 3)
 			wiz_anim.SetTrigger ("Magic_attack");
-			mana.value -= 3;
-		} 
 	}
 
 	void handleStaffAttack()
@@ -91,16 +94,21 @@ public class Wizard : MonoBehaviour {
 
 	public void TakeDamage(int damage)
 	{
+		//Todo: the incrementing of the counter must be co-routined.
 		if (!immune) {
+			Debug.Log ("Took damage");
 			this.health.value -= damage;
-			this.immune = true;
-			this.imuniTimer = 0f;
-
-			//Show that the player is immune in some way
-		} else if (immune && imuniTimer < 2f)
-			imuniTimer += Time.deltaTime;
-		else
-			immune = false;
+			StartCoroutine (handleImmunity (imuniTimer));
+		}
+	}
+	IEnumerator handleImmunity(int immunity_cooldown)
+	{
+		//Show that the player is immune in some way
+		this.immune = true;
+		this.sprite_renderer.color = Color.gray;
+		yield return new WaitForSeconds (imuniTimer);
+		this.immune = false;
+		this.sprite_renderer.color = Color.white;
 	}
 
 	public void ApplyEffect(Effects effectToApply)

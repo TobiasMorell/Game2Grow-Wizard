@@ -17,8 +17,10 @@ public class MagicAttackBehavior : StateMachineBehaviour {
 		//Spawns a magic bolt
 		var bolt = Instantiate (wizz.Bolt);
 		var boltScrpt = bolt.GetComponent<Bolt> ();
-		if (boltScrpt != null)
+		if (boltScrpt != null) {
 			boltScrpt.movingRight = wizz.facingRight;
+			wizz.mana.value -= boltScrpt.cost;
+		}
 		wizz.attacking = false;
 		bolt.gameObject.transform.position = wizz.BoltSpawnpoint.transform.position;
 	}

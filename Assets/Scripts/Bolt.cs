@@ -5,6 +5,7 @@ using Assets.Scripts;
 public class Bolt : MonoBehaviour {
 	[SerializeField] private float speed;
 	public int damage;
+	public int cost = 3;
 	[SerializeField] private float lifetime = 1.5f;
 	[HideInInspector] public bool movingRight;
 
