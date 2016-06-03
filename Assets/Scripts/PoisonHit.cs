@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PoisonHit : MonoBehaviour {
 	private Rigidbody2D rb;
-	private BoxCollider2D collider;
 	private SpriteRenderer sr;
 
 	public Sprite hitSprite;
@@ -11,7 +10,6 @@ public class PoisonHit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D> ();
-		collider = this.GetComponent<BoxCollider2D> ();
 		sr = this.GetComponent<SpriteRenderer> ();
 	}
 	

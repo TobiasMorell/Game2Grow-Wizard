@@ -13,6 +13,11 @@ public class HostileEffect
 	private float timer;
 	float Strength { get; set; }
 
+
+	public HostileEffect(MonoBehaviour bearer, float duration) {
+		this.duration = duration;
+	}
+
 	public bool IsOver()
 	{
 		return timer >= duration;

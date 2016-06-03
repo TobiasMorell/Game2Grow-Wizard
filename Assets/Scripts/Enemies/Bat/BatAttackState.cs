@@ -41,7 +41,7 @@ namespace Assets.Scripts.Enemies
 			float xDir = enemy.Target.transform.position.x - enemy.transform.position.x;
 
 			if (xDir < 0 && enemy.facingRight || xDir > 0 && !enemy.facingRight)
-				enemy.ChangeDirection ();
+				enemy.Flip ();
 
 			enemy.Move ();
 		}
@@ -94,7 +94,7 @@ namespace Assets.Scripts.Enemies
 		public void OnTriggerEnter(Collider2D other)
 		{
 			if (other.tag == "Player")
-				other.GetComponent<Wizard>().TakeDamage (enemy.attackDamage);
+				other.GetComponent<Wizard>().TakeDamage (enemy.EnemyDamage);
 		}
 	}
 }

@@ -2,12 +2,10 @@
 using System.Collections;
 
 public class OldWizardGreeting : MonoBehaviour {
-    private BoxCollider2D greetingTrigger;
     private Animator oldWizardAnimator;
 
     void Start()
     {
-        greetingTrigger = GetComponent<BoxCollider2D>();
         oldWizardAnimator = GetComponent<Animator>();
     }
 

@@ -2,24 +2,18 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Wizard : MonoBehaviour {
-	[HideInInspector] public bool facingRight = true;
+public class Wizard : Entity {
 	[HideInInspector] public bool movingRight = false;
 	[HideInInspector] public bool movingLeft = false;
 	[HideInInspector] public bool jumping = true;
 	[HideInInspector] public bool attacking = false;
 
-	public float moveSpeed = 1;
 	public GameObject StaffAttackPoint;
 	public Transform BoltSpawnpoint;
 	public GameObject Bolt;
 	public float jumpForce;
-	[SerializeField] private Slider health;
 	public Slider mana;
 
-    private Animator wiz_anim;
-	private Rigidbody2D rb;
-	private SpriteRenderer sprite_renderer;
 	private float manaTimer = 0f;
 	private int imuniTimer = 2;
 	private bool immune = false;
@@ -29,15 +23,15 @@ public class Wizard : MonoBehaviour {
 	public int bolt_damage = 2;
 	#endregion
 
-	void Awake(){
-		wiz_anim = GetComponent<Animator> ();
-		rb = GetComponent<Rigidbody2D> ();
+	public override void Awake(){
+		base.Awake ();
 		StaffAttackPoint.SetActive (false);
 	}
 
 	// Use this for initialization
-	void Start ()
+	public override void Start ()
     {
+		base.Start ();
 		Bolt.GetComponent<Bolt> ().damage = bolt_damage;
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 	}
@@ -56,7 +50,7 @@ public class Wizard : MonoBehaviour {
 		else
 			manaTimer += Time.deltaTime;
 
-		checkDeath ();
+			checkDeathFromFalling ();
 	}
 	#region Control
 	void handleMovement()
@@ -64,40 +58,41 @@ public class Wizard : MonoBehaviour {
 		float h = Input.GetAxis ("Horizontal");
 
 		if (h != 0 && !attacking) {
-			wiz_anim.SetBool ("Walking", true);
-			transform.position += Vector3.right * h * moveSpeed * Time.deltaTime;
-		} else {
-			wiz_anim.SetBool ("Walking", false);
-		}
+			animator.SetBool ("Walking", true);
+			transform.position += Vector3.right * h * MoveSpeed * Time.deltaTime;
+		} else
+			animator.SetBool ("Walking", false);
 
-		if (h > 0 && !facingRight) {
+		if (h > 0 && !facingRight)
 			Flip ();
-		} else if (h < 0 && facingRight) {
+		else if (h < 0 && facingRight)
 			Flip ();
-		}
 	}
 
 	void handleMagicAttack()
 	{
 		if (Input.GetButtonDown ("Fire1") && mana.value >= 3)
-			wiz_anim.SetTrigger ("Magic_attack");
+			animator.SetTrigger ("Magic_attack");
 	}
 
 	void handleStaffAttack()
 	{
 		if (Input.GetButton("Fire2"))
-			wiz_anim.SetBool ("Staff_attacking", true);
+			animator.SetBool ("Staff_attacking", true);
 		else if (Input.GetButtonUp("Fire2"))
-			wiz_anim.SetBool ("Staff_attacking", false);
+			animator.SetBool ("Staff_attacking", false);
 	}
 	#endregion
 
-	public void TakeDamage(int damage)
+	public override void TakeDamage(int damage)
 	{
-		//Todo: the incrementing of the counter must be co-routined.
 		if (!immune) {
-			Debug.Log ("Took damage");
-			this.health.value -= damage;
+			this.HP -= damage;
+			this.healthBar.value = HP;
+
+			if (HP <= 0)
+				die ();
+
 			StartCoroutine (handleImmunity (imuniTimer));
 		}
 	}
@@ -129,25 +124,16 @@ public class Wizard : MonoBehaviour {
 		}
 	}
 
-	private void checkDeath()
-	{
-		checkDeathFromFalling ();
-
-		if (health.value <= 0)
-			die ();
-	}
-
 	private void checkDeathFromFalling()
 	{
-		if (transform.position.y < -20) {
+		if (transform.position.y < -20)
 			die();
-		}
 	}
 
 	private void die()
 	{
 		pointCamToSpawn();
-		this.gameObject.SetActive(false);
+		Destroy (this.gameObject, 0f);
 	}
 
 	private void pointCamToSpawn()
@@ -173,13 +159,4 @@ public class Wizard : MonoBehaviour {
             jumping = false;
             
     }
-
-	void Flip(){
-		facingRight = !facingRight;
-		Vector3 scale = transform.localScale;
-		scale.x *= -1;
-		transform.localScale = scale;
-	}
-
-
 }

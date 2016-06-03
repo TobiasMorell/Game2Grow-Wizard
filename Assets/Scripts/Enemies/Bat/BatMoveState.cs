@@ -31,7 +31,7 @@ namespace Assets.Scripts.Enemies
 			//Move at random
 			enemy.Move ();
 			if (UnityEngine.Random.value > .99f)
-				enemy.ChangeDirection ();
+				enemy.Flip ();
 			moveTimer += Time.deltaTime;
 			if (moveTimer >= moveDuration)
 				enemy.ChangeState (new BatIdleState ());

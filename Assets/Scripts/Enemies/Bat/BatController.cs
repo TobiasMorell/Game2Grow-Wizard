@@ -4,17 +4,19 @@ using Assets.Scripts;
 using Assets.Scripts.Enemies;
 
 public class BatController : Enemy {
-	[SerializeField] private float flapForce;
+	[SerializeField] private float flapForce = 45;
 	private BoxCollider2D groundChecker;
 
-	private Rigidbody2D rb;
-
 	// Use this for initialization
-	protected override void Start () {
-		base.Start ();
-		rb = GetComponent<Rigidbody2D> ();
+	public override void Awake () {
+		base.Awake ();
 		groundChecker = GetComponentInChildren<BoxCollider2D> ();
+		facingRight = true;
+	}
 
+	public override void Start ()
+	{
+		base.Start ();
 		//Starts in Idle state
 		ChangeState(new BatIdleState());
 	}
@@ -26,12 +28,10 @@ public class BatController : Enemy {
 		//Checks if it's necesarry to flap
 		flap(Random.Range(0.9f, 1.4f));
 	}
-
+		
 	public void flap(float forceScale)
 	{
 		if (groundChecker.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
-			Debug.Log ("Bat intended to flap!");
-
 			//anim.SetTrigger ("flap");
 			rb.AddForce (Vector2.up * flapForce * forceScale * (rb.drag * 3));
 		}
