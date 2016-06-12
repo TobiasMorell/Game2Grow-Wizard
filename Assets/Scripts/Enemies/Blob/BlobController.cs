@@ -62,14 +62,4 @@ public class BlobController : Enemy {
 			fleeTime = 0;
 		}
 	}
-
-	void OnColliderEnter2D(Collider2D other) {
-		//The sight collider messes the Blob up - find a way to fix
-		Debug.Log ("On trigger enter: " + other.tag);
-		if (other.tag == "Platform") {
-			if (!fleeing)
-				Flip ();
-		} else if (other.tag == "Player")
-			FleeFrom (other.gameObject);
-	}
 }
