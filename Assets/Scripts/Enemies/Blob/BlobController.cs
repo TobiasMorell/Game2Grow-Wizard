@@ -6,15 +6,8 @@ using Assets.Scripts.Enemies;
 public class BlobController : Enemy {
 	[SerializeField] GameObject poisonBoltPrefab;
 	[SerializeField] Transform poisonBoltSpawn;
-	[SerializeField] float boltBaseVelocity = 3;
-	[SerializeField] float minDistToPlayer = 5;
-
-	private float fleeTimer = 3f;
-	private float fleeTime = 1f;
-
-	private bool fleeing {
-		get { return fleeTime > fleeTimer; }
-	}
+	public float minDistToPlayer = 5;
+	[SerializeField] float spitCooldown;
 
 	// Use this for initialization
 	public override void Awake () {
@@ -25,41 +18,33 @@ public class BlobController : Enemy {
 	public override void Start ()
 	{
 		base.Start ();
+		BlobAttackState.cooldown = spitCooldown;
 		ChangeState (new BlobIdleState ());
 	}
 	
 	// Update is called once per frame
 	protected override void Update () {
-		if (Target != null && Vector2.Distance (transform.position, Target.transform.position) <= minDistToPlayer)
-			FleeFrom (Target);
-		
-		if (!fleeing)
-			base.Update ();
-		else {
-			Move ();
-			fleeTime += Time.deltaTime;
-			Debug.Log ("Blob is fleeing");
-		}
+		base.Update ();
 	}
 
 	public void SpitBolt()
 	{
+		//Instantiate bolt and get rigidbody
 		GameObject pbInst = Instantiate<GameObject> (poisonBoltPrefab);
 		pbInst.transform.position = poisonBoltSpawn.position;
+		Rigidbody2D boltRb = pbInst.GetComponent<Rigidbody2D> ();
 
-		//Calculate the needed velocity of the bolt
-		Vector2 v = (Vector2.up + Direction) * boltBaseVelocity;
+		//Give bolt a 45 degree angle and calculate the needed velocity of the bolt
+		Vector2 angle = (Direction + Vector2.up);
+		float dist = Vector2.Distance (transform.position, Target.transform.position);
+		float velocity = Mathf.Sqrt (dist / 0.102f);
+		float Vx = velocity * Mathf.Cos(45f * Mathf.Deg2Rad);
 
-		pbInst.GetComponent<Rigidbody2D> ().velocity = v;
+		//And fire it with the calculated velocity
+		boltRb.velocity = Vx * angle;
 	}
-	public void FleeFrom(GameObject hostileTarget){
-		float myX = transform.position.x;
-		float hostX = hostileTarget.transform.position.x;
 
-		if ((myX > hostX && !facingRight) || (myX <= hostX && facingRight)) {
-			Flip ();
-			fleeTimer = Random.Range (1.8f, 3f);
-			fleeTime = 0;
-		}
+	void OnTriggerEnter2D(Collider2D other) {
+		currentState.OnTriggerEnter (other);
 	}
 }

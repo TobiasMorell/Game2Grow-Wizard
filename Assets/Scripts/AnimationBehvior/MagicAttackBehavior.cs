@@ -9,7 +9,6 @@ public class MagicAttackBehavior : StateMachineBehaviour {
 	{
 		wizz = animator.GetComponent<Wizard> ();
 		animator.SetBool ("Walking", false);
-		wizz.attacking = true;
 	}
 
 	public override void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,7 +20,6 @@ public class MagicAttackBehavior : StateMachineBehaviour {
 			boltScrpt.movingRight = wizz.facingRight;
 			wizz.mana.value -= boltScrpt.cost;
 		}
-		wizz.attacking = false;
 		bolt.gameObject.transform.position = wizz.BoltSpawnpoint.transform.position;
 	}
 }

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Scripts.Effects;
 
 public class Wizard : Entity {
 	[HideInInspector] public bool movingRight = false;
 	[HideInInspector] public bool movingLeft = false;
 	[HideInInspector] public bool jumping = true;
-	[HideInInspector] public bool attacking = false;
+	[HideInInspector] private bool attacking = false;
 
-	public GameObject StaffAttackPoint;
 	public Transform BoltSpawnpoint;
 	public GameObject Bolt;
 	public float jumpForce;
@@ -17,15 +17,32 @@ public class Wizard : Entity {
 	private float manaTimer = 0f;
 	private int imuniTimer = 2;
 	private bool immune = false;
+	private Collider2D WeaponCollider;
 
 	#region Attributes
 	public int mana_regen_multiplier = 1;
 	public int bolt_damage = 2;
+	private int strength;
+
+	public int Strength {
+		get { return strength; }
+		private set { }
+	}
 	#endregion
+
+	public bool Attacking {
+		get { return attacking; }
+		set { 
+			attacking = value;
+			WeaponCollider.enabled = attacking;
+		}
+	}
+
+	delegate void effectUpdateDelegate();
+	private effectUpdateDelegate effectUpdate;
 
 	public override void Awake(){
 		base.Awake ();
-		StaffAttackPoint.SetActive (false);
 	}
 
 	// Use this for initialization
@@ -34,6 +51,7 @@ public class Wizard : Entity {
 		base.Start ();
 		Bolt.GetComponent<Bolt> ().damage = bolt_damage;
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
+		WeaponCollider = GameObject.FindGameObjectWithTag ("Weapon").GetComponent<Collider2D>();
 	}
 	
 	// Update is called once per frame
@@ -50,7 +68,8 @@ public class Wizard : Entity {
 		else
 			manaTimer += Time.deltaTime;
 
-			checkDeathFromFalling ();
+		checkDeathFromFalling ();
+		if(effectUpdate != null) effectUpdate ();
 	}
 	#region Control
 	void handleMovement()
@@ -106,22 +125,10 @@ public class Wizard : Entity {
 		this.sprite_renderer.color = Color.white;
 	}
 
-	public void ApplyEffect(Effects effectToApply)
+	public void ApplyEffect(HostileEffect effectToApply)
 	{
-		switch (effectToApply) {
-		case Effects.Poison:
-			sprite_renderer.color = Color.green;
-
-			break;
-		case Effects.Fire:
-
-			break;
-		case Effects.Freeze:
-
-			break;
-		default:
-			break;
-		}
+		effectToApply.onApplication (this);
+		effectUpdate += effectToApply.onUpdate;
 	}
 
 	private void checkDeathFromFalling()
