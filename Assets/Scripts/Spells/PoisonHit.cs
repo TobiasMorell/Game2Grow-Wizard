@@ -7,24 +7,24 @@ public class PoisonHit : MonoBehaviour {
 	private SpriteRenderer sr;
 
 	public Sprite hitSprite;
+	public Sprite statusIcon;
 
 	// Use this for initialization
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D> ();
 		sr = this.GetComponent<SpriteRenderer> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Platform")
+		Debug.Log("Collision with: " + other);
+		var e = other.GetComponent<Entity> ();
+		if (e == null && !other.isTrigger)
 			splash ();
-		else if (other.tag == "Player")
-			StartCoroutine (playerHit (other.gameObject));
+		else if (!(e is BlobController) && !other.isTrigger) {
+			StartCoroutine (entityHit (e));
+			Destroy (this.GetComponent<Collider2D> ());
+		}
 	}
 
 	private void splash() {
@@ -37,12 +37,9 @@ public class PoisonHit : MonoBehaviour {
 		this.sr.sprite = hitSprite;
 	}
 
-	IEnumerator playerHit(GameObject other) {
-		yield return new WaitForSeconds(0.1f);
-
+	IEnumerator entityHit(Entity other) {
+		yield return new WaitForSeconds(0.2f);
 		splash ();
-		Wizard player = other.GetComponent<Wizard> ();
-		if (player != null)
-			player.ApplyEffect (new PoisonEffect(3.5f));
+		other.ApplyEffect (new PoisonEffect(3.5f, 4f, statusIcon));
 	}
 }

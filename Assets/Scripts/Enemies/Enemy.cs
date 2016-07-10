@@ -35,8 +35,9 @@ public abstract class Enemy : Entity
 		facingRight = true;
 	}
 
-	protected virtual void Update()
+	public override void Update()
 	{
+		base.Update ();
 		currentState.Execute();
 	}
 

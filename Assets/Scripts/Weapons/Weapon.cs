@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEditor;
 
 public class Weapon : MonoBehaviour
 {
@@ -10,26 +11,56 @@ public class Weapon : MonoBehaviour
 	[SerializeField] bool repeatAnimation;
 	[SerializeField] GameObject projectile;
 	[SerializeField] AnimationClip swingAnimation;
+	private Collider2D _collider;
+	private GameObject proj;
 
 	Wizard player;
 
-	public Weapon (Wizard player) 
-	{
-		this.player = player;
-		if (!repeatAnimation)
-			swingAnimation.wrapMode = WrapMode.Once;
-		else
-			swingAnimation.wrapMode = WrapMode.Loop;
+	void Start() {
+		this.player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Wizard>();
+		_collider = this.GetComponent<Collider2D> ();
 	}
 
 	public void Swing() {
 		if (rangedWeapon) {
-			Instantiate (projectile);
+			proj = Instantiate (projectile);
+			Vector3 pos = _collider.transform.position;
+			if (player.facingRight) {
+				pos.x += 3.2f;
+			} else {
+				pos.x -= 3.2f;
+			}
+			pos.y += 0.25f;
+			proj.gameObject.transform.position = pos;
+			Bolt b = proj.GetComponent<Bolt> ();
+			if (b != null) {
+				b.movingRight = player.facingRight;
+				b.damage = damage;
+			} else {
+				MadnessBeam mb = proj.GetComponent<MadnessBeam> ();
+				if (!player.facingRight) {
+					Vector3 scale = proj.transform.localScale;
+					scale.x *= -1;
+					proj.transform.localScale = scale;
+				}
+				if (mb != null)
+					mb.damage = damage;
+			}
+		}
+		durability--;
+		if (durability <= 0) {
+			Destroy (this.gameObject);
+			Destroy (this);
+		}
+	}
+	public void StopSwing() {
+		if (!repeatAnimation) {
+			Destroy (proj);
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag.Equals ("Hostile")) {
+		if (other.tag.Equals ("Hostile") && !other.isTrigger) {
 			other.GetComponent<Enemy> ().TakeDamage (damage + player.Strength);
 
 			this.durability -= 1;

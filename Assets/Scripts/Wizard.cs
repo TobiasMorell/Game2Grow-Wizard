@@ -18,6 +18,7 @@ public class Wizard : Entity {
 	private int imuniTimer = 2;
 	private bool immune = false;
 	private Collider2D WeaponCollider;
+	private Weapon weapon;
 
 	#region Attributes
 	public int mana_regen_multiplier = 1;
@@ -34,12 +35,18 @@ public class Wizard : Entity {
 		get { return attacking; }
 		set { 
 			attacking = value;
-			WeaponCollider.enabled = attacking;
+			if(weapon != null)
+				WeaponCollider.enabled = attacking;
 		}
 	}
-
-	delegate void effectUpdateDelegate();
-	private effectUpdateDelegate effectUpdate;
+	public void SwingWeapon() {
+		if(weapon != null)
+			weapon.Swing ();
+	}
+	public void StopSwing() {
+		if (weapon != null)
+			weapon.StopSwing ();
+	}
 
 	public override void Awake(){
 		base.Awake ();
@@ -51,11 +58,16 @@ public class Wizard : Entity {
 		base.Start ();
 		Bolt.GetComponent<Bolt> ().damage = bolt_damage;
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
-		WeaponCollider = GameObject.FindGameObjectWithTag ("Weapon").GetComponent<Collider2D>();
+		GameObject wep = GameObject.FindGameObjectWithTag ("Weapon");
+		if (wep != null) {
+			weapon = wep.GetComponent<Weapon> ();
+			WeaponCollider = weapon.GetComponent<Collider2D> ();
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+		base.Update ();
 		handleMovement ();
 		handleMagicAttack ();
 		handleStaffAttack ();
@@ -67,9 +79,6 @@ public class Wizard : Entity {
 		}
 		else
 			manaTimer += Time.deltaTime;
-
-		checkDeathFromFalling ();
-		if(effectUpdate != null) effectUpdate ();
 	}
 	#region Control
 	void handleMovement()
@@ -103,41 +112,32 @@ public class Wizard : Entity {
 	}
 	#endregion
 
-	public override void TakeDamage(int damage)
+	public override void TakeDamage(int damage, bool ignoreImmunity)
 	{
-		if (!immune) {
+		if (ignoreImmunity || !immune) {
 			this.HP -= damage;
 			this.healthBar.value = HP;
 
 			if (HP <= 0)
 				die ();
 
-			StartCoroutine (handleImmunity (imuniTimer));
+			if(!ignoreImmunity)
+				StartCoroutine (handleImmunity (imuniTimer));
 		}
 	}
 	IEnumerator handleImmunity(int immunity_cooldown)
 	{
 		//Show that the player is immune in some way
 		this.immune = true;
-		this.sprite_renderer.color = Color.gray;
+		if(sprite_renderer.color == Color.white)
+			this.sprite_renderer.color = Color.gray;
 		yield return new WaitForSeconds (imuniTimer);
 		this.immune = false;
-		this.sprite_renderer.color = Color.white;
+		if(sprite_renderer.color == Color.gray)
+			this.sprite_renderer.color = Color.white;
 	}
 
-	public void ApplyEffect(HostileEffect effectToApply)
-	{
-		effectToApply.onApplication (this);
-		effectUpdate += effectToApply.onUpdate;
-	}
-
-	private void checkDeathFromFalling()
-	{
-		if (transform.position.y < -20)
-			die();
-	}
-
-	private void die()
+	protected override void die()
 	{
 		pointCamToSpawn();
 		Destroy (this.gameObject, 0f);
@@ -164,6 +164,9 @@ public class Wizard : Entity {
         }
         else if (!Input.GetButton("Jump") && rb.velocity.y < Mathf.Epsilon)
             jumping = false;
-            
     }
+
+	public void LevelUp() {
+
+	}
 }

@@ -22,7 +22,7 @@ public class BatController : Enemy {
 	}
 	
 	// Update is called once per frame
-	protected override void Update () {
+	public override void Update () {
 		base.Update();
 
 		//Checks if it's necesarry to flap

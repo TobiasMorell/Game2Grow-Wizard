@@ -7,8 +7,8 @@ namespace Assets.Scripts.Effects {
 	{
 		protected float duration;
 		protected float timer;
-		float Strength { get; set; }
-		private Entity bearer;
+		protected int Strength { get; set; }
+		protected Entity bearer;
 
 		public HostileEffect(float duration) {
 			this.duration = duration;
@@ -22,10 +22,19 @@ namespace Assets.Scripts.Effects {
 		public virtual void onUpdate()
 		{
 			timer += Time.deltaTime;
+			if (IsOver) {
+				onEffectEnded();
+			}
 		}
 
 		public virtual void onApplication (Entity entity){
 			this.bearer = entity;
+			Strength = 1;
+			bearer.effectUpdate += onUpdate;
+		}
+
+		public virtual void onEffectEnded() {
+			bearer.effectUpdate -= onUpdate;
 		}
 	}
 }

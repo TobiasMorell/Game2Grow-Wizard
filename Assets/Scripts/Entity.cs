@@ -1,14 +1,17 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Effects;
 
 public abstract class Entity : MonoBehaviour
 {
 	[SerializeField] protected int HP;
 	[SerializeField] protected int Damage;
+	[SerializeField] protected int expForKill;
+
 	public Slider healthBar;
 	[SerializeField] protected float MoveSpeed;
-	protected SpriteRenderer sprite_renderer;
+	public SpriteRenderer sprite_renderer;
 	protected Rigidbody2D rb;
 
 	[HideInInspector] public bool facingRight;
@@ -20,6 +23,7 @@ public abstract class Entity : MonoBehaviour
 
 	public virtual void Awake() {
 		animator = this.GetComponent<Animator> ();
+		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 		rb = this.GetComponent<Rigidbody2D>();
 	}
 
@@ -28,12 +32,33 @@ public abstract class Entity : MonoBehaviour
 		this.healthBar.value = HP;
 	}
 
-	public virtual void TakeDamage(int damage) {
+	public virtual void Update() {
+		if(effectUpdate != null) effectUpdate ();
+		checkDeathFromFalling ();
+	}
+
+	private void checkDeathFromFalling()
+	{
+		if (transform.position.y < -20)
+			die();
+	}
+	protected virtual void die(){
+		effectUpdate = null;
+		Destroy (this.gameObject, 0f);
+		ExpManager.instance.GiveExp (expForKill);
+	}
+
+	public virtual void TakeDamage(int damage, bool ignoreImmunity) {
 		this.HP -= damage;
 		this.healthBar.value = HP;
 
-		if (HP <= 0)
-			Destroy (this.gameObject, 0f);
+		if (HP <= 0) {
+			die ();
+		}
+	}
+
+	public void TakeDamage(int damage) {
+		TakeDamage (damage, false);
 	}
 
 	public void Flip()
@@ -43,5 +68,15 @@ public abstract class Entity : MonoBehaviour
 		scale.x *= -1;
 		transform.localScale = scale;
 	}
+
+	#region Effects
+	public delegate void effectUpdateDelegate();
+	public effectUpdateDelegate effectUpdate;
+
+	public void ApplyEffect(HostileEffect effectToApply)
+	{
+		effectToApply.onApplication (this);
+	}
+	#endregion
 }
 

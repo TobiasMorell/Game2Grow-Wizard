@@ -32,7 +32,6 @@ namespace Assets.Scripts.Enemies
 		}
 		public void OnTriggerEnter (UnityEngine.Collider2D other)
 		{
-			Debug.Log ("On trigger enter in MoveState: " + other.tag);
 			if(other.tag.Equals("Platform")) {
 				enemy.Flip();
 			}

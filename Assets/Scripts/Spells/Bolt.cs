@@ -3,20 +3,20 @@ using System.Collections;
 using Assets.Scripts;
 
 public class Bolt : MonoBehaviour {
-	[SerializeField] private float speed;
+	[SerializeField] protected float speed;
 	public int damage;
 	public int cost = 3;
-	[SerializeField] private float lifetime = 1.5f;
+	[SerializeField] protected float lifetime = 1.5f;
 	[HideInInspector] public bool movingRight;
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		Destroy (this.gameObject, lifetime);
 		if (!movingRight)
 			Flip ();
 	}
 
-	private void Flip()
+	protected virtual void Flip()
 	{
 		Vector3 scale = transform.localScale;
 		scale.x *= -1;
@@ -25,15 +25,15 @@ public class Bolt : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
 		transform.position += Vector3.right * speed * Time.deltaTime;
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	protected virtual void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Hostile") {
+		if (other.tag == "Hostile" && !other.isTrigger) {
 			//Maybe some particle effect
-
+			Debug.Log ("On trigger enter in MoveState: " + other.tag);
 			other.GetComponent<Enemy>().TakeDamage (damage);
 		}
 	}
