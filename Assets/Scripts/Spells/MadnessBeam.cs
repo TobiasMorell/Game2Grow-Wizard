@@ -7,7 +7,6 @@ public class MadnessBeam : MonoBehaviour
 	const float dmg_cooldown = 0.2f;
 	public int damage;
 
-	new Collider2D collider;
 	private List<EnemyDmgTimer> touchingEnemies;
 
 	class EnemyDmgTimer
@@ -17,7 +16,6 @@ public class MadnessBeam : MonoBehaviour
 	}
 
 	void Start() {
-		collider = this.GetComponent<Collider2D> ();
 		touchingEnemies = new List<EnemyDmgTimer> ();
 	}
 

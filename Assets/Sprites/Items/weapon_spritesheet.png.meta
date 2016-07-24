@@ -1,17 +1,17 @@
 fileFormatVersion: 2
 guid: 4b1d1618222b85149828e2d835385d98
-timeCreated: 1467316908
+timeCreated: 1469103804
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: flaming_staff
-    21300002: walking_stick
-    21300004: void_wand
-    21300006: Ray_of_sun
-    21300008: Orb_of_madness
-    21300010: fiend_reach
-    21300012: Kings_bane
-    21300014: novice_sword
+    21300000: Flaming Staff
+    21300002: Walking Stick
+    21300004: Void Wand
+    21300006: Sparkler
+    21300008: Orb of Madness
+    21300010: Fiend Reach
+    21300012: Kings Bane
+    21300014: Novice Sword
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -58,7 +58,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: flaming_staff
+    - name: Flaming Staff
       rect:
         serializedVersion: 2
         x: 0
@@ -69,7 +69,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: walking_stick
+    - name: Walking Stick
       rect:
         serializedVersion: 2
         x: 11
@@ -80,7 +80,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: void_wand
+    - name: Void Wand
       rect:
         serializedVersion: 2
         x: 22
@@ -91,7 +91,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ray_of_sun
+    - name: Sparkler
       rect:
         serializedVersion: 2
         x: 45
@@ -102,7 +102,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Orb_of_madness
+    - name: Orb of Madness
       rect:
         serializedVersion: 2
         x: 63
@@ -113,7 +113,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: fiend_reach
+    - name: Fiend Reach
       rect:
         serializedVersion: 2
         x: 79
@@ -124,7 +124,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Kings_bane
+    - name: Kings Bane
       rect:
         serializedVersion: 2
         x: 95
@@ -135,7 +135,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: novice_sword
+    - name: Novice Sword
       rect:
         serializedVersion: 2
         x: 140

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Save>
+  <Player>
+    <Position>
+      <x>16.9409885</x>
+      <y>4.267199</y>
+      <z>0</z>
+    </Position>
+    <Status>
+      <HP>12</HP>
+      <Mana>12</Mana>
+    </Status>
+  </Player>
+  <Enemies />
+</Save>

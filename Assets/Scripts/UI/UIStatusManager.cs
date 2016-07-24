@@ -70,7 +70,6 @@ public class UIStatusManager : MonoBehaviour {
 		Destroy (effectSlider.gameObject);
 
 		//And move the remainder of the icons right
-		Vector2 pos;
 		for (int i = index; i < activeSliders.Count; i++) {
 			Slider s = activeSliders [i];
 			var rt = s.gameObject.GetComponent<RectTransform>();

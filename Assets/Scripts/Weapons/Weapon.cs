@@ -31,6 +31,7 @@ public class Weapon : MonoBehaviour
 				pos.x -= 3.2f;
 			}
 			pos.y += 0.25f;
+			Debug.Log ("Setting position of " + proj + " to " + pos);
 			proj.gameObject.transform.position = pos;
 			Bolt b = proj.GetComponent<Bolt> ();
 			if (b != null) {
