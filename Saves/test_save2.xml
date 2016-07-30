@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Save>
+  <Wizard>
+    <Position>
+      <x>0.8329673</x>
+      <y>6.67719841</y>
+      <z>0</z>
+    </Position>
+    <Status>
+      <HP>12</HP>
+      <Mana>12</Mana>
+      <Exp>N/A</Exp>
+      <Level>N/A</Level>
+      <Inventory>
+        <Item ID="1">
+          <Quantity>1</Quantity>
+        </Item>
+      </Inventory>
+    </Status>
+  </Wizard>
+  <Enemies>
+    <Enemy Type="Bat">
+      <Position>
+        <x>2.0</x>
+        <y>10.0</y>
+        <z>0</z>
+      </Position>
+      <Status>
+        <HP>4</HP>
+      </Status>
+    </Enemy>
+  </Enemies>
+</Save>
