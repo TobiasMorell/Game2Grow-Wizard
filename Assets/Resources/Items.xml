@@ -119,6 +119,21 @@
   <Value>0</Value>
   <Type>Quest</Type>
 </Item>
+
+<Item>
+  <Id>15</Id>
+  <Name>Small Crystal</Name>
+  <Description>A magic crystal, use this to increase your power</Description>
+  <Value>10</Value>
+  <Type>Magic</Type>
+</Item>
+
+<Item>
+  <Id>16</Id>
+  <Name>Large Crystal</Name>
+  <Description>A magic crystal, use this to increase your power</Description>
+  <Value>15</Value>
+  <Type>Magic</Type>
+</Item>
+
 </ItemDatabase>
-
-

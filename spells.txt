@@ -1,0 +1,59 @@
+       Fire        Water       Death        Life
+Fire   Pyromancer  
+Water  Mud/Steam   Hydromancer
+Death  Volcano     Ice-lord    Necromancer
+Life   Phoenix                 Shadow/Void  Divine
+
+Pyromancer:
+1) Fire blast - single target and small damage (could be increased when target is ignited)
+2) Ignite     - sets the target ablaze and deals periodic damage
+3) Flames of Life - Extinguish the flames on an enemy healing the pyromancer for all remaining damage.
+4) Flame-star - The pyromancer spews flames all around him from left to right or right to left, depending on which way he faces.
+
+Volcano-thingy:
+1) 
+2) Enchant Weapon - Cover the weapon in lava dealing extra melee damage
+3) Lava Cannon - shoots lava bolts in the direction the wizard is facing
+4) Armageddon  - Summons a volcano that launches bolts of lava into the air and deals fire-damage to nearby entities (including the wizard)
+
+Phoenix-thingy:
+1) Feathers - shoots out flaming feathers that deals damage.
+2) 
+3) Blazing Flight - Cover the wizard in flames and rush forward dealing damage to all enemies.
+4) Summon phoenix
+
+Mud/Steam:
+1)             - Healing/regeneration/enchant spell
+2) Steam Blast - Spew out steam dealing damage to enemies
+3) Quicksand   - summon quicksand underneath the enemy to slow their movement
+4)             - Pulls dirt and stones from the earth and blast it in all directions.
+
+Hydromancer:
+1) Water Bolt
+2) Hydro Pump - Pump water in some direction dealing damage and knocking enemies back
+3) Refresh    - Heals the wizard and increases damage delt for a few seconds
+4) Bubble     - Summon a bubble around an enemy that hinders their movement (pulls flying targets to the ground)
+
+Ice-lord:
+1) Ice bolt
+2) Blizzard
+3) 
+4) 
+
+Necromancer:
+1) Drain Life
+2) Summon Dead
+3) Scream         - Decrease enemy damage
+4) Bone Boomerang
+
+Void/Shadow:
+1) Void Trap - Create trap that does damage and stuns when walking over
+2) Chaos Bolt - Should regenerate some health
+3) Mind Control - Turn an enemy against his allies.
+4) Rift - Create a rift that drains life-force from enemies and pulls them toward the center of the rift.
+
+Cleric:
+1) Bolt of Light
+2) Prayer        - A ward that regenerates a small porion of health each second (also glows a bit)
+3) Condemn       - Condemn enemies with their sins, stunning them and has a small change of turning an enemy against his allies.
+4) Holy Radiance - Shine with holy light, dealing periodic damage to enemies.
