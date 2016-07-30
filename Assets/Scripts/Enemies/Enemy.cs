@@ -52,15 +52,13 @@ public abstract class Enemy : Entity
 		currentState.Enter(this);
 	}
 
-	public void PlayAnimation(string animatorString)
-	{
-		animator.SetTrigger (animatorString);
-	}
-
 	public virtual void Move()
 	{
-		//anim.SetBool ("moving", true);
+		animator.SetBool ("Moving", true);
 		transform.Translate (Direction * MoveSpeed * Time.deltaTime);
+	}
+	public virtual void StopMove() {
+		animator.SetBool ("Moving", false);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -69,4 +67,14 @@ public abstract class Enemy : Entity
 			currentState.OnTriggerEnter (other);
 	}
 
+	protected override void SaveStatus (System.Xml.XmlWriter writer)
+	{
+		writer.WriteElementString ("HP", HP.ToString ());
+	}
+
+	protected override void LoadStatus (System.Xml.XmlReader reader)
+	{
+		base.LoadStatus (reader);
+		reader.ReadEndElement ();
+	}
 }

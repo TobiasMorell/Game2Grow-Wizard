@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
 	public Item Item {
 		get;
@@ -15,12 +15,18 @@ public class InventorySlot : MonoBehaviour
 
 	private bool showTooltip;
 
+	private InventoryUI UI;
+
 	public string Tooltip {
 		get;
 		private set;
 	}
 
 	void Start() {
+		UI = GetComponentInParent<InventoryUI> ();
+		if (UI == null) {
+			Debug.LogAssertion ("Reference from inventory-slot to UI missing!");
+		}
 	}
 
 	public void OnGUI() {
@@ -33,18 +39,32 @@ public class InventorySlot : MonoBehaviour
 		}
 	}
 
-	public void OnPointerEnter() {
-		Debug.Log ("Hovering an item - should display tooltip");
+	public void OnPointerEnter(PointerEventData ped) {
+		if (UI.DraggingItem) {
+			UI.hovering = this;
+			return;
+		}
 		if (Item != null) {
 			showTooltip = true;
 		}
 	}
-	public void OnPointerExit () {
-		Debug.Log ("Removing mouse - should remove tooltip");
+	public void OnPointerExit (PointerEventData ped) {
+		if (UI.DraggingItem)
+			UI.hovering = null;
 		showTooltip = false;
 	}
-	public void OnPointerClick() {
-		Debug.Log ("Clicked an inventory slot");
+	public void OnPointerDown(PointerEventData ped) {
+		if (ped.button == PointerEventData.InputButton.Right) {
+			Debug.Log ("Should use item " + Item.ItemName);
+		}
+	}
+	public void OnDrag(PointerEventData ped) {
+		if (!UI.DraggingItem) {
+			UI.StartDrag (this);
+		}
+	}
+	public void OnEndDrag(PointerEventData ped) {
+		UI.EndDrag ();
 	}
 
 	public void PlaceItem(Item item) {

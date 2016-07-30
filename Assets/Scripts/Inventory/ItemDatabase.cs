@@ -24,7 +24,7 @@ public class ItemDatabase : MonoBehaviour {
 		items.Add (new Item ("Sparkler", "Celebrate your victory with a burst of stars.", 16, ItemType.Weapon, 5));
 		items.Add (new Item ("Void Wand", "Forged with materials from the depths of Despair Abyss.", 45, ItemType.Weapon, 6));
 		items.Add (new Item ("Walking Stick", "Originally used as support for elderly, but also packs quiet a punch!", 3, ItemType.Weapon ,7));
-		items.Add (new Item ("Wizards Robes", "A robe used by novice wizards.", 1, ItemType.Armor, 8));
+		items.Add (new Item ("Novice Robes", "A robe used by novice wizards.", 1, ItemType.Armor, 8));
 		items.Add (new Item ("Chain Armor", "A sturdy armor crafted to sustain slashing and piercing.", 9, ItemType.Armor, 9));
 		items.Add (new Item ("Health Potion", "Regenerates some health when used.", 5, ItemType.Consumable, 10, 10));
 		items.Add (new Item ("Mana Potion", "Regenerates mana when consumed.", 5, ItemType.Consumable, 10, 11));

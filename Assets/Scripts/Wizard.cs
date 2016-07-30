@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using Assets.Scripts.Effects;
+using System.Xml;
 
 public class Wizard : Entity {
 	[HideInInspector] public bool movingRight = false;
@@ -168,5 +169,42 @@ public class Wizard : Entity {
 
 	public void LevelUp() {
 
+	}
+
+	public override void Save (XmlWriter writer)
+	{
+		writer.WriteStartElement ("Wizard");
+		base.Save (writer);
+		writer.WriteEndElement ();
+	}
+	protected override void SaveStatus (XmlWriter writer)
+	{
+		writer.WriteStartElement ("Status");
+
+		writer.WriteElementString("HP", HP.ToString());
+		writer.WriteElementString ("Mana", mana.value.ToString ());
+		writer.WriteElementString ("Exp", "N/A");
+		writer.WriteElementString ("Level", "N/A");
+
+		GetComponent<Inventory> ().SaveInventory (writer);
+		writer.WriteEndElement();
+	}
+
+	public override void Load (XmlReader reader)
+	{
+		reader.ReadToFollowing ("Wizard");
+		base.Load (reader);
+		reader.ReadEndElement ();
+	}
+	protected override void LoadStatus (XmlReader reader)
+	{
+		base.LoadStatus (reader);
+		reader.ReadToNextSibling ("Mana");
+		mana.value = reader.ReadElementContentAsFloat ();
+		Debug.Log("Found Exp field: " + reader.ReadToNextSibling ("Exp"));
+		Debug.Log("Found level field: " + reader.ReadToNextSibling ("Level"));
+
+		GetComponent<Inventory> ().LoadInventory (reader);
+		reader.ReadEndElement ();
 	}
 }

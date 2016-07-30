@@ -30,6 +30,7 @@ namespace Assets.Scripts.Enemies
 		public void Exit ()
 		{
 			enemy.Flip ();
+			enemy.StopMove ();
 		}
 
 		public void OnTriggerEnter (UnityEngine.Collider2D other)

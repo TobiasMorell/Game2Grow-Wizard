@@ -11,7 +11,7 @@ public class BatController : Enemy {
 	public override void Awake () {
 		base.Awake ();
 		groundChecker = GetComponentInChildren<BoxCollider2D> ();
-		facingRight = true;
+		facingRight = false;
 	}
 
 	public override void Start ()
@@ -35,5 +35,13 @@ public class BatController : Enemy {
 			//anim.SetTrigger ("flap");
 			rb.AddForce (Vector2.up * flapForce * forceScale * (rb.drag * 3));
 		}
+	}
+
+	public override void Save (System.Xml.XmlWriter writer)
+	{
+		writer.WriteStartElement("Enemy");
+		writer.WriteAttributeString("Type", "Bat");
+		base.Save (writer);
+		writer.WriteEndElement ();
 	}
 }

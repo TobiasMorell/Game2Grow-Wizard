@@ -28,7 +28,7 @@ namespace Assets.Scripts.Enemies
 		}
 		public void Exit ()
 		{
-			
+			enemy.StopMove ();
 		}
 		public void OnTriggerEnter (UnityEngine.Collider2D other)
 		{

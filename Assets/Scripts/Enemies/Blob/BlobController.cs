@@ -47,4 +47,17 @@ public class BlobController : Enemy {
 	void OnTriggerEnter2D(Collider2D other) {
 		currentState.OnTriggerEnter (other);
 	}
+
+	protected override void SaveStatus (System.Xml.XmlWriter writer)
+	{
+		writer.WriteStartElement("Enemy");
+		writer.WriteAttributeString("Type", "Blob");
+		base.Save (writer);
+		writer.WriteEndElement ();
+	}
+
+	public override void Move ()
+	{
+		base.Move ();
+	}
 }

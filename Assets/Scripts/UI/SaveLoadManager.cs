@@ -10,27 +10,30 @@ public class SaveLoadManager : MonoBehaviour {
 	private GameObject _player;
 	private GameObject[] enemies;
 
-	[SerializeField] StringPrefab[] enemyPrefabs;
+	[SerializeField] StringPrefab[] prefabs;
 	[Serializable]
 	public struct StringPrefab
 	{
 		public string key;
 		public GameObject value;
 	}
-	Dictionary<string,GameObject> enemyDict = new Dictionary<string, GameObject>();
+	Dictionary<string,GameObject> prefabDictionary = new Dictionary<string, GameObject>();
 
 	void Start()
 	{
-		foreach (var prefab in enemyPrefabs) {
-			if (!enemyDict.ContainsKey (prefab.key)) {
-				enemyDict.Add (prefab.key, prefab.value);
+		//Add prefabs to dictionary - used for instantiation
+		foreach (var prefab in prefabs) {
+			if (!prefabDictionary.ContainsKey (prefab.key)) {
+				prefabDictionary.Add (prefab.key, prefab.value);
 			}
 		}
+		//Find GameObjects from scene
 		this._player = GameObject.FindGameObjectWithTag ("Player");
 		this.enemies = GameObject.FindGameObjectsWithTag ("Hostile");
 	}
 
 	public void SaveGame(string savePath){
+		//Create a folder for saves incase it does not already exist
 		string saveFolder = Directory.GetCurrentDirectory () + "/Saves";
 		if (!Directory.Exists (saveFolder))
 			Directory.CreateDirectory (saveFolder);
@@ -39,57 +42,27 @@ public class SaveLoadManager : MonoBehaviour {
 		XmlWriterSettings ws = new XmlWriterSettings ();
 		ws.Indent = true;
 		ws.Encoding = Encoding.UTF8;
+		//Setup the writer and ouptut
 		using (FileStream fs = new FileStream (saveFolder + '/' + savePath + ".xml", FileMode.Create)) {
 			using (XmlWriter writer = XmlWriter.Create (fs, ws)) {
+				//Write start of document
 				writer.WriteStartDocument ();
 				writer.WriteStartElement ("Save");
-				writePlayer (writer);
-				writeEnemies (writer);
+
+				//Add things to save here!
+				_player.GetComponent<Wizard> ().Save (writer);
+				SaveEnemies (writer);
+
 				writer.WriteEndElement ();
 				writer.WriteEndDocument ();
 			}
 		}
 	}
-	private void writePlayer(XmlWriter wr) {
-		wr.WriteStartElement ("Player");
-		writePosition (_player.transform.position, wr);
-		writeStatus (_player.GetComponent<Wizard> (), wr);
-		wr.WriteEndElement ();
-	}
-	private void writePosition(Vector3 position, XmlWriter wr) {
-		wr.WriteStartElement ("Position");
-		wr.WriteStartElement ("x");
-		wr.WriteValue (position.x);
-		wr.WriteEndElement ();
-		wr.WriteStartElement ("y");
-		wr.WriteValue (position.y);
-		wr.WriteEndElement ();
-		wr.WriteStartElement ("z");
-		wr.WriteValue (position.z);
-		wr.WriteEndElement ();
-		wr.WriteEndElement ();
-	}
-	private void writeStatus(Entity entity, XmlWriter wr) {
-		wr.WriteStartElement ("Status");
-		wr.WriteElementString ("HP", entity.healthBar.value.ToString());
-		if (entity is Wizard) {
-			var wiz = (Wizard)entity;
-			wr.WriteElementString ("Mana", wiz.mana.value.ToString ());
-		}
-		wr.WriteEndElement ();
-	}
-	private void writeEnemies(XmlWriter wr) {
+
+	private void SaveEnemies(XmlWriter wr) {
 		wr.WriteStartElement ("Enemies");
 		foreach(GameObject go in enemies) {
-			Enemy e = go.GetComponent<Enemy> ();
-			wr.WriteStartElement ("Enemy");
-			if(e is BlobController)
-				wr.WriteAttributeString ("Type", "Blob");
-			else if(e is BatController)
-				wr.WriteAttributeString("Type", "Bat");
-			writePosition (go.transform.position, wr);
-			writeStatus (e, wr);
-			wr.WriteEndElement ();
+			go.GetComponent<Enemy> ().Save (wr);
 		}
 		wr.WriteEndElement ();
 	}
@@ -99,51 +72,36 @@ public class SaveLoadManager : MonoBehaviour {
 		if (File.Exists (fullPath)) {
 			Uri basePath = new Uri (fullPath);
 			using(XmlReader reader = XmlReader.Create(basePath.AbsoluteUri)){
-				readPosition (_player.transform, reader);
-				readStatus (_player.GetComponent<Wizard> (), reader);
-				readEnemies (reader);
+				if (_player == null)
+					_player = Instantiate (prefabDictionary ["Player"]);
+				reader.ReadStartElement ("Save");
+				_player.GetComponent<Wizard> ().Load (reader);
+				LoadEnemies (reader);
 			}
 		} else
 			Debug.Log ("The specified save-game did not exist.");
 	}
-	private void readPosition(Transform readTo, XmlReader reader) {
-		reader.ReadToFollowing ("Position");
-		reader.ReadToDescendant ("x");
-		Vector3 loadedPosition = new Vector3 ();
-		loadedPosition.x = reader.ReadElementContentAsFloat ();
-		reader.ReadToNextSibling ("y");
-		loadedPosition.y = reader.ReadElementContentAsFloat ();
-		reader.ReadToNextSibling ("z");
-		loadedPosition.z = reader.ReadElementContentAsFloat ();
-		readTo.position = loadedPosition;
-	}
-	private void readStatus(Entity entity, XmlReader reader) {
-		reader.ReadToFollowing ("Status");
-		reader.ReadToDescendant ("HP");
-		entity.healthBar.value = reader.ReadElementContentAsFloat ();
-		if (entity is Wizard) {
-			Wizard wiz = (Wizard)entity;
-			reader.ReadToNextSibling ("Mana");
-			wiz.mana.value = reader.ReadElementContentAsFloat ();
-		}
-	}
-	private void readEnemies(XmlReader reader) {
-		Debug.Log ("Started parsing enemies");
-		reader.ReadToFollowing("Enemies");
+	private void LoadEnemies(XmlReader reader) {
+		reader.ReadStartElement("Enemies");
 
 		GameObject enemy = null;
-		while (reader.ReadToFollowing("Enemy")) {
+		bool enemyToParse = reader.ReadToFollowing ("Enemy");
+		Debug.Log ("Started parsing enemies..." + enemyToParse);
+		do {
+			if(!enemyToParse)
+				break;
+			
+			Debug.Log ("Found an enemy");
 			switch (reader.GetAttribute ("Type")) {
 			case "Bat":
-				enemy = Instantiate (enemyDict ["Bat"]);
+				enemy = Instantiate (prefabDictionary ["Bat"]);
 				break;
 			case "Blob":
-				enemy = Instantiate (enemyDict ["Blob"]);
+				enemy = Instantiate (prefabDictionary ["Blob"]);
 				break;
-			}
-			readPosition (enemy.transform, reader);
-			readStatus (enemy.GetComponent<Enemy> (), reader);
-		}
+			} 
+			enemy.GetComponent<Enemy> ().Load (reader);
+		} while(reader.ReadToNextSibling("Enemy"));
 
 	}
 }

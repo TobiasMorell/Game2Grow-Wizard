@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.Effects;
+using System.Xml;
 
 public abstract class Entity : MonoBehaviour
 {
@@ -78,5 +79,45 @@ public abstract class Entity : MonoBehaviour
 		effectToApply.onApplication (this);
 	}
 	#endregion
+
+	public virtual void Save(XmlWriter writer) {
+		SavePosition (writer);
+		SaveStatus (writer);
+	}
+	protected void SavePosition (XmlWriter writer) {
+		writer.WriteStartElement ("Position");
+		writer.WriteStartElement ("x");
+		writer.WriteValue (transform.position.x);
+		writer.WriteEndElement ();
+		writer.WriteStartElement ("y");
+		writer.WriteValue (transform.position.y);
+		writer.WriteEndElement ();
+		writer.WriteStartElement ("z");
+		writer.WriteValue (transform.position.z);
+		writer.WriteEndElement ();
+		writer.WriteEndElement ();
+	}
+	protected abstract void SaveStatus (XmlWriter writer);
+	public virtual void Load(XmlReader reader) {
+		LoadPosition (reader);
+		LoadStatus (reader);
+	}
+	protected virtual void LoadStatus (XmlReader reader) {
+		reader.ReadToFollowing ("Status");
+		reader.ReadToDescendant ("HP");
+		HP = reader.ReadElementContentAsInt ();
+	}
+	protected void LoadPosition(XmlReader reader) {
+		reader.ReadToFollowing ("Position");
+		reader.ReadToDescendant ("x");
+		Vector3 loadedPosition = new Vector3 ();
+		loadedPosition.x = reader.ReadElementContentAsFloat ();
+		reader.ReadToNextSibling ("y");
+		loadedPosition.y = reader.ReadElementContentAsFloat ();
+		reader.ReadToNextSibling ("z");
+		loadedPosition.z = reader.ReadElementContentAsFloat ();
+		transform.position = loadedPosition;
+		reader.ReadEndElement ();
+	}
 }
 

@@ -16,15 +16,14 @@ public class Inventory : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		database = GameObject.FindGameObjectWithTag ("Inventory").GetComponent<ItemDatabase> ();
-		if (!database)
+		if (database == null)
 			Debug.LogAssertion ("FATAL ERROR: Could not find item database!");
 
-		inventory = new Item[25];
-
-		AddItem ("Health Potion");
-		AddItem ("Health Potion");
-		AddItem (1);
 		AddItem ("Novice Sword");
+		AddItem ("Walking Stick");
+		AddItem ("Health Potion", 3);
+		AddItem ("Mana Potion", 3);
+		Debug.Log ("Added starting items!");
 	}
 
 	void Update() {
@@ -35,20 +34,12 @@ public class Inventory : MonoBehaviour {
 	#endregion
 	#region Inventory manipulaiton
 	public void AddItem(int id) {
-		Item item = database [id];
-		if (item != null)
-			AddItem (item);
-		else
-			throw new ArgumentException("The item with id " + id + " does not exist");
+		AddItem (id, 1);
 	}
 	public void AddItem(string name) {
-		Item item = database [name];
-		if (item != null)
-			AddItem (item);
-		else
-			throw new ArgumentException ("The item with name " + name + " does not exist");
+		AddItem (name, 1);
 	}
-	private void AddItem(Item item) {
+	private void AddItem(Item item, int quantity) {
 		int availIndex = inventory.Length;
 		//Run through inventory to find an available slot
 		for (int index = 0; index < inventory.Length; index++) {
@@ -62,16 +53,37 @@ public class Inventory : MonoBehaviour {
 			//Check if the item in slot is equal to the stackable item at hand
 			else if (item.maxStackSize > 1 && inventory[index] != null) {
 				if (inventory[index].Id == item.Id) {
-					inventory [index].stackSize++;
+					inventory [index].stackSize += quantity;
 					return;
 				}
 			}
 		}
 		//Place the item in slot unless inventory is full (only called with non-stackable items
-		if (availIndex != inventory.Length)
+		if (availIndex != inventory.Length) {
 			inventory [availIndex] = item.Clone ();
+			if (quantity > 1)
+				inventory [availIndex].stackSize = quantity;
+		}
 		else
 			Debug.Log ("Inventory is full");
+	}
+	public void AddItem(String name, int quantity) {
+		Item item = database [name];
+		if (item != null)
+			AddItem (item, quantity);
+		else if (item != null && item.maxStackSize > quantity)
+			throw new ArgumentException ("Cannot more of an item than its maximum stacksize");
+		else
+			throw new ArgumentException ("The item with name " + name + " does not exist");
+	}
+	public void AddItem(int id, int quantity) {
+		Item item = database [id];
+		if (item != null)
+			AddItem (item, quantity);
+		else if (item.maxStackSize > quantity)
+			throw new ArgumentException ("Cannot more of an item than its maximum stacksize");
+		else
+			throw new ArgumentException("The item with id " + id + " does not exist");
 	}
 
 	public bool Contains(int id) {
@@ -118,6 +130,7 @@ public class Inventory : MonoBehaviour {
 	#endregion
 	public void Initialize(int size) {
 		inventory = new Item[size];
+		Debug.Log ("Created inventory with size: " + size);
 	}
 	public void UpdateInventory(InventorySlot[] slots) {
 		if (slots.Length != inventory.Length)
@@ -127,26 +140,33 @@ public class Inventory : MonoBehaviour {
 			inventory [i] = slots [i].Item;
 		}
 	}
-	/*void OnGUI() {
-		if (!showGUI)
-			return;
 
-		drawInventory ();
-
-		if (draggingItem) {
-			GUI.DrawTexture (new Rect (Event.current.mousePosition.x - 0.5f *draggedIconWidth, 
-				Event.current.mousePosition.y - 0.5f * draggedIconWidth,
-				draggedIconWidth, draggedIconWidth), draggedItem.icon);
-		}
-	}*/
-
-	/*void handleDragAndDrop(Rect position, Event e, int index) {
-		if (position.Contains (e.mousePosition)) {
-			if (draggingItem && Input.GetMouseButtonUp(0)) {
-				slots [draggedFrom].PlaceItem(slots [index].Item);
-				slots [index].PlaceItem(draggedItem);
-				draggingItem = false;
+	public void SaveInventory(System.Xml.XmlWriter writer) {
+		writer.WriteStartElement ("Inventory");
+		foreach (var item in inventory) {
+			if (item != null) {
+				writer.WriteStartElement ("Item");
+				writer.WriteAttributeString ("ID", item.Id.ToString());
+				writer.WriteElementString ("Quantity", item.stackSize.ToString());
+				writer.WriteEndElement ();
 			}
 		}
-	}*/
+		writer.WriteEndElement ();
+	}
+
+	public void LoadInventory(System.Xml.XmlReader reader) {
+		int itemCount = 0;
+		reader.ReadToFollowing ("Inventory");
+		reader.ReadToDescendant ("Item");
+		do {
+			string id = reader.GetAttribute ("ID");
+			inventory [itemCount] = database [int.Parse (id)].Clone ();
+			reader.ReadToDescendant ("Quantity");
+			inventory [itemCount].stackSize = reader.ReadElementContentAsInt();
+			Debug.Log ("Just parsed " + inventory [itemCount]);
+			itemCount++;
+			reader.ReadEndElement();
+		} while(reader.ReadToNextSibling("Item"));
+		reader.ReadEndElement ();
+	}
 }
