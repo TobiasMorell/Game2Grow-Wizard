@@ -1,67 +1,120 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
+using System;
+using System.Xml;
+using ExtensionMethods;
 
-public class ItemDatabase : MonoBehaviour {
-	private List<Item> items;
+namespace ItemClasses {
+	public class ItemDatabase : MonoBehaviour {
+		private List<Item> items;
 
-	public Item this [int i] {
-		get { return items.Find((Item itm) => itm.Id == i); }
-		private set { int ind = items.FindIndex((Item itm) => itm.Id == i); items[ind] = value; }
+		public Item this [int i] {
+			get { return items.Find((Item itm) => itm.Id == i); }
+			private set { int ind = items.FindIndex((Item itm) => itm.Id == i); items[ind] = value; }
+		}
+
+		public Item this[string s] {
+			get { return items.Find ((Item i) => i.ItemName == s); }
+			private set { int ind = items.FindIndex ((Item i) => i.ItemName == s); items [ind] = value; }
+		}
+
+		void Start() {
+			items = new List<Item> ();
+			fillDatabase ();
+		}
+
+		private void fillDatabase() {
+			//Open and xml-reader to the Items.xml file, which contains all items
+			string fullPath = Directory.GetCurrentDirectory () + "/Assets/Resources/Items.xml";
+			if (File.Exists (fullPath)) {
+				Uri basePath = new Uri (fullPath);
+				using(XmlReader reader = XmlReader.Create(basePath.AbsoluteUri)){
+					readItems (reader);
+				}
+			} else
+				Debug.Log ("The specified save-game did not exist.");
+		}
+
+		private void readItems(XmlReader reader) {
+			reader.ReadToFollowing ("ItemDatabase");
+			bool continueReading = reader.ReadToDescendant ("Item");
+
+			while (continueReading) {
+				//Read all information from the .xml-file
+				reader.ReadToDescendant ("Id");
+				int id = reader.ReadElementContentAsInt ();
+				reader.ReadToNextSibling ("Name");
+				string name = reader.ReadElementContentAsString ();
+				reader.ReadToNextSibling ("Description");
+				string desc = reader.ReadElementContentAsString ();
+				reader.ReadToNextSibling ("Value");
+				int value = reader.ReadElementContentAsInt ();
+				reader.ReadToNextSibling ("Type");
+				string type = reader.ReadElementContentAsString ();
+				ItemType t = type.StringToType ();
+
+				//And add the item to the database
+				Item i = new Item (name, desc, value, t, id);
+
+				//check for attributes and add them to the item
+				checkForAttributes(reader, i);
+
+				//Add the item to the databse and read end element
+				items.Add(i);
+				reader.ReadEndElement ();
+				//Check if there is another item to read
+				continueReading = reader.ReadToNextSibling ("Item");
+			}
+		}
+
+		private void checkForAttributes(XmlReader reader, Item i) {
+			bool attributePresent = reader.ReadToNextSibling ("Attribute");
+
+			while (attributePresent) {
+				switch (reader.GetAttribute ("Type")) {
+				case "Stacksize":
+					i.maxStackSize = reader.ReadElementContentAsInt ();
+					Debug.Log ("Set max stacksize of " + i.ItemName + " to " + i.maxStackSize);
+					break;
+				}
+				attributePresent = reader.ReadToNextSibling ("Attribute");
+			}
+		}
 	}
 
-	public Item this[string s] {
-		get { return items.Find ((Item i) => i.ItemName == s); }
-		private set { int ind = items.FindIndex ((Item i) => i.ItemName == s); items [ind] = value; }
+	public enum ItemType
+	{
+		Weapon, Armor, Consumable, Junk, Quest, Magic
 	}
 
-	void Start() {
-		items = new List<Item> ();
-		items.Add(new Item("Novice Sword", "A sword for novice wizards", 1, ItemType.Weapon, 0));
-		items.Add(new Item("Fiend Reach", "The blade wielded by the king of the undead armies.", 25, ItemType.Weapon, 1));
-		items.Add (new Item ("Flaming Staff", "The staff burns ever bright to light the way of wizards.", 12, ItemType.Weapon, 2));
-		items.Add (new Item ("Kings Bane", "Legend has it that this blade was used to slay the belowed king Oidin.", 20, ItemType.Weapon, 3));
-		items.Add (new Item ("Orb of Madness", "Glare into the eye and madness will corrupt your soul.", 45, ItemType.Weapon, 4));
-		items.Add (new Item ("Sparkler", "Celebrate your victory with a burst of stars.", 16, ItemType.Weapon, 5));
-		items.Add (new Item ("Void Wand", "Forged with materials from the depths of Despair Abyss.", 45, ItemType.Weapon, 6));
-		items.Add (new Item ("Walking Stick", "Originally used as support for elderly, but also packs quiet a punch!", 3, ItemType.Weapon ,7));
-		items.Add (new Item ("Novice Robes", "A robe used by novice wizards.", 1, ItemType.Armor, 8));
-		items.Add (new Item ("Chain Armor", "A sturdy armor crafted to sustain slashing and piercing.", 9, ItemType.Armor, 9));
-		items.Add (new Item ("Health Potion", "Regenerates some health when used.", 5, ItemType.Consumable, 10, 10));
-		items.Add (new Item ("Mana Potion", "Regenerates mana when consumed.", 5, ItemType.Consumable, 10, 11));
-	}
-}
+	[System.Serializable]
+	public class Item {
+		public string ItemName;
+		public readonly int Id;
+		public string Description;
+		public int Value;
+		public ItemType Type;
+		public Sprite icon;
+		public GameObject prefab;
+		public int maxStackSize;
+		public int stackSize = 1;
 
-public enum ItemType
-{
-	Weapon, Armor, Consumable, Junk, Quest
-}
+		public Item(string name, string desc, int value, ItemType type, int id) : this(name, desc, value, type, 1, id) {}
 
-[System.Serializable]
-public class Item {
-	public string ItemName;
-	public readonly int Id;
-	public string Description;
-	public int Value;
-	public ItemType Type;
-	public Sprite icon;
-	public GameObject prefab;
-	public readonly int maxStackSize;
-	public int stackSize = 1;
+		public Item(string name, string desc, int value, ItemType type, int maxStack, int id) {
+			ItemName = name;
+			Id = id;
+			Description = desc;
+			Value = value;
+			Type = type;
+			maxStackSize = maxStack;
+			icon = Resources.Load<Sprite> ("Item Icons/" + name);
+			prefab = Resources.Load<GameObject> ("Item Prefabs/" + name);
+		}
 
-	public Item(string name, string desc, int value, ItemType type, int id) : this(name, desc, value, type, 1, id) {}
-
-	public Item(string name, string desc, int value, ItemType type, int maxStack, int id) {
-		ItemName = name;
-		Id = id;
-		Description = desc;
-		Value = value;
-		Type = type;
-		maxStackSize = maxStack;
-		icon = Resources.Load<Sprite> ("Item Icons/" + name);
-		prefab = Resources.Load<GameObject> ("Item Prefabs/" + name);
-	}
-
-	public Item Clone() {
-		return new Item (ItemName, Description, Value, Type, maxStackSize, Id);
+		public Item Clone() {
+			return new Item (ItemName, Description, Value, Type, maxStackSize, Id);
+		}
 	}
 }

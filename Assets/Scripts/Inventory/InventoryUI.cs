@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using ItemClasses;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class InventoryUI : MonoBehaviour
 
 		gameObject.SetActive(false);
 		showGUI = false;
+		DraggingItem = false;
 	}
 
 	void OnGUI () {
@@ -34,7 +36,7 @@ public class InventoryUI : MonoBehaviour
 		if (items.Length != slots.Length)
 			Debug.LogAssertion ("UI and inventory are not of the same size!");
 		for (int i = 0; i < items.Length; i++) {
-			slots [i].PlaceItem(items [i]);
+			slots [i].Place(items [i]);
 		}
 	}
 
@@ -45,7 +47,7 @@ public class InventoryUI : MonoBehaviour
 
 	public void StartDrag(InventorySlot fromSlot) {
 		DraggingItem = true;
-		draggedItem = fromSlot.Item;
+		draggedItem = fromSlot.Content;
 		fromSlot.RemoveItem ();
 		draggedFrom = fromSlot;
 	}
@@ -53,13 +55,16 @@ public class InventoryUI : MonoBehaviour
 	public void EndDrag() {
 		DraggingItem = false;
 		if (hovering != null) {
-			draggedFrom.PlaceItem (hovering.Item);
-			hovering.PlaceItem (draggedItem);
+			draggedFrom.Place (hovering.Content);
+			hovering.Place (draggedItem);
 		} else {
-			draggedFrom.PlaceItem (draggedItem);
+			draggedFrom.Place(draggedItem);
 		}
 		inventory.UpdateInventory (slots);
 	}
 
+	public void UsedItemFromSlot(InventorySlot slot) {
+		inventory.UseItem (slot);
+	}
 }
 

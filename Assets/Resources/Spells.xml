@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpellDatabase>
+	<Spell>
+		<Id>0</Id>
+		<Name>Fire Blast</Name>
+		<Description>Blast the enemy with fire dealing damage. This spell is stronger against targets that are already burning.</Description>
+		<Cost>10</Cost>
+		<Cooldown>0</Cooldown>
+	</Spell>
+	<Spell>
+		<Id>1</Id>
+		<Name>Ignite</Name>
+		<Description>Sets the target ablaze dealing periodic damage.</Description>
+		<Cost>10</Cost>
+		<Cooldown>3</Cooldown>
+	</Spell>
+	<Spell>
+		<Id>2</Id>
+		<Name>Flames of Life</Name>
+		<Description>Extinguish the flames on a hostile target and heal for the remaining damage.</Description>
+		<Cost>10</Cost>
+		<Cooldown>20</Cooldown>
+	</Spell>
+	<Spell>
+		<Id>3</Id>
+		<Name>Flame Star</Name>
+		<Description>Spew flames all around the pyromancer.</Description>
+		<Cost>10</Cost>
+		<Cooldown>15</Cooldown>
+	</Spell>
+
+  <Spell>
+    <Id>7</Id>
+    <Name>Molten Rock</Name>
+    <Description>Throw a molten rock at a group of enemies dealing damage to them. A primary target will take increased damage.</Description>
+    <Cost>10</Cost>
+    <Cooldown>120</Cooldown>
+  </Spell>
+	<Spell>
+		<Id>4</Id>
+		<Name>Draw Lava</Name>
+		<Description>Draw lava from the ground and enchance you melee weapon.</Description>
+		<Cost>10</Cost>
+		<Cooldown>120</Cooldown>
+	</Spell>
+	<Spell>
+		<Id>5</Id>
+		<Name>Lava Cannon</Name>
+		<Description>Shoot 2-5 lava bolts from your hand each dealing damage.</Description>
+		<Cost>10</Cost>
+		<Cooldown>15</Cooldown>
+	</Spell>
+	<Spell>
+		<Id>6</Id>
+		<Name>Volcanic Activity</Name>
+		<Description>Summon a volcano from the ground that spews lava and deals fire damage to nearby targets.</Description>
+		<Cost>10</Cost>
+		<Cooldown>45</Cooldown>
+	</Spell>
+
+  <Spell>
+    <Id>8</Id>
+    <Name>Flaming Feathers</Name>
+    <Description>Shoot flaming feather from your hand dealing damage to enemies in front of you.</Description>
+    <Cost>10</Cost>
+    <Cooldown>0</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>9</Id>
+    <Name>Blazing Flight</Name>
+    <Description>Cover yourself in flames and rush forward dealing damage to all enemies in the path.</Description>
+    <Cost>10</Cost>
+    <Cooldown>20</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>10</Id>
+    <Name>Summon Phoenix</Name>
+    <Description>Summon a phoenix to aid you in combat. The phoenix will shoot firebolts at enemies that deals damage and heals you.</Description>
+    <Cost>10</Cost>
+    <Cooldown>60</Cooldown>
+  </Spell>
+
+  <Spell>
+    <Id>11</Id>
+    <Name>Steam Blast</Name>
+    <Description>Spew out steam in front of you dealing damage to enemies.</Description>
+    <Cost>10</Cost>
+    <Cooldown>0</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>12</Id>
+    <Name>Quicksand</Name>
+    <Description>Summon quicksand from the ground to slow all enemies who tries to pass it.</Description>
+    <Cost>10</Cost>
+    <Cooldown>15</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>13</Id>
+    <Name>Rock Shower</Name>
+    <Description>Pull dirt and rocks from the ground and blast it in all directions.</Description>
+    <Cost>10</Cost>
+    <Cooldown>20</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>14</Id>
+    <Name>N/A</Name>
+    <Description>Some healing-spell.</Description>
+    <Cost>10</Cost>
+    <Cooldown>10</Cooldown>
+  </Spell>
+
+  <Spell>
+    <Id>15</Id>
+    <Name>Water Bolt</Name>
+    <Description>Shoot a water bolt towards a single enemy.</Description>
+    <Cost>0</Cost>
+    <Cooldown>0</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>16</Id>
+    <Name>Hydro Pump</Name>
+    <Description>Pump water in front of you dealing damage and knocking enemies back.</Description>
+    <Cost>10</Cost>
+    <Cooldown>10</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>17</Id>
+    <Name>Refresh</Name>
+    <Description>Heal yourself with a refreshing splash of water. Also increases damage dealt for a short period of time.</Description>
+    <Cost>10</Cost>
+    <Cooldown>30</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>18</Id>
+    <Name>Bubble</Name>
+    <Description>Summons a bubble around an enemy that hinders their movement. This spell pulls flying targets to the ground.</Description>
+    <Cost>10</Cost>
+    <Cooldown>2</Cooldown>
+  </Spell>
+
+  <Spell>
+    <Id>19</Id>
+    <Name>Ice Bolt</Name>
+    <Description>Shoot an ice bolt towards a single enemy, which deals damage and slows their movement speed.</Description>
+    <Cost>10</Cost>
+    <Cooldown>0</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>20</Id>
+    <Name>Blizzard</Name>
+    <Description>Summon a blizzard around you that deals damage to enemies. The damage increases, if the target is already frozen.</Description>
+    <Cost>10</Cost>
+    <Cooldown>120</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>21</Id>
+    <Name>Ice Coat</Name>
+    <Description>Cover yourself in a coat of ice, that prevents you from taking damage, but also stops your mana from regenerating.</Description>
+    <Cost>10</Cost>
+    <Cooldown>0</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>22</Id>
+    <Name>Break Ice</Name>
+    <Description>Breaks the ice of a friend or foe. If used when Ice Coat is active it will create an explosion around you, that deals a high ammount of damage. If used on a frozen target it will create an explosion, that deals small damage and freezes all targets around the enemy.</Description>
+    <Cost>10</Cost>
+    <Cooldown>40</Cooldown>
+  </Spell>
+
+  <Spell>
+    <Id>23</Id>
+    <Name>Drain Life</Name>
+    <Description>Drain life from an enemy to heal you.</Description>
+    <Cost>10</Cost>
+    <Cooldown>5</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>24</Id>
+    <Name>Summon Dead</Name>
+    <Description>Summon a skeleton to aid you in combat. The skeleton lives for a short time before it returns to its grave.</Description>
+    <Cost>10</Cost>
+    <Cooldown>5</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>25</Id>
+    <Name>Scream of Death</Name>
+    <Description>Let loose a scream to scare your enemies. This decreases their damage for a period of time.</Description>
+    <Cost>10</Cost>
+    <Cooldown>25</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>26</Id>
+    <Name>Bone Boomerang</Name>
+    <Description>Throw a bone boomerang that deals damage to enemies.</Description>
+    <Cost>10</Cost>
+    <Cooldown>3</Cooldown>
+  </Spell>
+
+  <Spell>
+    <Id>27</Id>
+    <Name>Void Trap</Name>
+    <Description>Create a trap that deals damage and stuns all enemies that walks over it.</Description>
+    <Cost>10</Cost>
+    <Cooldown>15</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>28</Id>
+    <Name>Chaos Disc</Name>
+    <Description>Throw a disc of chaos that damages all enemies and heals you for a portion of the damage dealt.</Description>
+    <Cost>10</Cost>
+    <Cooldown>20</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>29</Id>
+    <Name>Mind Control</Name>
+    <Description>Control the mind of an enemy causing them to turn on his allies and aid you.</Description>
+    <Cost>10</Cost>
+    <Cooldown>30</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>30</Id>
+    <Name>Rift</Name>
+    <Description>Summon a rift nearby that drains life-force from enemies and pulls them towards the rift.</Description>
+    <Cost>10</Cost>
+    <Cooldown>30</Cooldown>
+  </Spell>
+
+  <Spell>
+    <Id>31</Id>
+    <Name>Bolt of Light</Name>
+    <Description>Shoot a bolt of light towards the enemy.</Description>
+    <Cost>1</Cost>
+    <Cooldown>0</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>32</Id>
+    <Name>Prayer</Name>
+    <Description>Create a ward that regenerates a small portion of health each second. (Also glows a bit)</Description>
+    <Cost>10</Cost>
+    <Cooldown>180</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>33</Id>
+    <Name>Condemn</Name>
+    <Description>Condemn enemies with their sins, stunning them and has a small change of turning an enemy against his allies.</Description>
+    <Cost>10</Cost>
+    <Cooldown>5</Cooldown>
+  </Spell>
+  <Spell>
+    <Id>34</Id>
+    <Name>Holy Radiance</Name>
+    <Description>Shine with holy light, decreasing damage taken and dealing damage to nearby enemies.</Description>
+    <Cost>10</Cost>
+    <Cooldown>60</Cooldown>
+  </Spell>
+
+</SpellDatabase>

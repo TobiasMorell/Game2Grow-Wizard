@@ -3,59 +3,40 @@ using UnityEngine;
 using System.Text;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using ItemClasses;
+using Assets.Scripts.UI;
 
-public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IDragHandler, IEndDragHandler
+public class InventorySlot : UITooltipSlot<Item>, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
-	public Item Item {
-		get;
-		private set;
-	}
-	[SerializeField] Image iconImage;
-	[SerializeField] GUISkin skin;
-
-	private bool showTooltip;
-
+	[SerializeField] Text quantityText;
 	private InventoryUI UI;
 
-	public string Tooltip {
-		get;
-		private set;
-	}
-
-	void Start() {
+	public override void Start() {
+		base.Start();
+		if (quantityText == null)
+			Debug.LogAssertion ("Could not find text component!");
 		UI = GetComponentInParent<InventoryUI> ();
-		if (UI == null) {
+		if (UI == null)
 			Debug.LogAssertion ("Reference from inventory-slot to UI missing!");
-		}
 	}
 
-	public void OnGUI() {
-		if (showTooltip) {
-			GUIStyle ttStyle = skin.GetStyle ("Tooltip");
-			float dynamicHeight = ttStyle.CalcHeight (new GUIContent (Tooltip), 200);
-
-			GUI.Box (new Rect (Event.current.mousePosition.x + 10f, Event.current.mousePosition.y, 200, dynamicHeight),
-				Tooltip, ttStyle);
-		}
-	}
-
-	public void OnPointerEnter(PointerEventData ped) {
+	public override void OnPointerEnter(PointerEventData ped) {
+		base.OnPointerEnter(ped);
 		if (UI.DraggingItem) {
 			UI.hovering = this;
 			return;
 		}
-		if (Item != null) {
-			showTooltip = true;
-		}
 	}
-	public void OnPointerExit (PointerEventData ped) {
+	public override void OnPointerExit (PointerEventData ped) {
+		base.OnPointerExit(ped);
 		if (UI.DraggingItem)
 			UI.hovering = null;
-		showTooltip = false;
 	}
 	public void OnPointerDown(PointerEventData ped) {
-		if (ped.button == PointerEventData.InputButton.Right) {
-			Debug.Log ("Should use item " + Item.ItemName);
+		if (Content != null) {
+			if (ped.button == PointerEventData.InputButton.Right) {
+				UI.UsedItemFromSlot (this);
+			}
 		}
 	}
 	public void OnDrag(PointerEventData ped) {
@@ -67,44 +48,56 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		UI.EndDrag ();
 	}
 
-	public void PlaceItem(Item item) {
-		Item = item;
-		if (item != null) {
-			createTooltip (item);
+	public override void Place(Item item)
+	{
+		Content = item;
+		if (item != null)
+		{
+			createTooltip(item);
+			//Change icon of item slot and activate the image-component
 			iconImage.sprite = item.icon;
 			iconImage.gameObject.SetActive(true);
+			//Display stacksize if it is larger than 1
+			if (item.stackSize > 1)
+			{
+				quantityText.text = item.stackSize.ToString();
+				quantityText.gameObject.SetActive(true);
+			}
+		}
+		else {
+			RemoveItem();
 		}
 	}
+
+	public void UpdateItemQuantity() {
+		if (Content.stackSize > 1) {
+			quantityText.text = Content.stackSize.ToString();
+			quantityText.gameObject.SetActive (true);
+		} else {
+			quantityText.gameObject.SetActive (false);
+		}
+	}
+
 	public void RemoveItem() {
-		Item = null;
+		Content = null;
 		iconImage.sprite = null;
 		iconImage.gameObject.SetActive(false);
 	}
 	public bool Holds(int id) {
-		if (Item != null && Item.Id == id)
+		if (Content != null && Content.Id == id)
 			return true;
 
 		return false;
 	}
 
-	void createTooltip(Item item) {
+	protected override void createTooltip(Item item) {
 		StringBuilder tooltipText = new StringBuilder ();
-
-		//Name of item
-		tooltipText.Append ("<size=18>");
-		tooltipText.Append ("<b>");
-		appendColorOpen (tooltipText, "ffffff");
-		tooltipText.Append (item.ItemName);
-		appendColorClosure (tooltipText);
-		tooltipText.Append ("</b>");
-		tooltipText.Append ("</size>");
+		createHeadline(tooltipText, item.ItemName);
+		
 		tooltipText.Append ("\n\n");
-
-		//Description
-		appendColorOpen (tooltipText, "E8E8E8");
-		tooltipText.Append (item.Description);
-		appendColorClosure (tooltipText);
-		tooltipText.Append ("\n\n");
+		
+		createDescription(tooltipText, item.Description);
+		tooltipText.Append("\n\n");
 
 		//Value
 		appendColorOpen (tooltipText, "FFD700");
@@ -120,14 +113,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 		Tooltip = tooltipText.ToString ();
 	}
-	void appendColorOpen(StringBuilder tooltipText, string hexColor) {
-		tooltipText.Append ("<color=#");
-		tooltipText.Append (hexColor);
-		tooltipText.Append (">");
-
-	}
-	void appendColorClosure(StringBuilder tooltipText) {
-		tooltipText.Append ("</color>");
-	}
+	
 }
 

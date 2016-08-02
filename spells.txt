@@ -18,7 +18,7 @@ Volcano-thingy:
 
 Phoenix-thingy:
 1) Feathers - shoots out flaming feathers that deals damage.
-2) 
+2) Ignite
 3) Blazing Flight - Cover the wizard in flames and rush forward dealing damage to all enemies.
 4) Summon phoenix
 

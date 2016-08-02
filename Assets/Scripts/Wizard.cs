@@ -3,6 +3,13 @@ using System.Collections;
 using UnityEngine.UI;
 using Assets.Scripts.Effects;
 using System.Xml;
+using Assets.Scripts.Spells;
+using ExtensionMethods;
+
+enum Specialization
+{
+	Fire, Frost, Life, Death, Pyromancer, LavaBender, Elementalist, PhoenixLord, Hydromancer, IceLord, Necromancer, Vampire, Cleric
+}
 
 public class Wizard : Entity {
 	[HideInInspector] public bool movingRight = false;
@@ -29,6 +36,21 @@ public class Wizard : Entity {
 	public int Strength {
 		get { return strength; }
 		private set { }
+	}
+
+	Spell[] spells;
+
+	[SerializeField]
+	private Specialization Spec;
+	private void changeSpec(Specialization spec)
+	{
+		var slots = GameObject.FindGameObjectWithTag("Spellbar").GetComponentsInChildren<SpellSlot>();
+		Spell[] newSpells = spec.GetSpells();
+		for (int i = 0; i < slots.Length; i++)
+		{
+			Debug.Log("Found spell: " + newSpells[i].Name);
+			slots[i].Place(newSpells[i]);
+		}
 	}
 	#endregion
 
@@ -64,6 +86,9 @@ public class Wizard : Entity {
 			weapon = wep.GetComponent<Weapon> ();
 			WeaponCollider = weapon.GetComponent<Collider2D> ();
 		}
+
+		spells = new Spell[4];
+		changeSpec(Spec);
 	}
 	
 	// Update is called once per frame

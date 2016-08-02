@@ -86,6 +86,7 @@
   <Description>Regenerates some health when used.</Description>
   <Value>5</Value>
   <Type>Consumable</Type>
+  <Attribute Type="Stacksize">5</Attribute>
 </Item>
 
 <Item>
@@ -94,6 +95,7 @@
   <Description>Regenerates some mana when used.</Description>
   <Value>5</Value>
   <Type>Consumable</Type>
+  <Attribute Type="Stacksize">5</Attribute>
 </Item>
 
 <Item>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Text;
 using UnityEngine.UI;
+using ItemClasses;
 
 public class Inventory : MonoBehaviour {
 	#region Variables
@@ -23,12 +24,13 @@ public class Inventory : MonoBehaviour {
 		AddItem ("Walking Stick");
 		AddItem ("Health Potion", 3);
 		AddItem ("Mana Potion", 3);
-		Debug.Log ("Added starting items!");
+		AddItem ("Small Crystal");
 	}
 
 	void Update() {
-		if (Input.GetKeyDown (KeyCode.I))
+		if (Input.GetKeyDown (KeyCode.I)) {
 			UI.ToggleGUI ();
+		}
 		UI.UpdateItems (inventory);
 	}
 	#endregion
@@ -127,6 +129,32 @@ public class Inventory : MonoBehaviour {
 	public void RemoveItemAt(int index) {
 		inventory [index] = null;
 	}
+
+	public void UseItem(InventorySlot slot) {
+		int index = findIndexOf (slot.Content);
+
+		switch (slot.Content.Type) {
+		case ItemType.Consumable:
+			if (inventory[index].stackSize > 1) {
+				inventory[index].stackSize--;
+				slot.UpdateItemQuantity ();
+			} else {
+				RemoveItemAt (index);
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	private int findIndexOf(Item item) {
+		for(int i = 0; i < inventory.Length; i++) {
+			if(item == inventory[i])
+				return i;
+		}
+
+		throw new ArgumentException ("The given item was not found in the inventory");
+	}
+
 	#endregion
 	public void Initialize(int size) {
 		inventory = new Item[size];
@@ -137,7 +165,7 @@ public class Inventory : MonoBehaviour {
 			Debug.LogAssertion ("Inventory and UI are not of the same size!");
 
 		for (int i = 0; i < slots.Length; i++) {
-			inventory [i] = slots [i].Item;
+			inventory [i] = slots [i].Content;
 		}
 	}
 
