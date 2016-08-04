@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Spells
 {
-	public class Spell
+	public class Spell : MonoBehaviour
 	{
 		public readonly int Id;
 		public readonly string Name;
@@ -16,6 +16,7 @@ namespace Assets.Scripts.Spells
 		public readonly Sprite Icon;
 		public readonly GameObject Prefab;
 
+		public Spell() { }
 
 		public Spell(int id, string name, string desc, int cost, int cooldown)
 		{
@@ -26,6 +27,11 @@ namespace Assets.Scripts.Spells
 			this.Cost = cost;
 			Icon = Resources.Load<Sprite>("Spell Icons/" + name);
 			Prefab = Resources.Load<GameObject>("Spell Prefabs/" + name);
+		}
+
+		public virtual Spell Cast(Entity primaryTarget)
+		{
+			return Instantiate(this);
 		}
 	}
 }
