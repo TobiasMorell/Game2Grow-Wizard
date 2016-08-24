@@ -14,7 +14,6 @@ public class PoisonHit : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log("Collision with: " + other);
 		var e = other.GetComponent<Entity> ();
 		if (e == null && !other.isTrigger)
 			splash ();

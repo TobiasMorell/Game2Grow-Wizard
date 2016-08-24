@@ -1,50 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Scripts.Spells;
-using Assets.Scripts.UI;
+using Spells;
 using System;
 using System.Text;
 using UnityEngine.UI;
 
-public class SpellSlot : UITooltipSlot<Spell> {
-	private Spell spell;
+namespace Assets.Scripts.UI {
+	public class SpellSlot : UITooltipSlot<Spell> {
+		Slider cooldownSlider;
 
-	public override void Place(Spell content)
-	{
-		Content = content;
-		if (content != null)
+		public override void Place(Spell content)
 		{
-			createTooltip(content);
-			//Change icon of item slot and activate the image-component
-			iconImage.sprite = content.Icon;
-			iconImage.gameObject.SetActive(true);
+			Content = content;
+			if (content != null)
+			{
+				createTooltip(content);
+				//Change icon of item slot and activate the image-component
+				iconImage.sprite = content.Icon;
+				iconImage.gameObject.SetActive(true);
+				cooldownSlider.maxValue = content.Cooldown;
+			}
 		}
 
-		Debug.Log("Placed " + content.Name + " in a spellslot.");
-	}
+		protected override void createTooltip(Spell content)
+		{
+			StringBuilder tooltipSB = new StringBuilder();
+			createHeadline(tooltipSB, content.Name);
 
-	protected override void createTooltip(Spell content)
-	{
-		StringBuilder tooltipSB = new StringBuilder();
-		createHeadline(tooltipSB, content.Name);
+			tooltipSB.Append("\n");
 
-		tooltipSB.Append("\n");
+			//Show mana cost
+			appendColorOpen(tooltipSB, "0021FF");
+			tooltipSB.Append(content.Cost);
+			tooltipSB.Append(" mana");
+			appendColorClosure(tooltipSB);
+			tooltipSB.Append("\n");
+			//Show cooldown
 
-		//Show mana cost
-		appendColorOpen(tooltipSB, "0021FF");
-		tooltipSB.Append(content.Cost);
-		tooltipSB.Append(" mana");
-		appendColorClosure(tooltipSB);
-		tooltipSB.Append("\n");
-		//Show cooldown
+			createDescription(tooltipSB, content.Cooldown + "\n\n" + content.Description);
 
-		createDescription(tooltipSB, content.Cooldown + "\n\n" + content.Description);
+			Tooltip = tooltipSB.ToString();
+		}
 
-		Tooltip = tooltipSB.ToString();
-	}
+		public override void Start()
+		{
+			base.Start();
+			cooldownSlider = GetComponentInParent<Slider> ();
+		}
 
-	public override void Start()
-	{
-		base.Start();
+		void Update() {
+			cooldownSlider.value = Content.cooldownTimer;
+		}
 	}
 }

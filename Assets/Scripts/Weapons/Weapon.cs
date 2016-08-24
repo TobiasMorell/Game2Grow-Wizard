@@ -4,7 +4,7 @@ using UnityEditor;
 
 public class Weapon : MonoBehaviour
 {
-	[SerializeField] string weaponName;
+	[SerializeField] public string weaponName;
 	[SerializeField] int damage;
 	[SerializeField] int durability;
 	[SerializeField] bool rangedWeapon;
@@ -62,7 +62,7 @@ public class Weapon : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag.Equals ("Hostile") && !other.isTrigger) {
-			other.GetComponent<Enemy> ().TakeDamage (damage + player.Strength);
+			other.GetComponent<Enemy> ().TakeDamage (damage);
 
 			this.durability -= 1;
 

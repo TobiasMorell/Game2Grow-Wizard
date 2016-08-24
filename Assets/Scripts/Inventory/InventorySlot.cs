@@ -6,66 +6,27 @@ using UnityEngine.UI;
 using ItemClasses;
 using Assets.Scripts.UI;
 
-public class InventorySlot : UITooltipSlot<Item>, IPointerDownHandler, IDragHandler, IEndDragHandler
+public class InventorySlot : DragableSlot, IPointerDownHandler
 {
 	[SerializeField] Text quantityText;
-	private InventoryUI UI;
 
 	public override void Start() {
 		base.Start();
 		if (quantityText == null)
 			Debug.LogAssertion ("Could not find text component!");
-		UI = GetComponentInParent<InventoryUI> ();
-		if (UI == null)
-			Debug.LogAssertion ("Reference from inventory-slot to UI missing!");
-	}
-
-	public override void OnPointerEnter(PointerEventData ped) {
-		base.OnPointerEnter(ped);
-		if (UI.DraggingItem) {
-			UI.hovering = this;
-			return;
-		}
-	}
-	public override void OnPointerExit (PointerEventData ped) {
-		base.OnPointerExit(ped);
-		if (UI.DraggingItem)
-			UI.hovering = null;
-	}
-	public void OnPointerDown(PointerEventData ped) {
-		if (Content != null) {
-			if (ped.button == PointerEventData.InputButton.Right) {
-				UI.UsedItemFromSlot (this);
-			}
-		}
-	}
-	public void OnDrag(PointerEventData ped) {
-		if (!UI.DraggingItem) {
-			UI.StartDrag (this);
-		}
-	}
-	public void OnEndDrag(PointerEventData ped) {
-		UI.EndDrag ();
 	}
 
 	public override void Place(Item item)
 	{
-		Content = item;
+		base.Place (item);
 		if (item != null)
 		{
-			createTooltip(item);
-			//Change icon of item slot and activate the image-component
-			iconImage.sprite = item.icon;
-			iconImage.gameObject.SetActive(true);
 			//Display stacksize if it is larger than 1
 			if (item.stackSize > 1)
 			{
 				quantityText.text = item.stackSize.ToString();
 				quantityText.gameObject.SetActive(true);
 			}
-		}
-		else {
-			RemoveItem();
 		}
 	}
 
@@ -78,11 +39,6 @@ public class InventorySlot : UITooltipSlot<Item>, IPointerDownHandler, IDragHand
 		}
 	}
 
-	public void RemoveItem() {
-		Content = null;
-		iconImage.sprite = null;
-		iconImage.gameObject.SetActive(false);
-	}
 	public bool Holds(int id) {
 		if (Content != null && Content.Id == id)
 			return true;
@@ -113,6 +69,13 @@ public class InventorySlot : UITooltipSlot<Item>, IPointerDownHandler, IDragHand
 
 		Tooltip = tooltipText.ToString ();
 	}
-	
+
+	public void OnPointerDown(PointerEventData ped) {
+		if (Content != null) {
+			if (ped.button == PointerEventData.InputButton.Right) {
+				UI.UsedItemFromSlot (this);
+			}
+		}
+	}
 }
 

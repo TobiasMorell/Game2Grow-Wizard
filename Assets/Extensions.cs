@@ -1,6 +1,6 @@
 ﻿using System;
 using ItemClasses;
-using Assets.Scripts.Spells;
+using Spells;
 using UnityEngine;
 
 namespace ExtensionMethods {
@@ -28,7 +28,7 @@ namespace ExtensionMethods {
 		public static Spell[] GetSpells(this Specialization spec)
 		{
 			Spell[] spells = new Spell[4];
-			SpellDatabase database = SpellDatabase.Instance();
+			SpellDatabase database = GameRegistry.SpellDatabase();
 
 			switch (spec)
 			{

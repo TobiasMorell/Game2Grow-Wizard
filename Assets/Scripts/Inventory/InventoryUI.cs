@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using ItemClasses;
+using Assets.Scripts.UI;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -9,9 +10,9 @@ public class InventoryUI : MonoBehaviour
 	Inventory inventory;
 
 	public bool DraggingItem { get; private set; }
-	private InventorySlot draggedFrom;
+	private DragableSlot draggedFrom;
 	private Item draggedItem;
-	public InventorySlot hovering;
+	public DragableSlot hovering;
 
 	void Start() {
 		//Assign inventory slots
@@ -40,15 +41,10 @@ public class InventoryUI : MonoBehaviour
 		}
 	}
 
-	public void ToggleGUI() {
-		showGUI = !showGUI;
-		gameObject.SetActive(showGUI);
-	}
-
-	public void StartDrag(InventorySlot fromSlot) {
+	public void StartDrag(DragableSlot fromSlot) {
 		DraggingItem = true;
 		draggedItem = fromSlot.Content;
-		fromSlot.RemoveItem ();
+		fromSlot.RemoveContent ();
 		draggedFrom = fromSlot;
 	}
 

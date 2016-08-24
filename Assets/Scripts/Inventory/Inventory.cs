@@ -28,9 +28,6 @@ public class Inventory : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown (KeyCode.I)) {
-			UI.ToggleGUI ();
-		}
 		UI.UpdateItems (inventory);
 	}
 	#endregion
@@ -141,6 +138,12 @@ public class Inventory : MonoBehaviour {
 			} else {
 				RemoveItemAt (index);
 			}
+			break;
+		case ItemType.Weapon:
+		case ItemType.Armor:
+			Debug.Log ("Now equipping " + slot.Content.ItemName);
+			RemoveItemAt (index);
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<Wizard> ().Equip (slot.Content);
 			break;
 		default:
 			break;

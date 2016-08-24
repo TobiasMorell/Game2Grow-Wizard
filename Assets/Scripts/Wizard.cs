@@ -3,8 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 using Assets.Scripts.Effects;
 using System.Xml;
-using Assets.Scripts.Spells;
+using Spells;
 using ExtensionMethods;
+using System.Collections.Generic;
+using Assets.Scripts.UI;
+using ItemClasses;
 
 enum Specialization
 {
@@ -12,6 +15,7 @@ enum Specialization
 }
 
 public class Wizard : Entity {
+	#region variables
 	[HideInInspector] public bool movingRight = false;
 	[HideInInspector] public bool movingLeft = false;
 	[HideInInspector] public bool jumping = true;
@@ -28,15 +32,12 @@ public class Wizard : Entity {
 	private Collider2D WeaponCollider;
 	private Weapon weapon;
 
+	private SpellCaster caster;
+	private GameObject target;
+
 	#region Attributes
 	public int mana_regen_multiplier = 1;
 	public int bolt_damage = 2;
-	private int strength;
-
-	public int Strength {
-		get { return strength; }
-		private set { }
-	}
 
 	Spell[] spells;
 
@@ -47,10 +48,9 @@ public class Wizard : Entity {
 		var slots = GameObject.FindGameObjectWithTag("Spellbar").GetComponentsInChildren<SpellSlot>();
 		Spell[] newSpells = spec.GetSpells();
 		for (int i = 0; i < slots.Length; i++)
-		{
-			Debug.Log("Found spell: " + newSpells[i].Name);
 			slots[i].Place(newSpells[i]);
-		}
+		caster.Initialize (this, newSpells, mana);
+		spells = newSpells;
 	}
 	#endregion
 
@@ -62,6 +62,11 @@ public class Wizard : Entity {
 				WeaponCollider.enabled = attacking;
 		}
 	}
+	[SerializeField] GameObject targetArrow;
+	[SerializeField] GameObject weaponSlot;
+
+	#endregion
+	#region attacks and spells
 	public void SwingWeapon() {
 		if(weapon != null)
 			weapon.Swing ();
@@ -70,7 +75,8 @@ public class Wizard : Entity {
 		if (weapon != null)
 			weapon.StopSwing ();
 	}
-
+	#endregion
+	#region Unity-methods
 	public override void Awake(){
 		base.Awake ();
 	}
@@ -88,6 +94,7 @@ public class Wizard : Entity {
 		}
 
 		spells = new Spell[4];
+		caster = this.GetComponent<SpellCaster> ();
 		changeSpec(Spec);
 	}
 	
@@ -96,7 +103,11 @@ public class Wizard : Entity {
 		base.Update ();
 		handleMovement ();
 		handleMagicAttack ();
-		handleStaffAttack ();
+		//handleStaffAttack ();
+		if (Input.GetButtonDown ("TargetRight"))
+			handleTargetRight ();
+		else if (Input.GetButtonDown ("TargetLeft"))
+			handleTargetLeft ();
 
 		//Generates one mana every third second
 		if (mana.value < mana.maxValue && manaTimer >= 3f) {
@@ -106,6 +117,17 @@ public class Wizard : Entity {
 		else
 			manaTimer += Time.deltaTime;
 	}
+
+	void FixedUpdate(){
+		if (Input.GetButtonDown("Jump") && !jumping)
+		{
+			jumping = true;
+			rb.AddForce(Vector2.up * jumpForce);
+		}
+		else if (!Input.GetButton("Jump") && rb.velocity.y < Mathf.Epsilon)
+			jumping = false;
+	}
+	#endregion
 	#region Control
 	void handleMovement()
 	{
@@ -125,19 +147,17 @@ public class Wizard : Entity {
 
 	void handleMagicAttack()
 	{
-		if (Input.GetButtonDown ("Fire1") && mana.value >= 3)
-			animator.SetTrigger ("Magic_attack");
-	}
-
-	void handleStaffAttack()
-	{
-		if (Input.GetButton("Fire2"))
-			animator.SetBool ("Staff_attacking", true);
-		else if (Input.GetButtonUp("Fire2"))
-			animator.SetBool ("Staff_attacking", false);
+		if (Input.GetButtonUp ("Spell1"))
+			caster.Cast (0, target);
+		else if (Input.GetButtonUp ("Spell2"))
+			caster.Cast(1, target);
+		else if (Input.GetButtonUp ("Spell3"))
+			caster.Cast (2, target);
+		else if (Input.GetButtonUp ("Spell4"))
+			caster.Cast(3, target);
 	}
 	#endregion
-
+	#region Combat & death
 	public override void TakeDamage(int damage, bool ignoreImmunity)
 	{
 		if (ignoreImmunity || !immune) {
@@ -182,20 +202,61 @@ public class Wizard : Entity {
 		}
 	}
 
-	void FixedUpdate(){
-        if (Input.GetButtonDown("Jump") && !jumping)
-        {
-            jumping = true;
-            rb.AddForce(Vector2.up * jumpForce);
-        }
-        else if (!Input.GetButton("Jump") && rb.velocity.y < Mathf.Epsilon)
-            jumping = false;
-    }
+	void handleTargetRight() { 
+		handleTargetSwitch (1);
+	}
+
+	void handleTargetLeft() {
+		handleTargetSwitch (-1);
+	}
+
+	private GameObject arrow;
+	void handleTargetSwitch(int moveBy) {
+		var enemies = GameObject.FindGameObjectsWithTag ("Hostile");
+
+		//Order by x-coord so first index is lowest x-coord
+		List<GameObject> list = new List<GameObject>(enemies);
+		list.Sort (((GameObject x, GameObject y) => Mathf.CeilToInt(x.transform.position.x - y.transform.position.x)));
+
+		if (target == null) {
+			if (list.Count > 0) {
+				target = list [0];
+				placeArrow ();
+			}
+		} else {
+			//Remove old arrow
+			Destroy(arrow);
+
+			int currIndex = list.FindIndex ((GameObject obj) => obj.GetComponent<Entity> () == target);
+			int nextIndex = (currIndex + moveBy) % list.Count;
+			target = list [nextIndex];
+			placeArrow ();
+		}
+	}
+	private void placeArrow() {
+		//Add new arrow to target
+		arrow = Instantiate (targetArrow);
+		arrow.transform.localScale = new Vector3 (3f, 3f, 1);
+		arrow.transform.position = new Vector3 (target.transform.position.x, target.transform.position.y + 3.5f, 0);
+		arrow.transform.parent = target.transform;
+	}
+	#endregion
+
+
 
 	public void LevelUp() {
 
 	}
-
+	public void Equip(Item item) {
+		var prevWep = weaponSlot.GetComponentInChildren<Weapon> ();
+		if (prevWep != null) {
+			GetComponent<Inventory> ().AddItem (prevWep.weaponName);
+			Destroy (prevWep.gameObject);
+		}
+		var wep = Instantiate (item.prefab);
+		wep.transform.SetParent (weaponSlot.transform, false);
+	}
+	#region Save & load
 	public override void Save (XmlWriter writer)
 	{
 		writer.WriteStartElement ("Wizard");
@@ -232,4 +293,5 @@ public class Wizard : Entity {
 		GetComponent<Inventory> ().LoadInventory (reader);
 		reader.ReadEndElement ();
 	}
+	#endregion
 }

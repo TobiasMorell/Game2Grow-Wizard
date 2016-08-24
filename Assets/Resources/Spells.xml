@@ -5,7 +5,7 @@
 		<Name>Fire Blast</Name>
 		<Description>Blast the enemy with fire dealing damage. This spell is stronger against targets that are already burning.</Description>
 		<Cost>10</Cost>
-		<Cooldown>0</Cooldown>
+		<Cooldown>0.5</Cooldown>
 	</Spell>
 	<Spell>
 		<Id>1</Id>

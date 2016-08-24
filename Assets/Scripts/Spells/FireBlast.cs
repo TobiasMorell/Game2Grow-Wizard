@@ -1,18 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Scripts.Spells;
 
-public class FireBlast : Spell {
-	Enemy target;
-	
-	// Update is called once per frame
-	void Update () {
-		transform.position = target.transform.position;
-		transform.Rotate(0, 0, 20);
-	}
+namespace Spells {
 
-	public override Spell Cast(Entity primaryTarget)
-	{
-		base.Cast(primaryTarget);
+	public class FireBlast : Castable {
+		[SerializeField] float degreesPrSec;
+		[SerializeField] float lifetime;
+
+		void Start() {
+			Destroy (this.gameObject, lifetime);
+		}
+
+		// Update is called once per frame
+		void Update () {
+			transform.Rotate(0, 0, degreesPrSec * Time.deltaTime);
+		}
+
+		public override void Cast (GameObject primaryTarget)
+		{
+			base.Cast (primaryTarget);
+			primaryTarget.GetComponent<Entity>().TakeDamage(3);
+		}
 	}
 }

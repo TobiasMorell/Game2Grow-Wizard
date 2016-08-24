@@ -6,17 +6,11 @@ using System.Text;
 using System.Xml;
 using UnityEngine;
 
-namespace Assets.Scripts.Spells
+namespace Spells
 {
-    class SpellDatabase : MonoBehaviour
+    public class SpellDatabase : MonoBehaviour
     {
 		private List<Spell> spells;
-		private static SpellDatabase _instance;
-
-		public static SpellDatabase Instance()
-		{
-			return _instance;
-		}
 
 		public Spell this[int i]
 		{
@@ -31,9 +25,8 @@ namespace Assets.Scripts.Spells
 
 		void Start()
 		{
-			if (_instance != null)
-				throw new InvalidOperationException("Their may be only one SpellDatabase at a time!");
-			_instance = this;
+			GameRegistry.AssignSpellDatabase (this);
+
 			spells = new List<Spell>();
 			LoadSpells();
 		}
@@ -70,10 +63,9 @@ namespace Assets.Scripts.Spells
 			reader.ReadToNextSibling("Cost");
 			int cost = reader.ReadElementContentAsInt();
 			reader.ReadToNextSibling("Cooldown");
-			int cd = reader.ReadElementContentAsInt();
+			float cd = reader.ReadElementContentAsFloat();
 
 			spells.Add(new Spell(id, name, desc, cost, cd));
-			//Debug.Log("Just added " + name + " to spell-database");
 		}
     }
 }

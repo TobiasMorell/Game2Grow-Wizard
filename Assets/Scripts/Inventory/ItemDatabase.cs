@@ -7,6 +7,7 @@ using ExtensionMethods;
 
 namespace ItemClasses {
 	public class ItemDatabase : MonoBehaviour {
+		#region Variables and operator overloads
 		private List<Item> items;
 
 		public Item this [int i] {
@@ -18,12 +19,18 @@ namespace ItemClasses {
 			get { return items.Find ((Item i) => i.ItemName == s); }
 			private set { int ind = items.FindIndex ((Item i) => i.ItemName == s); items [ind] = value; }
 		}
+		#endregion
 
+		#region Unity
 		void Start() {
+			GameRegistry.AssignItemDatabase (this);
+
 			items = new List<Item> ();
 			fillDatabase ();
 		}
+		#endregion
 
+		#region Fill database
 		private void fillDatabase() {
 			//Open and xml-reader to the Items.xml file, which contains all items
 			string fullPath = Directory.GetCurrentDirectory () + "/Assets/Resources/Items.xml";
@@ -81,6 +88,7 @@ namespace ItemClasses {
 				attributePresent = reader.ReadToNextSibling ("Attribute");
 			}
 		}
+		#endregion
 	}
 
 	public enum ItemType
