@@ -12,7 +12,7 @@ public abstract class Entity : MonoBehaviour
 
 	public Slider healthBar;
 	[SerializeField] protected float MoveSpeed;
-	public SpriteRenderer sprite_renderer;
+	[HideInInspector] public SpriteRenderer sprite_renderer;
 	protected Rigidbody2D rb;
 
 	[HideInInspector] public bool facingRight;
@@ -119,5 +119,7 @@ public abstract class Entity : MonoBehaviour
 		transform.position = loadedPosition;
 		reader.ReadEndElement ();
 	}
+
+	public virtual void Equip(ItemClasses.Item item) {}
 }
 

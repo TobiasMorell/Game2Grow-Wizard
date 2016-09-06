@@ -29,6 +29,11 @@ public class InventorySlot : DragableSlot, IPointerDownHandler
 			}
 		}
 	}
+	public override void RemoveContent ()
+	{
+		base.RemoveContent ();
+		quantityText.gameObject.SetActive (false);
+	}
 
 	public void UpdateItemQuantity() {
 		if (Content.stackSize > 1) {

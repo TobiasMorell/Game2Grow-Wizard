@@ -12,19 +12,20 @@ public class Inventory : MonoBehaviour {
 	private ItemDatabase database;
 	[SerializeField] private InventoryUI UI;
 
+	private Entity bearer;
+
 	#endregion
 	#region Unity methods
 	// Use this for initialization
 	void Start () {
-		database = GameObject.FindGameObjectWithTag ("Inventory").GetComponent<ItemDatabase> ();
+		database = GameRegistry.ItemDatabase();
 		if (database == null)
 			Debug.LogAssertion ("FATAL ERROR: Could not find item database!");
+		bearer = GetComponentInParent<Entity> ();
 
-		AddItem ("Novice Sword");
-		AddItem ("Walking Stick");
 		AddItem ("Health Potion", 3);
 		AddItem ("Mana Potion", 3);
-		AddItem ("Small Crystal");
+		AddItem ("Silver Chain");
 	}
 
 	void Update() {
@@ -38,6 +39,10 @@ public class Inventory : MonoBehaviour {
 	public void AddItem(string name) {
 		AddItem (name, 1);
 	}
+	public void AddItem(Item item) {
+		AddItem (item, 1);
+	}
+
 	private void AddItem(Item item, int quantity) {
 		int availIndex = inventory.Length;
 		//Run through inventory to find an available slot
@@ -140,10 +145,13 @@ public class Inventory : MonoBehaviour {
 			}
 			break;
 		case ItemType.Weapon:
+		case ItemType.Neck:
+		case ItemType.Offhand:
+		case ItemType.Ring:
 		case ItemType.Armor:
 			Debug.Log ("Now equipping " + slot.Content.ItemName);
 			RemoveItemAt (index);
-			GameObject.FindGameObjectWithTag ("Player").GetComponent<Wizard> ().Equip (slot.Content);
+			bearer.Equip (slot.Content);
 			break;
 		default:
 			break;
@@ -161,7 +169,6 @@ public class Inventory : MonoBehaviour {
 	#endregion
 	public void Initialize(int size) {
 		inventory = new Item[size];
-		Debug.Log ("Created inventory with size: " + size);
 	}
 	public void UpdateInventory(InventorySlot[] slots) {
 		if (slots.Length != inventory.Length)
@@ -172,6 +179,7 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
+	#region XML
 	public void SaveInventory(System.Xml.XmlWriter writer) {
 		writer.WriteStartElement ("Inventory");
 		foreach (var item in inventory) {
@@ -200,4 +208,5 @@ public class Inventory : MonoBehaviour {
 		} while(reader.ReadToNextSibling("Item"));
 		reader.ReadEndElement ();
 	}
+	#endregion
 }

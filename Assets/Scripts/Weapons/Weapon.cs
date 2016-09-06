@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 
 public class Weapon : MonoBehaviour
 {

@@ -39,8 +39,6 @@ public class Wizard : Entity {
 	public int mana_regen_multiplier = 1;
 	public int bolt_damage = 2;
 
-	Spell[] spells;
-
 	[SerializeField]
 	private Specialization Spec;
 	private void changeSpec(Specialization spec)
@@ -50,7 +48,6 @@ public class Wizard : Entity {
 		for (int i = 0; i < slots.Length; i++)
 			slots[i].Place(newSpells[i]);
 		caster.Initialize (this, newSpells, mana);
-		spells = newSpells;
 	}
 	#endregion
 
@@ -85,15 +82,8 @@ public class Wizard : Entity {
 	public override void Start ()
     {
 		base.Start ();
-		Bolt.GetComponent<Bolt> ().damage = bolt_damage;
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
-		GameObject wep = GameObject.FindGameObjectWithTag ("Weapon");
-		if (wep != null) {
-			weapon = wep.GetComponent<Weapon> ();
-			WeaponCollider = weapon.GetComponent<Collider2D> ();
-		}
 
-		spells = new Spell[4];
 		caster = this.GetComponent<SpellCaster> ();
 		changeSpec(Spec);
 	}
@@ -247,15 +237,41 @@ public class Wizard : Entity {
 	public void LevelUp() {
 
 	}
-	public void Equip(Item item) {
-		var prevWep = weaponSlot.GetComponentInChildren<Weapon> ();
-		if (prevWep != null) {
-			GetComponent<Inventory> ().AddItem (prevWep.weaponName);
-			Destroy (prevWep.gameObject);
+
+	/// <summary>
+	/// Equip the specified item. This method also updates and maintains the equipmentUI.
+	/// </summary>
+	/// <param name="item">Item to equip.</param>
+	public override void Equip(Item item) {
+		//Det Item der equippes skal også tilføjes til UI.
+
+		if (item.Type == ItemType.Weapon) {
+			var wep = Instantiate (item.prefab);
+			wep.transform.SetParent (weaponSlot.transform, false);
+
+			if (wep != null) {
+				weapon = wep.GetComponent<Weapon> ();
+				WeaponCollider = weapon.GetComponent<Collider2D> ();
+			}
 		}
-		var wep = Instantiate (item.prefab);
-		wep.transform.SetParent (weaponSlot.transform, false);
+		//Instantiate armor - not added yet!!
 	}
+
+	public void Replace(Item item) {
+		Unequip (item.Type);
+		Equip (item);
+	}
+
+	public void Unequip(ItemType slot) {
+		if (slot == ItemType.Weapon) {
+			Debug.Log ("Should unequip from " + slot);
+
+			var wep = weaponSlot.GetComponentInChildren<Weapon> ();
+			if (wep != null)
+				Destroy (wep.gameObject);
+		}
+	}
+
 	#region Save & load
 	public override void Save (XmlWriter writer)
 	{

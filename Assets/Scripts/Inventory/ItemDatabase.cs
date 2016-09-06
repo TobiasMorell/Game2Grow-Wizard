@@ -93,7 +93,7 @@ namespace ItemClasses {
 
 	public enum ItemType
 	{
-		Weapon, Armor, Consumable, Junk, Quest, Magic
+		Weapon, Offhand, Armor, Neck, Ring, Consumable, Junk, Quest, Magic
 	}
 
 	[System.Serializable]

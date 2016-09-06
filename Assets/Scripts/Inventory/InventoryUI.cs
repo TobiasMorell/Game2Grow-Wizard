@@ -6,13 +6,14 @@ using Assets.Scripts.UI;
 public class InventoryUI : MonoBehaviour
 {
 	InventorySlot[] slots;
-	bool showGUI;
 	Inventory inventory;
 
 	public bool DraggingItem { get; private set; }
 	private DragableSlot draggedFrom;
-	private Item draggedItem;
+	public Item draggedItem;
 	public DragableSlot hovering;
+
+	EquipmentUI equipment;
 
 	void Start() {
 		//Assign inventory slots
@@ -20,8 +21,6 @@ public class InventoryUI : MonoBehaviour
 		inventory = GameObject.FindGameObjectWithTag ("Player").GetComponent<Inventory> ();
 		inventory.Initialize (slots.Length);
 
-		gameObject.SetActive(false);
-		showGUI = false;
 		DraggingItem = false;
 	}
 
@@ -42,19 +41,35 @@ public class InventoryUI : MonoBehaviour
 	}
 
 	public void StartDrag(DragableSlot fromSlot) {
-		DraggingItem = true;
-		draggedItem = fromSlot.Content;
-		fromSlot.RemoveContent ();
-		draggedFrom = fromSlot;
+		if (fromSlot.Content != null) {
+			DraggingItem = true;
+			draggedItem = fromSlot.Content;
+			fromSlot.RemoveContent ();
+			draggedFrom = fromSlot;
+		}
 	}
 
 	public void EndDrag() {
+		if (draggedFrom == null)
+			return;
+		
 		DraggingItem = false;
 		if (hovering != null) {
-			draggedFrom.Place (hovering.Content);
-			hovering.Place (draggedItem);
+			if (!(hovering is EquipmentSlot) || (hovering as EquipmentSlot).slotType == draggedItem.Type) {
+				draggedFrom.Place (hovering.Content);
+				hovering.Place (draggedItem);
+			} else
+				draggedFrom.Place (draggedItem);
 		} else {
 			draggedFrom.Place(draggedItem);
+		}
+		inventory.UpdateInventory (slots);
+	}
+
+	public void CancelDrag() {
+		DraggingItem = false;
+		if (hovering != null) {
+			draggedFrom.Place (draggedItem);
 		}
 		inventory.UpdateInventory (slots);
 	}

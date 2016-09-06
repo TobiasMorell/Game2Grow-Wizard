@@ -20,6 +20,12 @@ namespace ExtensionMethods {
 				return ItemType.Magic;
 			case "Quest":
 				return ItemType.Quest;
+			case "Neck":
+				return ItemType.Neck;
+			case "Offhand":
+				return ItemType.Offhand;
+			case "Ring":
+				return ItemType.Ring;
 			default:
 				throw new ArgumentException ("The string given has no associated ItemType: " + s);
 			}

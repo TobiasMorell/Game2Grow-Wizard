@@ -138,4 +138,11 @@
   <Type>Magic</Type>
 </Item>
 
+<Item>
+  <Id>17</Id>
+  <Name>Silver Chain</Name>
+  <Description>A simple silver chain, provides nothing but dashing looks</Description>
+  <Value>10</Value>
+  <Type>Neck</Type>
+</Item>
 </ItemDatabase>

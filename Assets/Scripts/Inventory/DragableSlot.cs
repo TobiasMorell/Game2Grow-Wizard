@@ -13,7 +13,7 @@ namespace Assets.Scripts.UI
 		public override void Start ()
 		{
 			base.Start ();
-			UI = GetComponentInParent<InventoryUI> ();
+			UI = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryUI> ();
 			if (UI == null)
 				Debug.LogAssertion ("Reference from inventory-slot to UI missing!");
 		}
@@ -31,12 +31,12 @@ namespace Assets.Scripts.UI
 			if (UI.DraggingItem)
 				UI.hovering = null;
 		}
-		public void OnDrag(PointerEventData ped) {
+		public virtual void OnDrag(PointerEventData ped) {
 			if (!UI.DraggingItem) {
 				UI.StartDrag (this);
 			}
 		}
-		public void OnEndDrag(PointerEventData ped) {
+		public virtual void OnEndDrag(PointerEventData ped) {
 			UI.EndDrag ();
 		}
 		#endregion

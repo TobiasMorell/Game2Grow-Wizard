@@ -73,7 +73,7 @@ namespace Assets.Scripts.UI
 
 		protected abstract void createTooltip(T content);
 		public abstract void Place(T content);
-		public void RemoveContent() {
+		public virtual void RemoveContent() {
 			Content = default(T);
 			iconImage.sprite = null;
 			iconImage.gameObject.SetActive(false);
