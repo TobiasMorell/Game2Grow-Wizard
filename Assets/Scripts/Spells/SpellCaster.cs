@@ -21,19 +21,19 @@ namespace Spells
 			this.holder = holder;
 			this.manaUI = manaUI;
 		}
+		public void UpdateSpells(Spell newSpell, int slot) {
+			spells[slot] = newSpell;
+		}
 
 		public void Cast(int index, GameObject target) {
 			Spell toCast = spells [index];
 
 			//Todo: should rather be a float reference
 			float remainingMana;
-			if (manaUI != null) {
+			if(manaUI != null)
 				remainingMana = manaUI.value;
-			} else {
+			else
 				remainingMana = mana;
-			}
-
-			Debug.Log (toCast.Name + " onCooldown: " + toCast.OnCooldown ());
 
 			if (!toCast.OnCooldown () && remainingMana >= toCast.Cost) {
 				remainingMana -= toCast.Cost;
@@ -47,12 +47,18 @@ namespace Spells
 						Debug.Log ("Requires a target to cast");
 					}
 				}
+
+				if (manaUI != null)
+					manaUI.value = remainingMana;
+				else
+					mana = remainingMana;
 			}
 		}
 
 		void Update() {
 			foreach (var spell in spells) {
-				spell.cooldownTimer -= Time.deltaTime;
+				if(spell != null)
+					spell.cooldownTimer -= Time.deltaTime;
 			}
 		}
 	}

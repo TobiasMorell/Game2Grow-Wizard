@@ -4,14 +4,14 @@
 		<Id>0</Id>
 		<Name>Fire Blast</Name>
 		<Description>Blast the enemy with fire dealing damage. This spell is stronger against targets that are already burning.</Description>
-		<Cost>10</Cost>
+		<Cost>2</Cost>
 		<Cooldown>0.5</Cooldown>
 	</Spell>
 	<Spell>
 		<Id>1</Id>
 		<Name>Ignite</Name>
 		<Description>Sets the target ablaze dealing periodic damage.</Description>
-		<Cost>10</Cost>
+		<Cost>3</Cost>
 		<Cooldown>3</Cooldown>
 	</Spell>
 	<Spell>
@@ -25,7 +25,7 @@
 		<Id>3</Id>
 		<Name>Flame Star</Name>
 		<Description>Spew flames all around the pyromancer.</Description>
-		<Cost>10</Cost>
+		<Cost>15</Cost>
 		<Cooldown>15</Cooldown>
 	</Spell>
 

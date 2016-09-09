@@ -14,12 +14,15 @@
   <Description>The blade wielded by the king of the undead armies.</Description>
   <Value>25</Value>
   <Type>Weapon</Type>
+  <!--<Attribute Type="Vitality">3</Attribute>
+  <Attribute Type="Intellect">3</Attribute>
+  <Attribute Type="Strength">6<Attribute>-->
 </Item>
 
 <Item>
   <Id>2</Id>
   <Name>Flaming Staff</Name>
-  <Description>The staff burns ever bright to light the way of wizards..</Description>
+  <Description>The staff burns ever bright to light the way of wizards.</Description>
   <Value>12</Value>
   <Type>Weapon</Type>
 </Item>

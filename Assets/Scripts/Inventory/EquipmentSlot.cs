@@ -48,8 +48,9 @@ public class EquipmentSlot : DragableSlot
 		this.GetComponent<Image> ().sprite = unequippedBackground;
 	}
 
-	protected override void createTooltip (Item item)
+	protected override void createTooltip (System.Object content)
 	{
+		Item item = (Item) content;
 		var tooltipText = new System.Text.StringBuilder ();
 		createHeadline(tooltipText, item.ItemName);
 

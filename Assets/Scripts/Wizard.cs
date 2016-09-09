@@ -37,17 +37,13 @@ public class Wizard : Entity {
 
 	#region Attributes
 	public int mana_regen_multiplier = 1;
-	public int bolt_damage = 2;
+	private int strength, intellect, vitality;
 
-	[SerializeField]
-	private Specialization Spec;
-	private void changeSpec(Specialization spec)
+	public void ReplaceSpell(Spell newSpell, int slot)
 	{
 		var slots = GameObject.FindGameObjectWithTag("Spellbar").GetComponentsInChildren<SpellSlot>();
-		Spell[] newSpells = spec.GetSpells();
-		for (int i = 0; i < slots.Length; i++)
-			slots[i].Place(newSpells[i]);
-		caster.Initialize (this, newSpells, mana);
+		slots[slot].Place(newSpell);
+		caster.UpdateSpells(newSpell, slot);
 	}
 	#endregion
 
@@ -85,7 +81,8 @@ public class Wizard : Entity {
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 
 		caster = this.GetComponent<SpellCaster> ();
-		changeSpec(Spec);
+		caster.Initialize(this, new Spell[4], mana);
+		ReplaceSpell(GameRegistry.SpellDatabase()["Fire Blast"], 0);
 	}
 	
 	// Update is called once per frame

@@ -22,22 +22,23 @@ namespace Assets.Scripts.UI {
 			}
 		}
 
-		protected override void createTooltip(Spell content)
+		protected override void createTooltip(System.Object content)
 		{
+			Spell spell = (Spell) content;
 			StringBuilder tooltipSB = new StringBuilder();
-			createHeadline(tooltipSB, content.Name);
+			createHeadline(tooltipSB, spell.Name);
 
 			tooltipSB.Append("\n");
 
 			//Show mana cost
 			appendColorOpen(tooltipSB, "0021FF");
-			tooltipSB.Append(content.Cost);
+			tooltipSB.Append(spell.Cost);
 			tooltipSB.Append(" mana");
 			appendColorClosure(tooltipSB);
 			tooltipSB.Append("\n");
 			//Show cooldown
 
-			createDescription(tooltipSB, content.Cooldown + "\n\n" + content.Description);
+			createDescription(tooltipSB, spell.Cooldown + "\n\n" + spell.Description);
 
 			Tooltip = tooltipSB.ToString();
 		}
@@ -49,7 +50,8 @@ namespace Assets.Scripts.UI {
 		}
 
 		void Update() {
-			cooldownSlider.value = Content.cooldownTimer;
+			if(Content != null)
+				cooldownSlider.value = Content.cooldownTimer;
 		}
 	}
 }

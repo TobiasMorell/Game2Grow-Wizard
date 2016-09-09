@@ -4,6 +4,7 @@ using Spells;
 using UnityEngine;
 
 namespace ExtensionMethods {
+
 	static class Extensions
 	{
 		public static ItemType StringToType(this String s) {

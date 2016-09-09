@@ -51,7 +51,8 @@ public class InventorySlot : DragableSlot, IPointerDownHandler
 		return false;
 	}
 
-	protected override void createTooltip(Item item) {
+	protected override void createTooltip(System.Object content) {
+		Item item = (Item) content;
 		StringBuilder tooltipText = new StringBuilder ();
 		createHeadline(tooltipText, item.ItemName);
 		
