@@ -26,7 +26,7 @@ namespace Spells
 		/// <summary>
 		/// The cooldown timer should be maintained elsewhere.
 		/// </summary>
-		public float cooldownTimer;
+		[HideInInspector]public float cooldownTimer;
 
 		public bool OnCooldown() {
 			return cooldownTimer > 0;

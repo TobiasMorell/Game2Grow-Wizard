@@ -239,8 +239,8 @@ public class Wizard : Entity {
 			//Remove old arrow
 			Destroy(arrow);
 
-			int currIndex = list.FindIndex ((GameObject obj) => obj.GetComponent<Entity> () == target);
-			int nextIndex = (currIndex + moveBy) % list.Count;
+			int currIndex = list.FindIndex ((GameObject obj) => obj == target);
+			int nextIndex = Mathf.Abs((currIndex + moveBy) % list.Count);
 			target = list [nextIndex];
 			placeArrow ();
 		}
