@@ -6,10 +6,34 @@ using UnityEngine.UI;
 
 public class EquipmentSlot : DragableSlot
 {
+	/// <summary>
+	/// The type of the slot (may be Head, Ring i.e.)
+	/// </summary>
 	public ItemType slotType;
+	/// <summary>
+	/// The background for the slot, when no equipment is present.
+	/// </summary>
 	[SerializeField] Sprite unequippedBackground;
+	/// <summary>
+	/// The background for the slot, when equipment is present.
+	/// </summary>
 	[SerializeField] Sprite equippedBackground;
+	/// <summary>
+	/// A reference to the equipment UI.
+	/// </summary>
 	private EquipmentUI eUI;
+
+	/// <summary>
+	/// Determines if some slot accepts a given ItemType
+	/// </summary>
+	/// <returns>true</returns>
+	/// <c>false</c>
+	/// <param name="type">Type to check for.</param>
+	public override bool DoesAccept (ItemType type)
+	{
+		//Given type must be the same as the slot to place it here.
+		return type == slotType;
+	}
 
 	public override void Start ()
 	{
@@ -18,21 +42,20 @@ public class EquipmentSlot : DragableSlot
 		eUI = GetComponentInParent<EquipmentUI> ();
 	}
 
+	/// <summary>
+	/// Place the specified content in the slot.
+	/// </summary>
+	/// <param name="content">Content to place (may be null).</param>
 	public override void Place (Item content)
 	{
 		base.Place (content);
-		if(content != null)
+		if (content != null) {
 			this.GetComponent<Image> ().sprite = equippedBackground;
+			//Equip the new piece of equipment
+			eUI.EquipFromSlot (this);
+		}
 	}
 
-
-	public override void OnEndDrag (UnityEngine.EventSystems.PointerEventData ped)
-	{
-		//Update content of the slot and display on UI
-		base.OnEndDrag (ped);
-		//Equip the new piece of equipment
-		eUI.Equip (Content);
-	}
 	public override void OnDrag (UnityEngine.EventSystems.PointerEventData ped)
 	{
 		//Unequip what was in the slot before
@@ -42,35 +65,12 @@ public class EquipmentSlot : DragableSlot
 		base.OnDrag (ped);
 	}
 
+	/// <summary>
+	/// Removes the content from the slot.
+	/// </summary>
 	public override void RemoveContent ()
 	{
 		base.RemoveContent ();
 		this.GetComponent<Image> ().sprite = unequippedBackground;
-	}
-
-	protected override void createTooltip (System.Object content)
-	{
-		Item item = (Item) content;
-		var tooltipText = new System.Text.StringBuilder ();
-		createHeadline(tooltipText, item.ItemName);
-
-		tooltipText.Append ("\n\n");
-
-		createDescription(tooltipText, item.Description);
-		tooltipText.Append("\n\n");
-
-		//Value
-		appendColorOpen (tooltipText, "FFD700");
-		tooltipText.Append (item.Value);
-		tooltipText.Append (" golds");
-		appendColorClosure (tooltipText);
-		tooltipText.Append ("\n\n");
-
-		//Type
-		appendColorOpen (tooltipText, "BAEEFF");
-		tooltipText.Append (item.Type);
-		appendColorClosure (tooltipText);
-
-		Tooltip = tooltipText.ToString ();
 	}
 }

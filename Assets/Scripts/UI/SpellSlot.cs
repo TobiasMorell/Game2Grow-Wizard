@@ -7,40 +7,25 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI {
 	public class SpellSlot : UITooltipSlot<Spell> {
+		//A reference to the slider component used to display cooldown.
 		Slider cooldownSlider;
 
+		/// <summary>
+		/// Place the specified spell in the slot.
+		/// </summary>
+		/// <param name="content">Spell to place (may be null).</param>
 		public override void Place(Spell content)
 		{
 			Content = content;
-			if (content != null)
-			{
-				createTooltip(content);
+			if (content != null) {
+				Tooltip = content.Tooltip ();
 				//Change icon of item slot and activate the image-component
 				iconImage.sprite = content.Icon;
-				iconImage.gameObject.SetActive(true);
+				iconImage.gameObject.SetActive (true);
 				cooldownSlider.maxValue = content.Cooldown;
+			} else {
+				RemoveContent ();
 			}
-		}
-
-		protected override void createTooltip(System.Object content)
-		{
-			Spell spell = (Spell) content;
-			StringBuilder tooltipSB = new StringBuilder();
-			createHeadline(tooltipSB, spell.Name);
-
-			tooltipSB.Append("\n");
-
-			//Show mana cost
-			appendColorOpen(tooltipSB, "0021FF");
-			tooltipSB.Append(spell.Cost);
-			tooltipSB.Append(" mana");
-			appendColorClosure(tooltipSB);
-			tooltipSB.Append("\n");
-			//Show cooldown
-
-			createDescription(tooltipSB, spell.Cooldown + "\n\n" + spell.Description);
-
-			Tooltip = tooltipSB.ToString();
 		}
 
 		public override void Start()

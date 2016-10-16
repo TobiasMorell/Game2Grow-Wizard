@@ -5,18 +5,32 @@ using UnityEngine.UI;
 namespace Assets.Scripts.UI {
 	public class Toggler : MonoBehaviour {
 		bool active = false;
-		[SerializeField] private GameObject togglePanel;
+		[SerializeField] private CanvasGroup togglePanel;
 		[SerializeField] KeyCode hotkey;
 
 		void Start() {
-			togglePanel.SetActive (active);
+			HideCanvas ();
 			this.GetComponent<Button> ().onClick.AddListener (Toggle);
 		}
 
 		// Use this for initialization
 		public void Toggle() {
-			togglePanel.SetActive (!active);
-			active = !active;
+			if (active) {
+				HideCanvas ();
+				active = false;
+			} else {
+				ShowCanvas ();
+				active = true;
+			}
+		}
+
+		void ShowCanvas() {
+			togglePanel.alpha = 1f;
+			togglePanel.blocksRaycasts = true;
+		}
+		void HideCanvas() {
+			togglePanel.alpha = 0f;
+			togglePanel.blocksRaycasts = false;
 		}
 
 		void Update() {
@@ -24,7 +38,7 @@ namespace Assets.Scripts.UI {
 				Toggle();
 			}
 			if (Input.GetKeyDown (KeyCode.Escape)) {
-				togglePanel.SetActive (false);
+				HideCanvas ();
 				active = false;
 			}
 		}

@@ -8,11 +8,7 @@ using ExtensionMethods;
 using System.Collections.Generic;
 using Assets.Scripts.UI;
 using ItemClasses;
-
-enum Specialization
-{
-	Fire, Frost, Life, Death, Pyromancer, LavaBender, Elementalist, PhoenixLord, Hydromancer, IceLord, Necromancer, Vampire, Cleric
-}
+using Assets.Scripts.Weapon;
 
 public class Wizard : Entity {
 	#region variables
@@ -29,45 +25,25 @@ public class Wizard : Entity {
 	private float manaTimer = 0f;
 	private int imuniTimer = 2;
 	private bool immune = false;
-	private Collider2D WeaponCollider;
-	private Weapon weapon;
+	public Weapon weapon;
 
 	private SpellCaster caster;
+	private AttributeManager attributes;
 	private GameObject target;
 
 	#region Attributes
-	public int mana_regen_multiplier = 1;
-	private int strength, intellect, vitality;
 
-	public void ReplaceSpell(Spell newSpell, int slot)
-	{
-		var slots = GameObject.FindGameObjectWithTag("Spellbar").GetComponentsInChildren<SpellSlot>();
-		slots[slot].Place(newSpell);
-		caster.UpdateSpells(newSpell, slot);
-	}
 	#endregion
 
 	public bool Attacking {
 		get { return attacking; }
 		set { 
 			attacking = value;
-			if(weapon != null)
-				WeaponCollider.enabled = attacking;
 		}
 	}
 	[SerializeField] GameObject targetArrow;
 	[SerializeField] GameObject weaponSlot;
 
-	#endregion
-	#region attacks and spells
-	public void SwingWeapon() {
-		if(weapon != null)
-			weapon.Swing ();
-	}
-	public void StopSwing() {
-		if (weapon != null)
-			weapon.StopSwing ();
-	}
 	#endregion
 	#region Unity-methods
 	public override void Awake(){
@@ -80,9 +56,13 @@ public class Wizard : Entity {
 		base.Start ();
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 
+		//Initialize caster component
 		caster = this.GetComponent<SpellCaster> ();
 		caster.Initialize(this, new Spell[4], mana);
-		ReplaceSpell(GameRegistry.SpellDatabase()["Fire Blast"], 0);
+
+		//Initialize AttributeManager
+		attributes = this.GetComponent<AttributeManager>();
+		attributes.AssignSkillpoints (5);
 	}
 	
 	// Update is called once per frame
@@ -90,15 +70,22 @@ public class Wizard : Entity {
 		base.Update ();
 		handleMovement ();
 		handleMagicAttack ();
-		//handleStaffAttack ();
+
 		if (Input.GetButtonDown ("TargetRight"))
 			handleTargetRight ();
 		else if (Input.GetButtonDown ("TargetLeft"))
 			handleTargetLeft ();
 
+		regenMana ();
+	}
+
+	/// <summary>
+	/// Regens the mana - also handles the timer.
+	/// </summary>
+	private void regenMana() {
 		//Generates one mana every third second
-		if (mana.value < mana.maxValue && manaTimer >= 3f) {
-			mana.value += 1 * mana_regen_multiplier;
+		if (mana.value < mana.maxValue && manaTimer >= attributes.manaRegenInterval) {
+			mana.value += attributes.mana_regen_multiplier;
 			manaTimer = 0;
 		}
 		else
@@ -111,11 +98,14 @@ public class Wizard : Entity {
 			jumping = true;
 			rb.AddForce(Vector2.up * jumpForce);
 		}
-		else if (!Input.GetButton("Jump") && rb.velocity.y < Mathf.Epsilon)
+		else if (!Input.GetButton("Jump") && rb.velocity.y < Mathf.Epsilon) //small mistake here, the wizard may double-jump
 			jumping = false;
 	}
 	#endregion
 	#region Control
+	/// <summary>
+	/// Handles keystrokes regarding the movement.
+	/// </summary>
 	void handleMovement()
 	{
 		float h = Input.GetAxis ("Horizontal");
@@ -132,6 +122,9 @@ public class Wizard : Entity {
 			Flip ();
 	}
 
+	/// <summary>
+	/// Handles leystrokes regarding magic attacks.
+	/// </summary>
 	void handleMagicAttack()
 	{
 		if (Input.GetButtonUp ("Spell1"))
@@ -143,8 +136,19 @@ public class Wizard : Entity {
 		else if (Input.GetButtonUp ("Spell4"))
 			caster.Cast(3, target);
 	}
+
+	void melee() {
+		if (false /*Should be replaces with button*/) {
+			weapon.Swing ();
+		}
+	}
 	#endregion
 	#region Combat & death
+	/// <summary>
+	/// Take damage and update all UI regarding it.
+	/// </summary>
+	/// <param name="damage">Damage to deal to the wizard.</param>
+	/// <param name="ignoreImmunity">If set to <c>true</c> ignore immunity.</param>
 	public override void TakeDamage(int damage, bool ignoreImmunity)
 	{
 		if (ignoreImmunity || !immune) {
@@ -158,6 +162,11 @@ public class Wizard : Entity {
 				StartCoroutine (handleImmunity (imuniTimer));
 		}
 	}
+	/// <summary>
+	/// Handles the immunity timer.
+	/// </summary>
+	/// <returns>The immunity.</returns>
+	/// <param name="immunity_cooldown">Ammount of time the wizard should stay immune.</param>
 	IEnumerator handleImmunity(int immunity_cooldown)
 	{
 		//Show that the player is immune in some way
@@ -170,12 +179,18 @@ public class Wizard : Entity {
 			this.sprite_renderer.color = Color.white;
 	}
 
+	/// <summary>
+	/// Kill the wizard.
+	/// </summary>
 	protected override void die()
 	{
 		pointCamToSpawn();
 		Destroy (this.gameObject, 0f);
 	}
 
+	/// <summary>
+	/// Points the cam to spawn.
+	/// </summary>
 	private void pointCamToSpawn()
 	{
 		var cam = GetComponentInChildren<Camera> ();
@@ -189,15 +204,25 @@ public class Wizard : Entity {
 		}
 	}
 
+	/// <summary>
+	/// Handle target-switch right.
+	/// </summary>
 	void handleTargetRight() { 
 		handleTargetSwitch (1);
 	}
 
+	/// <summary>
+	/// Handle target-switch left.
+	/// </summary>
 	void handleTargetLeft() {
 		handleTargetSwitch (-1);
 	}
-
+		
 	private GameObject arrow;
+	/// <summary>
+	/// Handles the target switch - targets are sorted by their x-position.
+	/// </summary>
+	/// <param name="moveBy">Move by (-1 means left, 1 means right).</param>
 	void handleTargetSwitch(int moveBy) {
 		var enemies = GameObject.FindGameObjectsWithTag ("Hostile");
 
@@ -220,6 +245,9 @@ public class Wizard : Entity {
 			placeArrow ();
 		}
 	}
+	/// <summary>
+	/// Places the target-arrow.
+	/// </summary>
 	private void placeArrow() {
 		//Add new arrow to target
 		arrow = Instantiate (targetArrow);
@@ -229,10 +257,15 @@ public class Wizard : Entity {
 	}
 	#endregion
 
-
-
+	/// <summary>
+	/// Level up the wizard.
+	/// </summary>
 	public void LevelUp() {
-
+		attributes.AssignSkillpoints (5);
+	}
+		
+	private int calculateDamage() {
+		return attributes.strength;
 	}
 
 	/// <summary>
@@ -240,42 +273,61 @@ public class Wizard : Entity {
 	/// </summary>
 	/// <param name="item">Item to equip.</param>
 	public override void Equip(Item item) {
-		//Det Item der equippes skal også tilføjes til UI.
+		attributes.RegisterEquip (item);
 
 		if (item.Type == ItemType.Weapon) {
 			var wep = Instantiate (item.prefab);
 			wep.transform.SetParent (weaponSlot.transform, false);
 
+			Debug.Log ("Weapon instantiation: " + wep);
+
 			if (wep != null) {
 				weapon = wep.GetComponent<Weapon> ();
-				WeaponCollider = weapon.GetComponent<Collider2D> ();
+				weapon.Equip (calculateDamage ());
 			}
 		}
 		//Instantiate armor - not added yet!!
 	}
-
+	/// <summary>
+	/// Replace the item in the slot of the specified item.
+	/// </summary>
+	/// <param name="item">The new item to equip.</param>
 	public void Replace(Item item) {
 		Unequip (item.Type);
 		Equip (item);
 	}
 
+	/// <summary>
+	/// Unequip the item in the specified slot.
+	/// </summary>
+	/// <param name="slot">Slot to remove from.</param>
 	public void Unequip(ItemType slot) {
 		if (slot == ItemType.Weapon) {
 			Debug.Log ("Should unequip from " + slot);
 
 			var wep = weaponSlot.GetComponentInChildren<Weapon> ();
-			if (wep != null)
+			if (wep != null) {
 				Destroy (wep.gameObject);
+				attributes.RegisterUnequip(GameRegistry.ItemDatabase()[wep.Id]);
+			}
 		}
 	}
 
 	#region Save & load
+	/// <summary>
+	/// Save this instance using the specified writer.
+	/// </summary>
+	/// <param name="writer">Writer.</param>
 	public override void Save (XmlWriter writer)
 	{
 		writer.WriteStartElement ("Wizard");
 		base.Save (writer);
 		writer.WriteEndElement ();
 	}
+	/// <summary>
+	/// Saves the status.
+	/// </summary>
+	/// <param name="writer">Writer.</param>
 	protected override void SaveStatus (XmlWriter writer)
 	{
 		writer.WriteStartElement ("Status");
@@ -289,12 +341,20 @@ public class Wizard : Entity {
 		writer.WriteEndElement();
 	}
 
+	/// <summary>
+	/// Load an instance using the specified reader.
+	/// </summary>
+	/// <param name="reader">Reader.</param>
 	public override void Load (XmlReader reader)
 	{
 		reader.ReadToFollowing ("Wizard");
 		base.Load (reader);
 		reader.ReadEndElement ();
 	}
+	/// <summary>
+	/// Loads the status.
+	/// </summary>
+	/// <param name="reader">Reader.</param>
 	protected override void LoadStatus (XmlReader reader)
 	{
 		base.LoadStatus (reader);

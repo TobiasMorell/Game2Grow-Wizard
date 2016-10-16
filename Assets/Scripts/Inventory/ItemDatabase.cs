@@ -4,11 +4,14 @@ using System.IO;
 using System;
 using System.Xml;
 using ExtensionMethods;
+using System.Text;
+using Assets.Scripts.UI;
+using Spells;
 
 namespace ItemClasses {
 	public class ItemDatabase : MonoBehaviour {
 		#region Variables and operator overloads
-		private List<Item> items;
+		[SerializeField] private List<Item> items;
 
 		public Item this [int i] {
 			get { return items.Find((Item itm) => itm.Id == i); }
@@ -24,9 +27,9 @@ namespace ItemClasses {
 		#region Unity
 		void Start() {
 			GameRegistry.AssignItemDatabase (this);
-
-			items = new List<Item> ();
-			fillDatabase ();
+			/* Items are now created using the inspector, due to problems with WebGL builds.
+			 * items = new List<Item> ();
+			 * fillDatabase ();*/
 		}
 		#endregion
 
@@ -77,6 +80,7 @@ namespace ItemClasses {
 
 		private void checkForAttributes(XmlReader reader, Item i) {
 			bool attributePresent = reader.ReadToNextSibling ("Attribute");
+			int vit = 0, inte = 0, str = 0;
 
 			while (attributePresent) {
 				switch (reader.GetAttribute ("Type")) {
@@ -84,9 +88,23 @@ namespace ItemClasses {
 					i.maxStackSize = reader.ReadElementContentAsInt ();
 					Debug.Log ("Set max stacksize of " + i.ItemName + " to " + i.maxStackSize);
 					break;
+				case "Vitality":
+					vit = reader.ReadElementContentAsInt ();
+					break;
+				case "Intellect":
+					inte = reader.ReadElementContentAsInt ();
+					break;
+				case "Strength":
+					str = reader.ReadElementContentAsInt ();
+					break;
+				default:
+					Debug.LogAssertion ("Found an unknown attribute while importing items: " + reader.GetAttribute ("Type"));
+					break;
 				}
 				attributePresent = reader.ReadToNextSibling ("Attribute");
 			}
+
+			//i.AssignAttributes (inte, str, vit);
 		}
 		#endregion
 	}
@@ -95,11 +113,26 @@ namespace ItemClasses {
 	{
 		Weapon, Offhand, Armor, Neck, Ring, Consumable, Junk, Quest, Magic
 	}
+		
+	public enum Attribute {
+		Strength, Vitality, Intellect
+	}
+
+	[Serializable]
+	public class AttributeTag {
+		public string Name;
+		public int Value;
+
+		public AttributeTag(String name, int value) {
+			Name = name;
+			Value = value;
+		}
+	}
 
 	[System.Serializable]
 	public class Item {
 		public string ItemName;
-		public readonly int Id;
+		public int Id;
 		public string Description;
 		public int Value;
 		public ItemType Type;
@@ -108,21 +141,109 @@ namespace ItemClasses {
 		public int maxStackSize;
 		public int stackSize = 1;
 
-		public Item(string name, string desc, int value, ItemType type, int id) : this(name, desc, value, type, 1, id) {}
+		public AttributeTag[] Attributes;
 
-		public Item(string name, string desc, int value, ItemType type, int maxStack, int id) {
+		public Item(string name, string desc, int value, ItemType type, int id)
+			: this(name, desc, value, type, 1, id, null) {}
+
+		public Item(string name, string desc, int value, ItemType type, int maxStack, int id, AttributeTag[] attrs) {
 			ItemName = name;
 			Id = id;
 			Description = desc;
 			Value = value;
 			Type = type;
 			maxStackSize = maxStack;
-			icon = Resources.Load<Sprite> ("Item Icons/" + name);
-			prefab = Resources.Load<GameObject> ("Item Prefabs/" + name);
+			Attributes = attrs;
+		}
+
+		public Item (Item clonedFrom) : this(clonedFrom.ItemName, clonedFrom.Description, 
+			clonedFrom.Value, clonedFrom.Type, clonedFrom.maxStackSize, clonedFrom.Id, clonedFrom.Attributes) 
+		{
+			this.icon = clonedFrom.icon;
+			this.prefab = clonedFrom.prefab;
+			if (prefab != null) {
+				var inGame = prefab.GetComponent<Assets.Scripts.Weapon.Displayable> ();
+				inGame.RegisterToItemID (Id);
+			}
+		}
+
+		public AttributeTag[] GetAllTags() {
+			return Attributes;
+		}
+			
+		public void AddValueToTag(string tag, int value) {
+			for (int i = 0; i < Attributes.Length; i++) {
+				if(Attributes[i].Name.Equals(tag)) {
+					Attributes[i].Value += value;
+					return;
+				}
+			}
+		}
+
+		public void AddValueToSchool(School schl, int value) {
+			AddValueToTag (schl.ToString (), value);
+		}
+
+		public void AddValueToAttribute(Attribute attr, int value) {
+			AddValueToTag (attr.ToString (), value);
+		}
+
+		public int GetValueFromTag(string tag) {
+			for (int i = 0; i < Attributes.Length; i++) {
+				if(Attributes[i].Name.Equals(tag)) {
+					return Attributes[i].Value;
+				}
+			}
+
+			return 0;
+		}
+
+		public int GetValueFromAttribute(Attribute attr) {
+			return GetValueFromTag (attr.ToString ());
+		}
+
+		public int GetValueFromSchool(School schl) {
+			return GetValueFromTag (schl.ToString ());
 		}
 
 		public Item Clone() {
-			return new Item (ItemName, Description, Value, Type, maxStackSize, Id);
+			return new Item (this);
 		}
+
+		#region Tooltip building
+		public virtual string Tooltip() {
+			System.Text.StringBuilder tooltipText = new StringBuilder ();
+			TooltipBuilder.CreateHeadline(tooltipText, ItemName);
+			tooltipText.Append ('\n');
+			//Type
+			TooltipBuilder.AppendColorOpen (tooltipText, "BAEEFF");
+			tooltipText.Append (Type);
+			TooltipBuilder.AppendColorClosure (tooltipText);
+
+			tooltipText.Append ("\n\n");
+
+			//Attributes
+			TooltipBuilder.AppendColorOpen(tooltipText, "00CC00");
+			foreach (var attr in Attributes) {
+				tooltipText.Append (attr.Name);
+				tooltipText.Append (": ");
+				tooltipText.Append (attr.Value);
+				tooltipText.Append ('\n');
+			}
+			TooltipBuilder.AppendColorClosure (tooltipText);
+
+			//Description
+			TooltipBuilder.CreateDescription(tooltipText, Description);
+			tooltipText.Append("\n\n");
+
+			//Value
+			TooltipBuilder.AppendColorOpen (tooltipText, "FFD700");
+			tooltipText.Append (Value);
+			tooltipText.Append (" gold");
+			TooltipBuilder.AppendColorClosure (tooltipText);
+
+			return tooltipText.ToString ();
+		}
+		#endregion
 	}
 }

@@ -56,39 +56,5 @@ namespace Assets.Scripts.UI
 		{
 			showTooltip = false;
 		}
-
-		protected abstract void createTooltip(System.Object content);
-
-        protected virtual void createHeadline(StringBuilder tooltipText, string headline)
-		{
-			//Name of item
-			tooltipText.Append("<size=18>");
-			tooltipText.Append("<b>");
-			appendColorOpen(tooltipText, "ffffff");
-			tooltipText.Append(headline);
-			appendColorClosure(tooltipText);
-			tooltipText.Append("</b>");
-			tooltipText.Append("</size>");
-		}
-		protected void createDescription(StringBuilder tooltipText, string desc)
-		{
-			appendColorOpen(tooltipText, "E8E8E8");
-			tooltipText.Append(desc);
-			appendColorClosure(tooltipText);
-		}
-
-		protected void appendColorOpen(StringBuilder tooltipText, string hexColor)
-		{
-			tooltipText.Append("<color=#");
-			tooltipText.Append(hexColor);
-			tooltipText.Append(">");
-
-		}
-		protected void appendColorClosure(StringBuilder tooltipText)
-		{
-			tooltipText.Append("</color>");
-		}
-
-
     }
 }

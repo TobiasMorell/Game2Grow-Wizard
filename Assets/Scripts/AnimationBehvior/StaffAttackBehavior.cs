@@ -19,7 +19,7 @@ public class StaffAttackBehavior : StateMachineBehaviour {
 
 	public override void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
+		wizz.weapon.StopSwing ();
 		wizz.Attacking = false;
-		wizz.StopSwing ();
 	}
 }

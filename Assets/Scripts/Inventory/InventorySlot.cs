@@ -8,7 +8,22 @@ using Assets.Scripts.UI;
 
 public class InventorySlot : DragableSlot, IPointerDownHandler
 {
+	/// <summary>
+	/// Used to display the number of stackable items.
+	/// </summary>
 	[SerializeField] Text quantityText;
+
+	/// <summary>
+	/// Determines if some slot accepts a given ItemType
+	/// </summary>
+	/// <returns>true</returns>
+	/// <c>false</c>
+	/// <param name="type">Type to check for.</param>
+	public override bool DoesAccept (ItemType type)
+	{
+		//InventorySlots accept all ItemTypes.
+		return true;
+	}
 
 	public override void Start() {
 		base.Start();
@@ -16,6 +31,11 @@ public class InventorySlot : DragableSlot, IPointerDownHandler
 			Debug.LogAssertion ("Could not find text component!");
 	}
 
+	/// <summary>
+	/// Place the specified content in the slot.
+	/// </summary>
+	/// <param name="content">Content to place (may be null).</param>
+	/// <param name="item">Item.</param>
 	public override void Place(Item item)
 	{
 		base.Place (item);
@@ -29,21 +49,36 @@ public class InventorySlot : DragableSlot, IPointerDownHandler
 			}
 		}
 	}
+
+	/// <summary>
+	/// Removes the content from the slot.
+	/// </summary>
 	public override void RemoveContent ()
 	{
 		base.RemoveContent ();
+		//Disable the text that displays stacksize.
 		quantityText.gameObject.SetActive (false);
 	}
 
+	/// <summary>
+	/// Updates the item quantity.
+	/// </summary>
 	public void UpdateItemQuantity() {
+		//Update and display stacksize if it is larger than 1
 		if (Content.stackSize > 1) {
 			quantityText.text = Content.stackSize.ToString();
 			quantityText.gameObject.SetActive (true);
-		} else {
+		} 
+		//Else just hide it (stacksize 1 is implicit)
+		else {
 			quantityText.gameObject.SetActive (false);
 		}
 	}
 
+	/// <summary>
+	/// Determines if this slot holds an item with the given id.
+	/// </summary>
+	/// <param name="id">Identifier to search for.</param>
 	public bool Holds(int id) {
 		if (Content != null && Content.Id == id)
 			return true;
@@ -51,33 +86,9 @@ public class InventorySlot : DragableSlot, IPointerDownHandler
 		return false;
 	}
 
-	protected override void createTooltip(System.Object content) {
-		Item item = (Item) content;
-		StringBuilder tooltipText = new StringBuilder ();
-		createHeadline(tooltipText, item.ItemName);
-		
-		tooltipText.Append ("\n\n");
-		
-		createDescription(tooltipText, item.Description);
-		tooltipText.Append("\n\n");
-
-		//Value
-		appendColorOpen (tooltipText, "FFD700");
-		tooltipText.Append (item.Value);
-		tooltipText.Append (" golds");
-		appendColorClosure (tooltipText);
-		tooltipText.Append ("\n\n");
-
-		//Type
-		appendColorOpen (tooltipText, "BAEEFF");
-		tooltipText.Append (item.Type);
-		appendColorClosure (tooltipText);
-
-		Tooltip = tooltipText.ToString ();
-	}
-
 	public void OnPointerDown(PointerEventData ped) {
 		if (Content != null) {
+			//Tells the UI that the user wants to use an item, when he right-clicks.
 			if (ped.button == PointerEventData.InputButton.Right) {
 				UI.UsedItemFromSlot (this);
 			}

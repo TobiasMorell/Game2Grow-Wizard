@@ -2,8 +2,8 @@
 <Save>
   <Wizard>
     <Position>
-      <x>0.8329673</x>
-      <y>6.67719841</y>
+      <x>-3.74039674</x>
+      <y>6.816864</y>
       <z>0</z>
     </Position>
     <Status>
@@ -12,7 +12,16 @@
       <Exp>N/A</Exp>
       <Level>N/A</Level>
       <Inventory>
-        <Item ID="1">
+        <Item ID="17">
+          <Quantity>1</Quantity>
+        </Item>
+        <Item ID="19">
+          <Quantity>1</Quantity>
+        </Item>
+        <Item ID="20">
+          <Quantity>1</Quantity>
+        </Item>
+        <Item ID="0">
           <Quantity>1</Quantity>
         </Item>
       </Inventory>
@@ -21,13 +30,11 @@
   <Enemies>
     <Enemy Type="Bat">
       <Position>
-        <x>2.0</x>
-        <y>10.0</y>
+        <x>-21.8349133</x>
+        <y>15.951252</y>
         <z>0</z>
       </Position>
-      <Status>
-        <HP>4</HP>
-      </Status>
+      <HP>4</HP>
     </Enemy>
   </Enemies>
 </Save>

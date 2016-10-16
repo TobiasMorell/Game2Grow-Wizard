@@ -2,7 +2,7 @@
 <SpellDatabase>
 	<Spell>
 		<Id>0</Id>
-		<Name>Fire Blast</Name>
+		<Name>Fire_Blast</Name>
 		<Description>Blast the enemy with fire dealing damage. This spell is stronger against targets that are already burning.</Description>
 		<Cost>2</Cost>
 		<Cooldown>0.5</Cooldown>
@@ -253,5 +253,4 @@
     <Cost>10</Cost>
     <Cooldown>60</Cooldown>
   </Spell>
-
 </SpellDatabase>

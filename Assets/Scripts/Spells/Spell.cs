@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Assets.Scripts.UI;
 
 namespace Spells
 {
+	public enum School
+	{
+		Fire, Water, Life, Death, None
+	}
+	[System.Serializable]
 	public class Spell
 	{
-		public readonly int Id;
-		public readonly string Name;
-		public readonly string Description;
-		public readonly int Cost;
-		public readonly float Cooldown;
-		public readonly Sprite Icon;
-		public readonly GameObject Prefab;
-		public readonly bool RequiresTarget;
-		public readonly bool TargetsSelf;
+		public string Name;
+		public int Id;
+		public string Description;
+		public int Cost;
+		public float Cooldown;
+		public Sprite Icon;
+		public GameObject Prefab;
+		public bool RequiresTarget;
+		public bool TargetsSelf;
 		/// <summary>
 		/// The cooldown timer should be maintained elsewhere.
 		/// </summary>
@@ -78,5 +84,27 @@ namespace Spells
 			cooldownTimer = Cooldown;
 			GameObject.Instantiate (Prefab).GetComponent<Castable>().Cast(target);
 		}
+
+		#region Tooltip
+		public string Tooltip()
+		{
+			StringBuilder tooltipSB = new StringBuilder();
+			TooltipBuilder.CreateHeadline(tooltipSB, Name);
+
+			tooltipSB.Append("\n");
+
+			//Show mana cost
+			TooltipBuilder.AppendColorOpen(tooltipSB, "0021FF");
+			tooltipSB.Append(Cost);
+			tooltipSB.Append(" mana");
+			TooltipBuilder.AppendColorClosure(tooltipSB);
+			tooltipSB.Append("\n");
+
+			//Show cooldown
+			TooltipBuilder.CreateDescription(tooltipSB, Cooldown + " seconds cooldown.\n\n" + Description);
+
+			return tooltipSB.ToString();
+		}
+		#endregion
 	}
 }

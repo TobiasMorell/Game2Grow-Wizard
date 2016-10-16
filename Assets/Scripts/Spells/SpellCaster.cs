@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Scripts.UI;
 
 namespace Spells 
 {
@@ -23,6 +24,8 @@ namespace Spells
 		}
 		public void UpdateSpells(Spell newSpell, int slot) {
 			spells[slot] = newSpell;
+			var slots = GameObject.FindGameObjectWithTag("Spellbar").GetComponentsInChildren<SpellSlot>();
+			slots[slot].Place(newSpell);
 		}
 
 		public void Cast(int index, GameObject target) {

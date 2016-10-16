@@ -19,7 +19,13 @@ namespace Spells {
 		public override void Cast (GameObject primaryTarget)
 		{
 			base.Cast (primaryTarget);
-			primaryTarget.GetComponent<Entity>().TakeDamage(3);
+			//Something to calculate damage here
+			int damage = 3;
+
+			//if(primaryTarget.HasEffect(Effects.Burning)) {
+			// damage = Mathf.Ceil(1.5f * damage);
+			//}
+			primaryTarget.GetComponent<Entity>().TakeDamage(damage);
 		}
 	}
 }
