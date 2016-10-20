@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spells;
+using System;
 using UnityEngine;
 
 public class VoidDisc : Bolt

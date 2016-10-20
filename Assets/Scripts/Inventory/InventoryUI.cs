@@ -1,15 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using ItemClasses;
 using Assets.Scripts.UI;
 
 public class InventoryUI : MonoBehaviour
 {
 	//Reference to UI slots and inventory
-	/* InventorySlots (views items)
-	 * InventoryUI (handles user input; dragging, clicking i.e.)
-	 * Inventory contains actual items and updates the UI if changes occur
-	 */
 	InventorySlot[] slots;
 	Inventory inventory;
 
@@ -23,7 +18,7 @@ public class InventoryUI : MonoBehaviour
 		//Assign inventory slots
 		slots = this.GetComponentsInChildren<InventorySlot> ();
 		//Find a reference to the inventory and initialize it
-		inventory = GameObject.FindGameObjectWithTag ("Player").GetComponent<Inventory> ();
+		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 		inventory.Initialize (slots.Length);
 
 		//Make sure dragging is set to false in order to allow dragging

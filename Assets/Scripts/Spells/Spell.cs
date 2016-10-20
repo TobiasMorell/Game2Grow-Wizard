@@ -23,6 +23,8 @@ namespace Spells
 		public GameObject Prefab;
 		public bool RequiresTarget;
 		public bool TargetsSelf;
+		public SpellAnimationType AnimationType;
+
 		/// <summary>
 		/// The cooldown timer should be maintained elsewhere.
 		/// </summary>
@@ -80,9 +82,12 @@ namespace Spells
 		}
 		#endregion
 
-		public void Cast(GameObject target) {
+		public void Cast(GameObject target, bool facingRight, float mod) {
 			cooldownTimer = Cooldown;
-			GameObject.Instantiate (Prefab).GetComponent<Castable>().Cast(target);
+			var inst = UnityEngine.Object.Instantiate(Prefab).GetComponent<Castable>();
+			inst.movingRight = facingRight;
+			inst.AssignModifier(mod);
+			inst.Cast(target);
 		}
 
 		#region Tooltip

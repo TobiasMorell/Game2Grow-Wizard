@@ -18,7 +18,7 @@ public class Wizard : Entity {
 	[HideInInspector] private bool attacking = false;
 
 	public Transform BoltSpawnpoint;
-	public GameObject Bolt;
+	//public GameObject Bolt;
 	public float jumpForce;
 	public Slider mana;
 
@@ -30,10 +30,6 @@ public class Wizard : Entity {
 	private SpellCaster caster;
 	private AttributeManager attributes;
 	private GameObject target;
-
-	#region Attributes
-
-	#endregion
 
 	public bool Attacking {
 		get { return attacking; }
@@ -261,7 +257,7 @@ public class Wizard : Entity {
 	/// Level up the wizard.
 	/// </summary>
 	public void LevelUp() {
-		attributes.AssignSkillpoints (5);
+		attributes.LevelUp();
 	}
 		
 	private int calculateDamage() {

@@ -3,12 +3,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.Effects;
 using System.Xml;
+using System.Collections.Generic;
 
 public abstract class Entity : MonoBehaviour
 {
-	[SerializeField] protected int HP;
+	#region fields
+	public int HP;
 	[SerializeField] protected int Damage;
 	[SerializeField] protected int expForKill;
+	protected int level;
+	public float MeleeDamageModifier;
 
 	public Slider healthBar;
 	[SerializeField] protected float MoveSpeed;
@@ -21,11 +25,14 @@ public abstract class Entity : MonoBehaviour
 	protected Vector2 Direction {
 		get { return this.facingRight ? Vector2.right : Vector2.left; }
 	}
+	#endregion
 
+	#region Unity Methods
 	public virtual void Awake() {
 		animator = this.GetComponent<Animator> ();
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 		rb = this.GetComponent<Rigidbody2D>();
+		activeEffectSchools = new List<EffectSchool>();
 	}
 
 	public virtual void Start() {
@@ -36,6 +43,21 @@ public abstract class Entity : MonoBehaviour
 	public virtual void Update() {
 		if(effectUpdate != null) effectUpdate ();
 		checkDeathFromFalling ();
+	}
+	#endregion
+
+	public void SetHP(int value)
+	{
+		int diff = Mathf.CeilToInt(healthBar.maxValue - HP);
+
+		healthBar.maxValue = value;
+		HP = value - diff;
+		healthBar.value = HP;
+	}
+
+	public void PlayAnimation(string animationTriggerName)
+	{
+		animator.SetTrigger(animationTriggerName);
 	}
 
 	private void checkDeathFromFalling()
@@ -73,10 +95,22 @@ public abstract class Entity : MonoBehaviour
 	#region Effects
 	public delegate void effectUpdateDelegate();
 	public effectUpdateDelegate effectUpdate;
+	List<EffectSchool> activeEffectSchools;
 
-	public void ApplyEffect(HostileEffect effectToApply)
+	public void ApplyEffect(Effect effectToApply)
 	{
 		effectToApply.onApplication (this);
+		activeEffectSchools.Add(effectToApply.School);
+	}
+
+	public void RemoveEffect(Effect effectToRemove)
+	{
+		activeEffectSchools.Remove(effectToRemove.School);
+	}
+
+	public bool HasEffect(EffectSchool eff)
+	{
+		return activeEffectSchools.Contains(eff);
 	}
 	#endregion
 

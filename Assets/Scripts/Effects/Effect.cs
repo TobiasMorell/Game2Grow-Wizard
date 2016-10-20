@@ -2,16 +2,21 @@
 using UnityEngine;
 
 namespace Assets.Scripts.Effects {
+	public enum EffectSchool { Fire, Life, Water, Ice, Death, Poison };
 
-	public class HostileEffect
+	[Serializable]
+	public class Effect
 	{
-		protected float duration;
+		[SerializeField] protected float duration;
 		protected float timer;
-		protected int Strength { get; set; }
 		protected Entity bearer;
+		[SerializeField] protected Sprite icon;
+		public EffectSchool School;
 
-		public HostileEffect(float duration) {
+
+		public Effect(float duration, Sprite icon) {
 			this.duration = duration;
+			this.icon = icon;
 		}
 
 		protected bool IsOver
@@ -29,12 +34,15 @@ namespace Assets.Scripts.Effects {
 
 		public virtual void onApplication (Entity entity){
 			this.bearer = entity;
-			Strength = 1;
 			bearer.effectUpdate += onUpdate;
+
+			if (entity.CompareTag("Player"))
+				UIStatusManager.Instance.AddDebuff(icon, duration);
 		}
 
 		public virtual void onEffectEnded() {
 			bearer.effectUpdate -= onUpdate;
+			bearer.RemoveEffect(this);
 		}
 	}
 }

@@ -5,12 +5,18 @@ using Assets.Scripts.UI;
 
 namespace Spells 
 {
-	
+	public enum SpellAnimationType
+	{
+		Swing, FrontalSpell
+	}
 	public class SpellCaster : MonoBehaviour {
 		private Spell[] spells;
 		[HideInInspector] public float mana;
 		private Entity holder;
-		private Slider manaUI;
+		public Slider manaUI;
+		[SerializeField] GameObject magicAttackPoint;
+
+		public float damageModifier { get; set; }
 
 		public void Initialize(Entity holder, Spell[] newSpells, float maxMana) {
 			spells = newSpells;
@@ -31,6 +37,12 @@ namespace Spells
 		public void Cast(int index, GameObject target) {
 			Spell toCast = spells [index];
 
+			if (toCast == null)
+			{
+				ErrorLogUI.Instance.LogError("There is no spell in that slot.");
+				return;
+			}
+
 			//Todo: should rather be a float reference
 			float remainingMana;
 			if(manaUI != null)
@@ -40,15 +52,19 @@ namespace Spells
 
 			if (!toCast.OnCooldown () && remainingMana >= toCast.Cost) {
 				remainingMana -= toCast.Cost;
+				holder.PlayAnimation(toCast.AnimationType.ToString());
 
-				if (toCast.TargetsSelf || !toCast.RequiresTarget) {
-					toCast.Cast (holder.gameObject);
-				} else if (toCast.RequiresTarget) {
-					if (target != null) {
-						toCast.Cast (target);
-					} else {
-						Debug.Log ("Requires a target to cast");
-					}
+				//Determines which type of spell is being cast and chose the target accordingly.
+				if (toCast.TargetsSelf)
+					toCast.Cast(holder.gameObject, holder.facingRight, damageModifier);
+				else if (!toCast.RequiresTarget)
+					toCast.Cast(magicAttackPoint, holder.facingRight, damageModifier);
+				else if (toCast.RequiresTarget)
+				{
+					if (target != null)
+						toCast.Cast(target, holder.facingRight, damageModifier);
+					else
+						ErrorLogUI.Instance.LogError("This spell requires a target to cast.");
 				}
 
 				if (manaUI != null)

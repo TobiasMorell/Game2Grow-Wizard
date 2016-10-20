@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using ItemClasses;
+using Spells;
 
 public class AttributeManager : MonoBehaviour{
 	public int mana_regen_multiplier = 1;
@@ -14,33 +14,66 @@ public class AttributeManager : MonoBehaviour{
 	[SerializeField] private Button[] skillUpButtons;
 
 	public void ChangeStrength(int value){
-		strength += value;
-		strTxt.text = strength.ToString();
+		increaseStrength(value);
 		consumeSkillpoint ();
 	}
 	public void ChangeIntellect(int value){
-		intellect += value;
-		intTxt.text = intellect.ToString();
+		increaseIntellect(value);
 		consumeSkillpoint ();
 	}
 	public void ChangeVitality(int value) {
+		Debug.Log("ChangeVitality");
+		increaseVitality(value);
+		consumeSkillpoint ();
+	}
+
+	private void increaseStrength(int value)
+	{
+		strength += value;
+		strTxt.text = strength.ToString();
+		updateDamage();
+	}
+	private void updateDamage()
+	{
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>().MeleeDamageModifier = 1 + (0.2f * Mathf.Pow(strength, 2));
+	}
+	private void increaseIntellect(int value)
+	{
+		intellect += value;
+		intTxt.text = intellect.ToString();
+		updateInt();
+	}
+	private void updateInt()
+	{
+		mana_regen_multiplier = intellect;
+		var sc = GameObject.FindGameObjectWithTag("Player").GetComponent<SpellCaster>();
+		sc.damageModifier = 1 + (0.2f * Mathf.Pow(intellect, 2));
+		sc.manaUI.maxValue = 10 + 2 * intellect;
+	}
+	private void increaseVitality(int value)
+	{
 		vitality += value;
 		vitTxt.text = vitality.ToString();
-		consumeSkillpoint ();
+		updateHP();
+	}
+	private void updateHP()
+	{
+		Debug.Log("Setting HP to: " + (10 + vitality * 2));
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>().SetHP(10 + vitality * 2);
 	}
 
 	public void RegisterEquip(ItemClasses.Item item) {
 		if (item != null) {
-			ChangeStrength (item.GetValueFromAttribute(Attribute.Strength));
-			ChangeIntellect (item.GetValueFromAttribute(Attribute.Intellect));
-			ChangeVitality (item.GetValueFromAttribute(Attribute.Vitality));
+			increaseStrength (item.GetValueFromAttribute(Attribute.Strength));
+			increaseIntellect (item.GetValueFromAttribute(Attribute.Intellect));
+			increaseVitality (item.GetValueFromAttribute(Attribute.Vitality));
 		}
 	}
 	public void RegisterUnequip(ItemClasses.Item item) {
 		if (item != null) {
-			ChangeStrength (-item.GetValueFromAttribute(Attribute.Strength));
-			ChangeIntellect (-item.GetValueFromAttribute(Attribute.Intellect));
-			ChangeVitality (-item.GetValueFromAttribute(Attribute.Vitality));
+			increaseStrength(-item.GetValueFromAttribute(Attribute.Strength));
+			increaseIntellect(-item.GetValueFromAttribute(Attribute.Intellect));
+			increaseVitality(-item.GetValueFromAttribute(Attribute.Vitality));
 		}
 	}
 
@@ -62,9 +95,18 @@ public class AttributeManager : MonoBehaviour{
 		toggleButtons(true);
 	}
 
+	public void LevelUp()
+	{
+		AssignSkillpoints(skillpointsPrLevel);
+	}
+
 	void Start() {
 		strTxt.text = strength.ToString();
 		intTxt.text = intellect.ToString();
 		vitTxt.text = vitality.ToString();
+
+		updateDamage();
+		updateHP();
+		updateInt();
 	}
 }

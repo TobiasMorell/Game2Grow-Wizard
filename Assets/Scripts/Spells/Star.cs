@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Spells;
 
 public class Star : Bolt {
 	float amplitudeY = 2.5f;

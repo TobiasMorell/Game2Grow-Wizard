@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Scripts.Effects;
+using Spells;
 
-public class PoisonHit : MonoBehaviour {
+public class PoisonHit : Castable {
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
 	public Sprite statusIcon;
@@ -38,7 +39,7 @@ public class PoisonHit : MonoBehaviour {
 
 	IEnumerator entityHit(Entity other) {
 		yield return new WaitForSeconds(0.2f);
-		other.ApplyEffect (new PoisonEffect(3.5f, 4f, statusIcon));
+		other.ApplyEffect (new PoisonEffect(3.5f, calculateDamage(), statusIcon));
 		Destroy (this.gameObject);
 	}
 }
