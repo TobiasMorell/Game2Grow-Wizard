@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d5b82e273ecb8482992cb432a2d541b7
-timeCreated: 1476633277
+timeCreated: 1477165521
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -175,7 +175,7 @@ TextureImporter:
     21300336: item_sheet_168
     21300338: item_sheet_169
     21300340: item_sheet_170
-    21300342: item_sheet_171
+    21300342: Wooden_Shield
     21300344: item_sheet_172
     21300346: item_sheet_173
     21300348: item_sheet_174
@@ -271,16 +271,16 @@ TextureImporter:
     21300528: item_sheet_264
     21300530: item_sheet_265
     21300532: item_sheet_266
-    21300534: item_sheet_267
-    21300536: item_sheet_268
-    21300538: item_sheet_269
-    21300540: item_sheet_270
-    21300542: item_sheet_271
-    21300544: item_sheet_272
-    21300546: item_sheet_273
-    21300548: item_sheet_274
-    21300550: item_sheet_275
-    21300552: item_sheet_276
+    21300534: Iron_band
+    21300536: Pandorian_Silverring
+    21300538: Gold_Band
+    21300540: Pandorian_Goldring
+    21300542: Band_of_Might
+    21300544: Titanium_Band
+    21300546: Amulet_of_Prayers
+    21300548: Coral_Necklace
+    21300550: Universal_Pendant
+    21300552: Aerial_Might
     21300554: item_sheet_277
     21300556: Condemn
     21300558: item_sheet_279
@@ -446,6 +446,7 @@ TextureImporter:
     21300878: item_sheet_1
     21300880: item_sheet_2
     21300882: item_sheet_3
+    21300884: item_sheet_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -488,6 +489,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
@@ -503,6 +505,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: pomgranate
       rect:
         serializedVersion: 2
@@ -514,6 +517,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: green_apple
       rect:
         serializedVersion: 2
@@ -525,6 +529,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: red_apple
       rect:
         serializedVersion: 2
@@ -536,6 +541,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: yellow_berry
       rect:
         serializedVersion: 2
@@ -547,6 +553,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: green_grapes
       rect:
         serializedVersion: 2
@@ -558,6 +565,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: blue_grapes
       rect:
         serializedVersion: 2
@@ -569,6 +577,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: melon
       rect:
         serializedVersion: 2
@@ -580,6 +589,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: strawberry
       rect:
         serializedVersion: 2
@@ -591,6 +601,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: pear
       rect:
         serializedVersion: 2
@@ -609,6 +620,7 @@ TextureImporter:
         - {x: 16, y: -13}
         - {x: 16, y: 5}
         - {x: -6, y: 16}
+      tessellationDetail: -1
     - name: lemon
       rect:
         serializedVersion: 2
@@ -620,6 +632,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: pineapple
       rect:
         serializedVersion: 2
@@ -638,6 +651,7 @@ TextureImporter:
         - {x: 16.5, y: -15.5}
         - {x: 16.5, y: 1.5}
         - {x: 2.5, y: 16.5}
+      tessellationDetail: -1
     - name: banana
       rect:
         serializedVersion: 2
@@ -649,6 +663,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: seed
       rect:
         serializedVersion: 2
@@ -660,6 +675,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: raddish
       rect:
         serializedVersion: 2
@@ -671,6 +687,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: pastinak
       rect:
         serializedVersion: 2
@@ -682,6 +699,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: green_pepper
       rect:
         serializedVersion: 2
@@ -693,6 +711,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: yellow_pepper
       rect:
         serializedVersion: 2
@@ -704,6 +723,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: red_pepper
       rect:
         serializedVersion: 2
@@ -715,6 +735,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: mushroom
       rect:
         serializedVersion: 2
@@ -733,6 +754,7 @@ TextureImporter:
         - {x: 17, y: -17}
         - {x: 17, y: 15}
         - {x: 15, y: 17}
+      tessellationDetail: -1
     - name: egg
       rect:
         serializedVersion: 2
@@ -744,6 +766,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: bread
       rect:
         serializedVersion: 2
@@ -755,6 +778,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: pie
       rect:
         serializedVersion: 2
@@ -766,6 +790,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: cheese
       rect:
         serializedVersion: 2
@@ -777,6 +802,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: fish
       rect:
         serializedVersion: 2
@@ -788,6 +814,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: beef
       rect:
         serializedVersion: 2
@@ -799,6 +826,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: grilled_fish
       rect:
         serializedVersion: 2
@@ -810,6 +838,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: grilled_beef
       rect:
         serializedVersion: 2
@@ -821,6 +850,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: health_potion
       rect:
         serializedVersion: 2
@@ -832,6 +862,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: orange_potion
       rect:
         serializedVersion: 2
@@ -843,6 +874,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: yellow_potion
       rect:
         serializedVersion: 2
@@ -854,6 +886,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: mana_potion
       rect:
         serializedVersion: 2
@@ -865,6 +898,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: purple_potion
       rect:
         serializedVersion: 2
@@ -876,6 +910,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: green_potion
       rect:
         serializedVersion: 2
@@ -887,6 +922,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: gray_potion
       rect:
         serializedVersion: 2
@@ -898,6 +934,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: small_health_potoin
       rect:
         serializedVersion: 2
@@ -909,6 +946,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: small_orange_potion
       rect:
         serializedVersion: 2
@@ -920,6 +958,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: small_yellow_potion
       rect:
         serializedVersion: 2
@@ -931,6 +970,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: small_mana_ption
       rect:
         serializedVersion: 2
@@ -942,6 +982,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: small_purple_potion
       rect:
         serializedVersion: 2
@@ -953,6 +994,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: small_green_potion
       rect:
         serializedVersion: 2
@@ -964,6 +1006,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: small_white potion
       rect:
         serializedVersion: 2
@@ -975,6 +1018,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_45
       rect:
         serializedVersion: 2
@@ -986,6 +1030,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_46
       rect:
         serializedVersion: 2
@@ -997,6 +1042,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_47
       rect:
         serializedVersion: 2
@@ -1008,6 +1054,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_48
       rect:
         serializedVersion: 2
@@ -1019,6 +1066,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_49
       rect:
         serializedVersion: 2
@@ -1030,6 +1078,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_50
       rect:
         serializedVersion: 2
@@ -1041,6 +1090,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_51
       rect:
         serializedVersion: 2
@@ -1052,6 +1102,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_52
       rect:
         serializedVersion: 2
@@ -1063,6 +1114,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_53
       rect:
         serializedVersion: 2
@@ -1074,6 +1126,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_54
       rect:
         serializedVersion: 2
@@ -1085,6 +1138,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_55
       rect:
         serializedVersion: 2
@@ -1096,6 +1150,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_56
       rect:
         serializedVersion: 2
@@ -1107,6 +1162,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_57
       rect:
         serializedVersion: 2
@@ -1118,6 +1174,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_58
       rect:
         serializedVersion: 2
@@ -1129,6 +1186,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_59
       rect:
         serializedVersion: 2
@@ -1140,6 +1198,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_60
       rect:
         serializedVersion: 2
@@ -1151,6 +1210,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_61
       rect:
         serializedVersion: 2
@@ -1162,6 +1222,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_62
       rect:
         serializedVersion: 2
@@ -1173,6 +1234,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_63
       rect:
         serializedVersion: 2
@@ -1184,6 +1246,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_64
       rect:
         serializedVersion: 2
@@ -1195,6 +1258,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_65
       rect:
         serializedVersion: 2
@@ -1206,6 +1270,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_66
       rect:
         serializedVersion: 2
@@ -1217,6 +1282,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_67
       rect:
         serializedVersion: 2
@@ -1228,6 +1294,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_68
       rect:
         serializedVersion: 2
@@ -1239,6 +1306,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_69
       rect:
         serializedVersion: 2
@@ -1250,6 +1318,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_70
       rect:
         serializedVersion: 2
@@ -1261,6 +1330,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_71
       rect:
         serializedVersion: 2
@@ -1272,6 +1342,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_72
       rect:
         serializedVersion: 2
@@ -1283,6 +1354,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: sword_1
       rect:
         serializedVersion: 2
@@ -1294,6 +1366,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_74
       rect:
         serializedVersion: 2
@@ -1312,6 +1385,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -3}
         - {x: 6, y: 9}
+      tessellationDetail: -1
     - name: item_sheet_75
       rect:
         serializedVersion: 2
@@ -1329,6 +1403,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 8}
         - {x: -5, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_76
       rect:
         serializedVersion: 2
@@ -1346,6 +1421,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 1}
         - {x: -4, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_77
       rect:
         serializedVersion: 2
@@ -1364,6 +1440,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 3}
         - {x: 15, y: 6}
+      tessellationDetail: -1
     - name: item_sheet_78
       rect:
         serializedVersion: 2
@@ -1382,6 +1459,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 10}
         - {x: -3, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_79
       rect:
         serializedVersion: 2
@@ -1400,6 +1478,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 10}
         - {x: -3, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_80
       rect:
         serializedVersion: 2
@@ -1417,6 +1496,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 5}
         - {x: -9, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_81
       rect:
         serializedVersion: 2
@@ -1436,6 +1516,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 1}
         - {x: 11, y: 5}
+      tessellationDetail: -1
     - name: item_sheet_82
       rect:
         serializedVersion: 2
@@ -1447,6 +1528,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_83
       rect:
         serializedVersion: 2
@@ -1464,6 +1546,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 0}
         - {x: -4, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_84
       rect:
         serializedVersion: 2
@@ -1481,6 +1564,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 2}
         - {x: -4, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_85
       rect:
         serializedVersion: 2
@@ -1492,6 +1576,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_86
       rect:
         serializedVersion: 2
@@ -1503,6 +1588,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_87
       rect:
         serializedVersion: 2
@@ -1514,6 +1600,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_88
       rect:
         serializedVersion: 2
@@ -1525,6 +1612,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_89
       rect:
         serializedVersion: 2
@@ -1536,6 +1624,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_90
       rect:
         serializedVersion: 2
@@ -1547,6 +1636,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_91
       rect:
         serializedVersion: 2
@@ -1558,6 +1648,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_92
       rect:
         serializedVersion: 2
@@ -1569,6 +1660,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_93
       rect:
         serializedVersion: 2
@@ -1580,6 +1672,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_94
       rect:
         serializedVersion: 2
@@ -1591,6 +1684,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_95
       rect:
         serializedVersion: 2
@@ -1602,6 +1696,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_96
       rect:
         serializedVersion: 2
@@ -1613,6 +1708,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_97
       rect:
         serializedVersion: 2
@@ -1624,6 +1720,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_98
       rect:
         serializedVersion: 2
@@ -1635,6 +1732,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_99
       rect:
         serializedVersion: 2
@@ -1646,6 +1744,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_100
       rect:
         serializedVersion: 2
@@ -1657,6 +1756,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_101
       rect:
         serializedVersion: 2
@@ -1668,6 +1768,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_102
       rect:
         serializedVersion: 2
@@ -1679,6 +1780,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_103
       rect:
         serializedVersion: 2
@@ -1690,6 +1792,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_104
       rect:
         serializedVersion: 2
@@ -1701,6 +1804,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_105
       rect:
         serializedVersion: 2
@@ -1712,6 +1816,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_106
       rect:
         serializedVersion: 2
@@ -1723,6 +1828,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_107
       rect:
         serializedVersion: 2
@@ -1734,6 +1840,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_108
       rect:
         serializedVersion: 2
@@ -1745,6 +1852,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_109
       rect:
         serializedVersion: 2
@@ -1764,6 +1872,7 @@ TextureImporter:
         - {x: 16, y: 3}
         - {x: 16, y: 15}
         - {x: 14, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_110
       rect:
         serializedVersion: 2
@@ -1775,6 +1884,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_111
       rect:
         serializedVersion: 2
@@ -1786,6 +1896,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_112
       rect:
         serializedVersion: 2
@@ -1797,6 +1908,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_113
       rect:
         serializedVersion: 2
@@ -1816,6 +1928,7 @@ TextureImporter:
         - {x: -7, y: 16}
         - {x: -16, y: 7}
         - {x: -16, y: -7}
+      tessellationDetail: -1
     - name: item_sheet_114
       rect:
         serializedVersion: 2
@@ -1827,6 +1940,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_115
       rect:
         serializedVersion: 2
@@ -1838,6 +1952,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_116
       rect:
         serializedVersion: 2
@@ -1849,6 +1964,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_117
       rect:
         serializedVersion: 2
@@ -1860,6 +1976,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_118
       rect:
         serializedVersion: 2
@@ -1871,6 +1988,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_119
       rect:
         serializedVersion: 2
@@ -1892,6 +2010,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -10}
         - {x: 2, y: 8}
+      tessellationDetail: -1
     - name: item_sheet_120
       rect:
         serializedVersion: 2
@@ -1913,6 +2032,7 @@ TextureImporter:
         - {x: 16, y: -5}
         - {x: 10, y: 12}
         - {x: 1, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_121
       rect:
         serializedVersion: 2
@@ -1924,6 +2044,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_122
       rect:
         serializedVersion: 2
@@ -1946,6 +2067,7 @@ TextureImporter:
         - {x: 9, y: 16}
         - {x: -6, y: 16}
         - {x: -8, y: 14}
+      tessellationDetail: -1
     - name: item_sheet_123
       rect:
         serializedVersion: 2
@@ -1963,6 +2085,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -7}
         - {x: 9, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_124
       rect:
         serializedVersion: 2
@@ -1974,6 +2097,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_125
       rect:
         serializedVersion: 2
@@ -1991,6 +2115,7 @@ TextureImporter:
         - {x: 9, y: 16}
         - {x: -16, y: 16}
         - {x: -16, y: 2}
+      tessellationDetail: -1
     - name: item_sheet_126
       rect:
         serializedVersion: 2
@@ -2008,6 +2133,7 @@ TextureImporter:
         - {x: 7, y: 16}
         - {x: -16, y: 16}
         - {x: -16, y: 6}
+      tessellationDetail: -1
     - name: item_sheet_127
       rect:
         serializedVersion: 2
@@ -2025,6 +2151,7 @@ TextureImporter:
         - {x: 6, y: 16}
         - {x: -16, y: 16}
         - {x: -16, y: -8}
+      tessellationDetail: -1
     - name: item_sheet_128
       rect:
         serializedVersion: 2
@@ -2043,6 +2170,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -8}
         - {x: 14, y: -1}
+      tessellationDetail: -1
     - name: item_sheet_129
       rect:
         serializedVersion: 2
@@ -2054,6 +2182,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_130
       rect:
         serializedVersion: 2
@@ -2065,6 +2194,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_131
       rect:
         serializedVersion: 2
@@ -2076,6 +2206,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_132
       rect:
         serializedVersion: 2
@@ -2087,6 +2218,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_133
       rect:
         serializedVersion: 2
@@ -2098,6 +2230,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_134
       rect:
         serializedVersion: 2
@@ -2109,6 +2242,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_135
       rect:
         serializedVersion: 2
@@ -2120,6 +2254,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_136
       rect:
         serializedVersion: 2
@@ -2138,6 +2273,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -5}
         - {x: 0, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_137
       rect:
         serializedVersion: 2
@@ -2156,6 +2292,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -5}
         - {x: 0, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_138
       rect:
         serializedVersion: 2
@@ -2167,6 +2304,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_139
       rect:
         serializedVersion: 2
@@ -2178,6 +2316,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_140
       rect:
         serializedVersion: 2
@@ -2197,6 +2336,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -7}
         - {x: -2, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_141
       rect:
         serializedVersion: 2
@@ -2215,6 +2355,7 @@ TextureImporter:
         - {x: 16, y: -7}
         - {x: 10, y: 13}
         - {x: 1, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_142
       rect:
         serializedVersion: 2
@@ -2236,6 +2377,7 @@ TextureImporter:
         - {x: 16.5, y: -16.5}
         - {x: 16.5, y: -10.5}
         - {x: 15.5, y: -9.5}
+      tessellationDetail: -1
     - name: item_sheet_143
       rect:
         serializedVersion: 2
@@ -2247,6 +2389,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_144
       rect:
         serializedVersion: 2
@@ -2258,6 +2401,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_145
       rect:
         serializedVersion: 2
@@ -2277,6 +2421,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 14}
         - {x: 9, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_146
       rect:
         serializedVersion: 2
@@ -2293,6 +2438,7 @@ TextureImporter:
         - {x: -8, y: 16}
         - {x: -16, y: 16}
         - {x: -16, y: -16}
+      tessellationDetail: -1
     - name: item_sheet_147
       rect:
         serializedVersion: 2
@@ -2304,6 +2450,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_148
       rect:
         serializedVersion: 2
@@ -2315,6 +2462,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_149
       rect:
         serializedVersion: 2
@@ -2326,6 +2474,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_150
       rect:
         serializedVersion: 2
@@ -2337,6 +2486,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_151
       rect:
         serializedVersion: 2
@@ -2348,6 +2498,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_152
       rect:
         serializedVersion: 2
@@ -2359,6 +2510,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_153
       rect:
         serializedVersion: 2
@@ -2378,6 +2530,7 @@ TextureImporter:
         - {x: 16, y: -3.5}
         - {x: 15, y: 4.5}
         - {x: 4, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_154
       rect:
         serializedVersion: 2
@@ -2397,6 +2550,7 @@ TextureImporter:
         - {x: 16, y: -3.5}
         - {x: 15, y: 4.5}
         - {x: 4, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_155
       rect:
         serializedVersion: 2
@@ -2408,6 +2562,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_156
       rect:
         serializedVersion: 2
@@ -2419,6 +2574,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_157
       rect:
         serializedVersion: 2
@@ -2430,6 +2586,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_158
       rect:
         serializedVersion: 2
@@ -2441,6 +2598,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_159
       rect:
         serializedVersion: 2
@@ -2452,6 +2610,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_160
       rect:
         serializedVersion: 2
@@ -2463,6 +2622,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_161
       rect:
         serializedVersion: 2
@@ -2474,6 +2634,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_162
       rect:
         serializedVersion: 2
@@ -2491,6 +2652,7 @@ TextureImporter:
         - {x: 5.5, y: -16.5}
         - {x: 16.5, y: 3.5}
         - {x: 16.5, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_163
       rect:
         serializedVersion: 2
@@ -2502,6 +2664,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_164
       rect:
         serializedVersion: 2
@@ -2513,6 +2676,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_165
       rect:
         serializedVersion: 2
@@ -2524,6 +2688,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_166
       rect:
         serializedVersion: 2
@@ -2535,6 +2700,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_167
       rect:
         serializedVersion: 2
@@ -2546,6 +2712,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_168
       rect:
         serializedVersion: 2
@@ -2557,6 +2724,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_169
       rect:
         serializedVersion: 2
@@ -2568,6 +2736,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_170
       rect:
         serializedVersion: 2
@@ -2579,7 +2748,8 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: item_sheet_171
+      tessellationDetail: -1
+    - name: Wooden_Shield
       rect:
         serializedVersion: 2
         x: 2
@@ -2590,6 +2760,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_172
       rect:
         serializedVersion: 2
@@ -2601,6 +2772,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_173
       rect:
         serializedVersion: 2
@@ -2612,6 +2784,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_174
       rect:
         serializedVersion: 2
@@ -2623,6 +2796,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_175
       rect:
         serializedVersion: 2
@@ -2634,6 +2808,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_176
       rect:
         serializedVersion: 2
@@ -2645,6 +2820,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_177
       rect:
         serializedVersion: 2
@@ -2656,6 +2832,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_178
       rect:
         serializedVersion: 2
@@ -2667,6 +2844,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_179
       rect:
         serializedVersion: 2
@@ -2678,6 +2856,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_180
       rect:
         serializedVersion: 2
@@ -2689,6 +2868,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_181
       rect:
         serializedVersion: 2
@@ -2700,6 +2880,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_182
       rect:
         serializedVersion: 2
@@ -2711,6 +2892,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_183
       rect:
         serializedVersion: 2
@@ -2722,6 +2904,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_184
       rect:
         serializedVersion: 2
@@ -2733,6 +2916,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_185
       rect:
         serializedVersion: 2
@@ -2744,6 +2928,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_186
       rect:
         serializedVersion: 2
@@ -2755,6 +2940,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_187
       rect:
         serializedVersion: 2
@@ -2766,6 +2952,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_188
       rect:
         serializedVersion: 2
@@ -2777,6 +2964,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_189
       rect:
         serializedVersion: 2
@@ -2794,6 +2982,7 @@ TextureImporter:
         - {x: 33, y: -15.5}
         - {x: 33, y: 8.5}
         - {x: 29, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_190
       rect:
         serializedVersion: 2
@@ -2814,6 +3003,7 @@ TextureImporter:
         - {x: 16.5, y: -11.5}
         - {x: 16.5, y: 10.5}
         - {x: 9.5, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_191
       rect:
         serializedVersion: 2
@@ -2825,6 +3015,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_192
       rect:
         serializedVersion: 2
@@ -2836,6 +3027,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_193
       rect:
         serializedVersion: 2
@@ -2847,6 +3039,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_194
       rect:
         serializedVersion: 2
@@ -2858,6 +3051,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_195
       rect:
         serializedVersion: 2
@@ -2869,6 +3063,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_196
       rect:
         serializedVersion: 2
@@ -2880,6 +3075,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_197
       rect:
         serializedVersion: 2
@@ -2891,6 +3087,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_198
       rect:
         serializedVersion: 2
@@ -2902,6 +3099,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_199
       rect:
         serializedVersion: 2
@@ -2913,6 +3111,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_200
       rect:
         serializedVersion: 2
@@ -2924,6 +3123,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_201
       rect:
         serializedVersion: 2
@@ -2935,6 +3135,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_202
       rect:
         serializedVersion: 2
@@ -2946,6 +3147,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_203
       rect:
         serializedVersion: 2
@@ -2957,6 +3159,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_204
       rect:
         serializedVersion: 2
@@ -2968,6 +3171,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_205
       rect:
         serializedVersion: 2
@@ -2979,6 +3183,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_206
       rect:
         serializedVersion: 2
@@ -2990,6 +3195,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_207
       rect:
         serializedVersion: 2
@@ -3001,6 +3207,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_208
       rect:
         serializedVersion: 2
@@ -3012,6 +3219,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_209
       rect:
         serializedVersion: 2
@@ -3023,6 +3231,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_210
       rect:
         serializedVersion: 2
@@ -3034,6 +3243,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_211
       rect:
         serializedVersion: 2
@@ -3045,6 +3255,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_212
       rect:
         serializedVersion: 2
@@ -3056,6 +3267,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_213
       rect:
         serializedVersion: 2
@@ -3067,6 +3279,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_214
       rect:
         serializedVersion: 2
@@ -3078,6 +3291,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_215
       rect:
         serializedVersion: 2
@@ -3089,6 +3303,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_216
       rect:
         serializedVersion: 2
@@ -3100,6 +3315,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_217
       rect:
         serializedVersion: 2
@@ -3111,6 +3327,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_218
       rect:
         serializedVersion: 2
@@ -3122,6 +3339,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_219
       rect:
         serializedVersion: 2
@@ -3133,6 +3351,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_220
       rect:
         serializedVersion: 2
@@ -3144,6 +3363,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_221
       rect:
         serializedVersion: 2
@@ -3155,6 +3375,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_222
       rect:
         serializedVersion: 2
@@ -3166,6 +3387,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_223
       rect:
         serializedVersion: 2
@@ -3177,6 +3399,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_224
       rect:
         serializedVersion: 2
@@ -3188,6 +3411,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_225
       rect:
         serializedVersion: 2
@@ -3199,6 +3423,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_226
       rect:
         serializedVersion: 2
@@ -3218,6 +3443,7 @@ TextureImporter:
         - {x: 14, y: 11}
         - {x: 8, y: 16}
         - {x: -16, y: 16}
+      tessellationDetail: -1
     - name: Flaming_feathers
       rect:
         serializedVersion: 2
@@ -3236,6 +3462,7 @@ TextureImporter:
         - {x: 0.5, y: -16.5}
         - {x: 16.5, y: -3.5}
         - {x: 16.5, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_228
       rect:
         serializedVersion: 2
@@ -3247,6 +3474,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_229
       rect:
         serializedVersion: 2
@@ -3258,6 +3486,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_230
       rect:
         serializedVersion: 2
@@ -3269,6 +3498,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_231
       rect:
         serializedVersion: 2
@@ -3287,6 +3517,7 @@ TextureImporter:
         - {x: 17, y: -17}
         - {x: 17, y: -10}
         - {x: 8, y: 9}
+      tessellationDetail: -1
     - name: item_sheet_232
       rect:
         serializedVersion: 2
@@ -3298,6 +3529,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_233
       rect:
         serializedVersion: 2
@@ -3309,6 +3541,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_234
       rect:
         serializedVersion: 2
@@ -3320,6 +3553,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_235
       rect:
         serializedVersion: 2
@@ -3331,6 +3565,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_236
       rect:
         serializedVersion: 2
@@ -3342,6 +3577,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_237
       rect:
         serializedVersion: 2
@@ -3353,6 +3589,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_238
       rect:
         serializedVersion: 2
@@ -3364,6 +3601,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_239
       rect:
         serializedVersion: 2
@@ -3381,6 +3619,7 @@ TextureImporter:
         - {x: 16, y: -16.5}
         - {x: 16, y: -0.5}
         - {x: 3, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_240
       rect:
         serializedVersion: 2
@@ -3392,6 +3631,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_241
       rect:
         serializedVersion: 2
@@ -3403,6 +3643,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_242
       rect:
         serializedVersion: 2
@@ -3414,6 +3655,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_243
       rect:
         serializedVersion: 2
@@ -3425,6 +3667,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_244
       rect:
         serializedVersion: 2
@@ -3436,6 +3679,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_245
       rect:
         serializedVersion: 2
@@ -3447,6 +3691,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_246
       rect:
         serializedVersion: 2
@@ -3458,6 +3703,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_247
       rect:
         serializedVersion: 2
@@ -3469,6 +3715,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_248
       rect:
         serializedVersion: 2
@@ -3480,6 +3727,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_249
       rect:
         serializedVersion: 2
@@ -3491,6 +3739,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_250
       rect:
         serializedVersion: 2
@@ -3502,6 +3751,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_251
       rect:
         serializedVersion: 2
@@ -3522,6 +3772,7 @@ TextureImporter:
         - {x: 10, y: -17}
         - {x: 15, y: -16}
         - {x: 15, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_252
       rect:
         serializedVersion: 2
@@ -3533,6 +3784,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_253
       rect:
         serializedVersion: 2
@@ -3544,6 +3796,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_254
       rect:
         serializedVersion: 2
@@ -3555,6 +3808,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_255
       rect:
         serializedVersion: 2
@@ -3566,6 +3820,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_256
       rect:
         serializedVersion: 2
@@ -3577,6 +3832,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_257
       rect:
         serializedVersion: 2
@@ -3588,6 +3844,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_258
       rect:
         serializedVersion: 2
@@ -3599,6 +3856,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_259
       rect:
         serializedVersion: 2
@@ -3610,6 +3868,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_260
       rect:
         serializedVersion: 2
@@ -3621,6 +3880,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_261
       rect:
         serializedVersion: 2
@@ -3632,6 +3892,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_262
       rect:
         serializedVersion: 2
@@ -3643,6 +3904,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_263
       rect:
         serializedVersion: 2
@@ -3654,6 +3916,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_264
       rect:
         serializedVersion: 2
@@ -3665,6 +3928,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_265
       rect:
         serializedVersion: 2
@@ -3676,6 +3940,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_266
       rect:
         serializedVersion: 2
@@ -3695,7 +3960,8 @@ TextureImporter:
         - {x: 17, y: 0}
         - {x: 17, y: 13}
         - {x: 13, y: 16}
-    - name: item_sheet_267
+      tessellationDetail: -1
+    - name: Iron_band
       rect:
         serializedVersion: 2
         x: 3
@@ -3706,18 +3972,20 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: item_sheet_268
+      tessellationDetail: -1
+    - name: Pandorian_Silverring
       rect:
         serializedVersion: 2
         x: 36
-        y: 345
+        y: 342
         width: 30
-        height: 25
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: item_sheet_269
+      tessellationDetail: -1
+    - name: Gold_Band
       rect:
         serializedVersion: 2
         x: 72
@@ -3728,18 +3996,20 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: item_sheet_270
+      tessellationDetail: -1
+    - name: Pandorian_Goldring
       rect:
         serializedVersion: 2
         x: 104
-        y: 345
+        y: 342
         width: 30
-        height: 25
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: item_sheet_271
+      tessellationDetail: -1
+    - name: Band_of_Might
       rect:
         serializedVersion: 2
         x: 141
@@ -3750,18 +4020,20 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: item_sheet_272
+      tessellationDetail: -1
+    - name: Titanium_Band
       rect:
         serializedVersion: 2
         x: 174
         y: 345
-        width: 24
+        width: 25
         height: 25
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: item_sheet_273
+      tessellationDetail: -1
+    - name: Amulet_of_Prayers
       rect:
         serializedVersion: 2
         x: 205
@@ -3778,29 +4050,47 @@ TextureImporter:
         - {x: -13, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
-    - name: item_sheet_274
+      tessellationDetail: -1
+    - name: Coral_Necklace
       rect:
         serializedVersion: 2
-        x: 242
+        x: 238
         y: 341
-        width: 27
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: item_sheet_275
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -14, y: 11}
+        - {x: -14, y: -16}
+        - {x: 3, y: -16}
+        - {x: 16, y: -3}
+        - {x: 16, y: 13}
+        - {x: 7, y: 16}
+      tessellationDetail: -1
+    - name: Universal_Pendant
       rect:
         serializedVersion: 2
-        x: 276
+        x: 272
         y: 341
-        width: 25
+        width: 32
         height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: item_sheet_276
+      outline:
+      - - {x: -12, y: 16.5}
+        - {x: -14, y: 15.5}
+        - {x: -14, y: -9.5}
+        - {x: -13, y: -16.5}
+        - {x: 7, y: -16.5}
+        - {x: 15, y: -10.5}
+        - {x: 15, y: 14.5}
+        - {x: 13, y: 16.5}
+      tessellationDetail: -1
+    - name: Aerial_Might
       rect:
         serializedVersion: 2
         x: 307
@@ -3816,6 +4106,7 @@ TextureImporter:
         - {x: -16, y: -17}
         - {x: 16, y: -17}
         - {x: 16, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_277
       rect:
         serializedVersion: 2
@@ -3827,6 +4118,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Condemn
       rect:
         serializedVersion: 2
@@ -3847,6 +4139,7 @@ TextureImporter:
         - {x: 4, y: -16}
         - {x: 16, y: -10}
         - {x: 16, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_279
       rect:
         serializedVersion: 2
@@ -3858,6 +4151,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_280
       rect:
         serializedVersion: 2
@@ -3869,6 +4163,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Flames_of_Life
       rect:
         serializedVersion: 2
@@ -3880,6 +4175,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Flame_Star
       rect:
         serializedVersion: 2
@@ -3897,6 +4193,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 6}
         - {x: 13, y: 16}
+      tessellationDetail: -1
     - name: Ignite
       rect:
         serializedVersion: 2
@@ -3916,6 +4213,7 @@ TextureImporter:
         - {x: 13, y: -12}
         - {x: 13, y: 14}
         - {x: 10, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_284
       rect:
         serializedVersion: 2
@@ -3927,6 +4225,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Molten_Rock
       rect:
         serializedVersion: 2
@@ -3947,6 +4246,7 @@ TextureImporter:
         - {x: 17, y: -4}
         - {x: 17, y: 14}
         - {x: 16, y: 17}
+      tessellationDetail: -1
     - name: Fire_Blast
       rect:
         serializedVersion: 2
@@ -3958,6 +4258,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_287
       rect:
         serializedVersion: 2
@@ -3969,6 +4270,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_288
       rect:
         serializedVersion: 2
@@ -3980,6 +4282,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_289
       rect:
         serializedVersion: 2
@@ -3991,6 +4294,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Quicksand
       rect:
         serializedVersion: 2
@@ -4002,6 +4306,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_291
       rect:
         serializedVersion: 2
@@ -4013,6 +4318,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Hydro_Pump
       rect:
         serializedVersion: 2
@@ -4033,6 +4339,7 @@ TextureImporter:
         - {x: 9, y: -17}
         - {x: 14, y: -3}
         - {x: 14, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_293
       rect:
         serializedVersion: 2
@@ -4044,6 +4351,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_294
       rect:
         serializedVersion: 2
@@ -4055,6 +4363,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Rock_Shower
       rect:
         serializedVersion: 2
@@ -4066,6 +4375,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_296
       rect:
         serializedVersion: 2
@@ -4077,6 +4387,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_297
       rect:
         serializedVersion: 2
@@ -4096,6 +4407,7 @@ TextureImporter:
         - {x: 17, y: -15}
         - {x: 17, y: 16}
         - {x: 14, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_298
       rect:
         serializedVersion: 2
@@ -4114,6 +4426,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 5}
         - {x: 12, y: 16}
+      tessellationDetail: -1
     - name: Rift
       rect:
         serializedVersion: 2
@@ -4125,6 +4438,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Shadow_Clash
       rect:
         serializedVersion: 2
@@ -4136,6 +4450,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_301
       rect:
         serializedVersion: 2
@@ -4154,6 +4469,7 @@ TextureImporter:
         - {x: 17, y: -6}
         - {x: 17, y: 13}
         - {x: 13, y: 17}
+      tessellationDetail: -1
     - name: Blazing_Flight
       rect:
         serializedVersion: 2
@@ -4170,6 +4486,7 @@ TextureImporter:
         - {x: 14, y: -17}
         - {x: 17, y: -15}
         - {x: 17, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_304
       rect:
         serializedVersion: 2
@@ -4181,6 +4498,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Steam_Blast
       rect:
         serializedVersion: 2
@@ -4192,6 +4510,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_306
       rect:
         serializedVersion: 2
@@ -4203,6 +4522,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_307
       rect:
         serializedVersion: 2
@@ -4221,6 +4541,7 @@ TextureImporter:
         - {x: 16.5, y: -16.5}
         - {x: 16.5, y: 0.5}
         - {x: 11.5, y: 16.5}
+      tessellationDetail: -1
     - name: Bubble
       rect:
         serializedVersion: 2
@@ -4240,6 +4561,7 @@ TextureImporter:
         - {x: 16, y: -14}
         - {x: 16, y: 14}
         - {x: 13, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_310
       rect:
         serializedVersion: 2
@@ -4257,6 +4579,7 @@ TextureImporter:
         - {x: 17, y: -17}
         - {x: 17, y: 4}
         - {x: 16, y: 6}
+      tessellationDetail: -1
     - name: item_sheet_311
       rect:
         serializedVersion: 2
@@ -4268,6 +4591,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_312
       rect:
         serializedVersion: 2
@@ -4279,6 +4603,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_313
       rect:
         serializedVersion: 2
@@ -4290,6 +4615,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_314
       rect:
         serializedVersion: 2
@@ -4309,6 +4635,7 @@ TextureImporter:
         - {x: 17, y: -15}
         - {x: 17, y: 16}
         - {x: 14, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_315
       rect:
         serializedVersion: 2
@@ -4327,6 +4654,7 @@ TextureImporter:
         - {x: 16.5, y: -16.5}
         - {x: 16.5, y: 0.5}
         - {x: 11.5, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_316
       rect:
         serializedVersion: 2
@@ -4338,6 +4666,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_317
       rect:
         serializedVersion: 2
@@ -4349,6 +4678,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Refresh
       rect:
         serializedVersion: 2
@@ -4365,6 +4695,7 @@ TextureImporter:
         - {x: 13, y: 17}
         - {x: -16, y: 17}
         - {x: -16, y: -17}
+      tessellationDetail: -1
     - name: item_sheet_319
       rect:
         serializedVersion: 2
@@ -4376,6 +4707,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_320
       rect:
         serializedVersion: 2
@@ -4392,6 +4724,7 @@ TextureImporter:
         - {x: 17, y: -17}
         - {x: 17, y: 13}
         - {x: 11, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_321
       rect:
         serializedVersion: 2
@@ -4403,6 +4736,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_322
       rect:
         serializedVersion: 2
@@ -4414,6 +4748,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_323
       rect:
         serializedVersion: 2
@@ -4425,6 +4760,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_324
       rect:
         serializedVersion: 2
@@ -4436,6 +4772,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_325
       rect:
         serializedVersion: 2
@@ -4447,6 +4784,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_326
       rect:
         serializedVersion: 2
@@ -4465,6 +4803,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 7}
         - {x: 11, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_327
       rect:
         serializedVersion: 2
@@ -4484,6 +4823,7 @@ TextureImporter:
         - {x: 16, y: -14}
         - {x: 16, y: 14}
         - {x: 13, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_328
       rect:
         serializedVersion: 2
@@ -4499,6 +4839,7 @@ TextureImporter:
         - {x: -16.5, y: -16.5}
         - {x: 16.5, y: -16.5}
         - {x: 16.5, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_329
       rect:
         serializedVersion: 2
@@ -4510,6 +4851,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Icebolt
       rect:
         serializedVersion: 2
@@ -4521,6 +4863,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Blizzard
       rect:
         serializedVersion: 2
@@ -4541,6 +4884,7 @@ TextureImporter:
         - {x: 16, y: -8}
         - {x: 16, y: 8}
         - {x: 9, y: 16}
+      tessellationDetail: -1
     - name: Icecoat
       rect:
         serializedVersion: 2
@@ -4556,6 +4900,7 @@ TextureImporter:
         - {x: -16, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_333
       rect:
         serializedVersion: 2
@@ -4567,6 +4912,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Break_Ixe
       rect:
         serializedVersion: 2
@@ -4578,6 +4924,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_338
       rect:
         serializedVersion: 2
@@ -4589,6 +4936,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_339
       rect:
         serializedVersion: 2
@@ -4600,6 +4948,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_340
       rect:
         serializedVersion: 2
@@ -4611,6 +4960,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_341
       rect:
         serializedVersion: 2
@@ -4622,6 +4972,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_342
       rect:
         serializedVersion: 2
@@ -4633,6 +4984,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_343
       rect:
         serializedVersion: 2
@@ -4653,6 +5005,7 @@ TextureImporter:
         - {x: 16.5, y: -12}
         - {x: 16.5, y: 5}
         - {x: 14.5, y: 11}
+      tessellationDetail: -1
     - name: item_sheet_344
       rect:
         serializedVersion: 2
@@ -4664,6 +5017,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_345
       rect:
         serializedVersion: 2
@@ -4675,6 +5029,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_346
       rect:
         serializedVersion: 2
@@ -4686,6 +5041,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Bolt_of_light
       rect:
         serializedVersion: 2
@@ -4697,6 +5053,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Radiance
       rect:
         serializedVersion: 2
@@ -4708,6 +5065,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_349
       rect:
         serializedVersion: 2
@@ -4719,6 +5077,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_350
       rect:
         serializedVersion: 2
@@ -4730,6 +5089,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_351
       rect:
         serializedVersion: 2
@@ -4749,6 +5109,7 @@ TextureImporter:
         - {x: 17, y: -14}
         - {x: 17, y: 10}
         - {x: 14, y: 17}
+      tessellationDetail: -1
     - name: Water_Bolt
       rect:
         serializedVersion: 2
@@ -4767,6 +5128,7 @@ TextureImporter:
         - {x: 16.5, y: -16}
         - {x: 16.5, y: 13}
         - {x: 12.5, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_353
       rect:
         serializedVersion: 2
@@ -4778,6 +5140,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_354
       rect:
         serializedVersion: 2
@@ -4789,6 +5152,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_355
       rect:
         serializedVersion: 2
@@ -4800,6 +5164,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_356
       rect:
         serializedVersion: 2
@@ -4811,6 +5176,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_357
       rect:
         serializedVersion: 2
@@ -4822,6 +5188,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_358
       rect:
         serializedVersion: 2
@@ -4833,6 +5200,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_359
       rect:
         serializedVersion: 2
@@ -4853,6 +5221,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 0}
         - {x: 6, y: 14}
+      tessellationDetail: -1
     - name: item_sheet_360
       rect:
         serializedVersion: 2
@@ -4864,6 +5233,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_361
       rect:
         serializedVersion: 2
@@ -4879,6 +5249,7 @@ TextureImporter:
         - {x: -16, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_362
       rect:
         serializedVersion: 2
@@ -4890,6 +5261,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_363
       rect:
         serializedVersion: 2
@@ -4901,6 +5273,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_364
       rect:
         serializedVersion: 2
@@ -4919,6 +5292,7 @@ TextureImporter:
         - {x: 13.5, y: -15.5}
         - {x: 16.5, y: -5.5}
         - {x: 16.5, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_365
       rect:
         serializedVersion: 2
@@ -4930,6 +5304,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_366
       rect:
         serializedVersion: 2
@@ -4941,6 +5316,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_367
       rect:
         serializedVersion: 2
@@ -4960,6 +5336,7 @@ TextureImporter:
         - {x: 14, y: -16}
         - {x: 16, y: -14}
         - {x: 16, y: 8}
+      tessellationDetail: -1
     - name: item_sheet_368
       rect:
         serializedVersion: 2
@@ -4971,6 +5348,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Draw_Lava
       rect:
         serializedVersion: 2
@@ -4990,6 +5368,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 8}
         - {x: 14, y: 13}
+      tessellationDetail: -1
     - name: item_sheet_370
       rect:
         serializedVersion: 2
@@ -5001,6 +5380,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_371
       rect:
         serializedVersion: 2
@@ -5019,6 +5399,7 @@ TextureImporter:
         - {x: 17, y: -13}
         - {x: 17, y: 11}
         - {x: 12, y: 17}
+      tessellationDetail: -1
     - name: Scream_of_death
       rect:
         serializedVersion: 2
@@ -5030,6 +5411,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Summon_Dead
       rect:
         serializedVersion: 2
@@ -5041,6 +5423,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_374
       rect:
         serializedVersion: 2
@@ -5052,6 +5435,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_375
       rect:
         serializedVersion: 2
@@ -5063,6 +5447,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_376
       rect:
         serializedVersion: 2
@@ -5074,6 +5459,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_377
       rect:
         serializedVersion: 2
@@ -5085,6 +5471,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_378
       rect:
         serializedVersion: 2
@@ -5096,6 +5483,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_379
       rect:
         serializedVersion: 2
@@ -5107,6 +5495,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_380
       rect:
         serializedVersion: 2
@@ -5118,6 +5507,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Prayer
       rect:
         serializedVersion: 2
@@ -5129,6 +5519,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_382
       rect:
         serializedVersion: 2
@@ -5147,6 +5538,7 @@ TextureImporter:
         - {x: 16.5, y: -16}
         - {x: 16.5, y: 11}
         - {x: 7.5, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_383
       rect:
         serializedVersion: 2
@@ -5158,6 +5550,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_384
       rect:
         serializedVersion: 2
@@ -5169,6 +5562,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: Drain_Life
       rect:
         serializedVersion: 2
@@ -5188,6 +5582,7 @@ TextureImporter:
         - {x: 13, y: -13}
         - {x: 14, y: 0}
         - {x: 14, y: 9}
+      tessellationDetail: -1
     - name: item_sheet_386
       rect:
         serializedVersion: 2
@@ -5199,6 +5594,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_387
       rect:
         serializedVersion: 2
@@ -5210,6 +5606,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_388
       rect:
         serializedVersion: 2
@@ -5221,6 +5618,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_389
       rect:
         serializedVersion: 2
@@ -5243,6 +5641,7 @@ TextureImporter:
         - {x: -15, y: 13.5}
         - {x: -13, y: 15.5}
         - {x: -13, y: 17.5}
+      tessellationDetail: -1
     - name: item_sheet_390
       rect:
         serializedVersion: 2
@@ -5254,6 +5653,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_391
       rect:
         serializedVersion: 2
@@ -5265,6 +5665,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_392
       rect:
         serializedVersion: 2
@@ -5276,6 +5677,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_393
       rect:
         serializedVersion: 2
@@ -5297,6 +5699,7 @@ TextureImporter:
         - {x: 7, y: -9}
         - {x: 6, y: -4}
         - {x: 4, y: -2}
+      tessellationDetail: -1
     - name: item_sheet_394
       rect:
         serializedVersion: 2
@@ -5308,6 +5711,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_395
       rect:
         serializedVersion: 2
@@ -5327,6 +5731,7 @@ TextureImporter:
         - {x: 5, y: -16}
         - {x: 17, y: 5}
         - {x: 17, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_396
       rect:
         serializedVersion: 2
@@ -5338,6 +5743,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_397
       rect:
         serializedVersion: 2
@@ -5356,6 +5762,7 @@ TextureImporter:
         - {x: 3, y: -13}
         - {x: 17, y: 4}
         - {x: 17, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_398
       rect:
         serializedVersion: 2
@@ -5372,6 +5779,7 @@ TextureImporter:
         - {x: 11.5, y: -17}
         - {x: 16.5, y: -14}
         - {x: 16.5, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_399
       rect:
         serializedVersion: 2
@@ -5390,6 +5798,7 @@ TextureImporter:
         - {x: 16, y: -6}
         - {x: 16, y: 14}
         - {x: 14, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_400
       rect:
         serializedVersion: 2
@@ -5406,6 +5815,7 @@ TextureImporter:
         - {x: 15, y: -16}
         - {x: 16, y: -15}
         - {x: 16, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_401
       rect:
         serializedVersion: 2
@@ -5424,39 +5834,38 @@ TextureImporter:
         - {x: 17, y: -8}
         - {x: 17, y: 7}
         - {x: 9, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_402
       rect:
         serializedVersion: 2
-        x: 312
+        x: 310
         y: 72
-        width: 24
+        width: 29
         height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_403
       rect:
         serializedVersion: 2
-        x: 340
-        y: 77
-        width: 68
-        height: 17
+        x: 374
+        y: 67
+        width: 34
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: item_sheet_404
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 75
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6, y: 11}
+        - {x: -17, y: 4}
+        - {x: -17, y: -14}
+        - {x: 16, y: -14}
+        - {x: 17, y: -13}
+        - {x: 17, y: 9}
+        - {x: 5, y: 11}
+      tessellationDetail: -1
     - name: item_sheet_405
       rect:
         serializedVersion: 2
@@ -5472,6 +5881,7 @@ TextureImporter:
         - {x: -16, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_406
       rect:
         serializedVersion: 2
@@ -5488,17 +5898,7 @@ TextureImporter:
         - {x: 16.5, y: -16}
         - {x: 16.5, y: 15}
         - {x: 15.5, y: 16}
-    - name: item_sheet_407
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 72
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      tessellationDetail: -1
     - name: item_sheet_408
       rect:
         serializedVersion: 2
@@ -5517,6 +5917,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 2}
         - {x: 5, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_409
       rect:
         serializedVersion: 2
@@ -5541,6 +5942,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -4}
         - {x: 12, y: 4}
+      tessellationDetail: -1
     - name: item_sheet_410
       rect:
         serializedVersion: 2
@@ -5560,6 +5962,7 @@ TextureImporter:
         - {x: 16, y: 6}
         - {x: 15, y: 11}
         - {x: -2, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_411
       rect:
         serializedVersion: 2
@@ -5581,6 +5984,7 @@ TextureImporter:
         - {x: 14, y: 3}
         - {x: 2, y: 12}
         - {x: 0, y: 12}
+      tessellationDetail: -1
     - name: item_sheet_412
       rect:
         serializedVersion: 2
@@ -5607,6 +6011,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -5}
         - {x: 15, y: -2}
+      tessellationDetail: -1
     - name: item_sheet_413
       rect:
         serializedVersion: 2
@@ -5625,6 +6030,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: 0}
         - {x: -7, y: 16}
+      tessellationDetail: -1
     - name: item_sheet_414
       rect:
         serializedVersion: 2
@@ -5642,6 +6048,7 @@ TextureImporter:
         - {x: 13, y: 16}
         - {x: -16, y: 16}
         - {x: -16, y: -7}
+      tessellationDetail: -1
     - name: item_sheet_415
       rect:
         serializedVersion: 2
@@ -5653,6 +6060,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_416
       rect:
         serializedVersion: 2
@@ -5664,6 +6072,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_417
       rect:
         serializedVersion: 2
@@ -5675,6 +6084,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_418
       rect:
         serializedVersion: 2
@@ -5686,6 +6096,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_419
       rect:
         serializedVersion: 2
@@ -5697,6 +6108,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_420
       rect:
         serializedVersion: 2
@@ -5708,6 +6120,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_421
       rect:
         serializedVersion: 2
@@ -5719,6 +6132,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_422
       rect:
         serializedVersion: 2
@@ -5730,6 +6144,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_423
       rect:
         serializedVersion: 2
@@ -5741,6 +6156,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_424
       rect:
         serializedVersion: 2
@@ -5752,6 +6168,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_425
       rect:
         serializedVersion: 2
@@ -5763,6 +6180,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_426
       rect:
         serializedVersion: 2
@@ -5774,6 +6192,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_427
       rect:
         serializedVersion: 2
@@ -5785,6 +6204,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_428
       rect:
         serializedVersion: 2
@@ -5796,6 +6216,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_429
       rect:
         serializedVersion: 2
@@ -5807,6 +6228,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_430
       rect:
         serializedVersion: 2
@@ -5818,6 +6240,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_431
       rect:
         serializedVersion: 2
@@ -5829,6 +6252,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     - name: item_sheet_432
       rect:
         serializedVersion: 2
@@ -5848,6 +6272,7 @@ TextureImporter:
         - {x: 17, y: -9}
         - {x: 17, y: 3}
         - {x: 3, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_433
       rect:
         serializedVersion: 2
@@ -5868,6 +6293,7 @@ TextureImporter:
         - {x: 16, y: -14}
         - {x: 17, y: -12}
         - {x: 17, y: 3}
+      tessellationDetail: -1
     - name: item_sheet_434
       rect:
         serializedVersion: 2
@@ -5887,6 +6313,7 @@ TextureImporter:
         - {x: 17, y: -9}
         - {x: 17, y: 5}
         - {x: 4, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_435
       rect:
         serializedVersion: 2
@@ -5906,6 +6333,7 @@ TextureImporter:
         - {x: 17, y: -9}
         - {x: 17, y: 3}
         - {x: 3, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_436
       rect:
         serializedVersion: 2
@@ -5925,6 +6353,7 @@ TextureImporter:
         - {x: 17, y: -11.5}
         - {x: 17, y: 6.5}
         - {x: 4, y: 16.5}
+      tessellationDetail: -1
     - name: Volcanic_Activity
       rect:
         serializedVersion: 2
@@ -5943,6 +6372,7 @@ TextureImporter:
         - {x: 14, y: -17}
         - {x: 17, y: -13}
         - {x: 17, y: 11}
+      tessellationDetail: -1
     - name: item_sheet_0
       rect:
         serializedVersion: 2
@@ -5960,6 +6390,7 @@ TextureImporter:
         - {x: 17, y: -16.5}
         - {x: 17, y: 12.5}
         - {x: 13, y: 16.5}
+      tessellationDetail: -1
     - name: item_sheet_1
       rect:
         serializedVersion: 2
@@ -5977,6 +6408,7 @@ TextureImporter:
         - {x: 12, y: -17}
         - {x: 17, y: -6}
         - {x: 17, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_2
       rect:
         serializedVersion: 2
@@ -5997,6 +6429,7 @@ TextureImporter:
         - {x: 17, y: -16}
         - {x: 17, y: 9}
         - {x: 15, y: 17}
+      tessellationDetail: -1
     - name: item_sheet_3
       rect:
         serializedVersion: 2
@@ -6018,6 +6451,25 @@ TextureImporter:
         - {x: 17, y: -8}
         - {x: 17, y: 11}
         - {x: 13, y: 16}
+      tessellationDetail: -1
+    - name: item_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 67
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 12}
+        - {x: -17, y: 6}
+        - {x: -17, y: -6}
+        - {x: -10, y: -9}
+        - {x: 17, y: -9}
+        - {x: 17, y: 12}
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
