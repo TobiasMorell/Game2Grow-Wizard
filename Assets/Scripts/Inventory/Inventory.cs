@@ -28,12 +28,14 @@ public class Inventory : MonoBehaviour {
 		//Find the entity that carries this script.
 		bearer = GetComponentInParent<Entity> ();
 
+		//Crystals and motes (ONLY FOR DEBUG!!)
 		AddItem (16);
-		AddItem (17);
-		AddItem (18);
+		AddItem(17);
+		AddItem(18);
 		AddItem (19);
-		AddItem (20);
-		AddItem (0);
+		AddItem(20);
+		//Armor and weapons (ONLY FOR DEBUG!!)
+		AddItem(26);
 	}
 	#endregion
 	#region Inventory manipulaiton

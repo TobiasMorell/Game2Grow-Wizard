@@ -9,6 +9,8 @@ namespace Spells
 		[SerializeField] protected int BaseDamage;
 		[SerializeField]protected float speed;
 		[SerializeField]protected float lifetime;
+		[SerializeField]protected GameObject particleEffect;
+
 		[HideInInspector]public bool movingRight;
 		protected float damageModifier = 1.0f;
 

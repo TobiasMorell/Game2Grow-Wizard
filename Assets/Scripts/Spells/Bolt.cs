@@ -26,7 +26,8 @@ namespace Spells
 		{
 			if (other.tag == "Hostile" && !other.isTrigger)
 			{
-				//Maybe some particle effect
+				if(particleEffect != null)
+					Instantiate(particleEffect, transform.position, Quaternion.identity);
 				other.GetComponent<Enemy>().TakeDamage(calculateDamage());
 			}
 		}

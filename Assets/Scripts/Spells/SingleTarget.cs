@@ -12,6 +12,8 @@ namespace Spells {
 		public override void Cast (GameObject primaryTarget)
 		{
 			base.Cast (primaryTarget);
+			if (particleEffect != null)
+				Instantiate(particleEffect, transform.position, Quaternion.identity);
 		}
 	}
 }

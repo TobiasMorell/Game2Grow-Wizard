@@ -275,12 +275,18 @@ public class Wizard : Entity {
 			var wep = Instantiate (item.prefab);
 			wep.transform.SetParent (weaponSlot.transform, false);
 
-			Debug.Log ("Weapon instantiation: " + wep);
-
 			if (wep != null) {
 				weapon = wep.GetComponent<Weapon> ();
 				weapon.Equip (calculateDamage ());
 			}
+		}
+		if(item.Type == ItemType.Offhand)
+		{
+
+		}
+		if(item.Type == ItemType.Armor)
+		{
+
 		}
 		//Instantiate armor - not added yet!!
 	}

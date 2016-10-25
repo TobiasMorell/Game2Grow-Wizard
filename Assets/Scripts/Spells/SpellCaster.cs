@@ -37,41 +37,54 @@ namespace Spells
 		public void Cast(int index, GameObject target) {
 			Spell toCast = spells [index];
 
+			//Check for errors that prevent spell-casting
 			if (toCast == null)
 			{
 				ErrorLogUI.Instance.LogError("There is no spell in that slot.");
 				return;
 			}
+			if(toCast.OnCooldown())
+			{
+				ErrorLogUI.Instance.LogError(toCast.Name + " is on cooldown.");
+				return;
+			}
+			if (toCast.RequiresTarget && target == null)
+			{
+				ErrorLogUI.Instance.LogError("This spell requires a target to cast.");
+				return;
+			}
 
-			//Todo: should rather be a float reference
+			//Find out if there is enough mana for a spellcast and display eventual errors.
 			float remainingMana;
 			if(manaUI != null)
 				remainingMana = manaUI.value;
 			else
 				remainingMana = mana;
-
-			if (!toCast.OnCooldown () && remainingMana >= toCast.Cost) {
-				remainingMana -= toCast.Cost;
-				holder.PlayAnimation(toCast.AnimationType.ToString());
-
-				//Determines which type of spell is being cast and chose the target accordingly.
-				if (toCast.TargetsSelf)
-					toCast.Cast(holder.gameObject, holder.facingRight, damageModifier);
-				else if (!toCast.RequiresTarget)
-					toCast.Cast(magicAttackPoint, holder.facingRight, damageModifier);
-				else if (toCast.RequiresTarget)
-				{
-					if (target != null)
-						toCast.Cast(target, holder.facingRight, damageModifier);
-					else
-						ErrorLogUI.Instance.LogError("This spell requires a target to cast.");
-				}
-
-				if (manaUI != null)
-					manaUI.value = remainingMana;
-				else
-					mana = remainingMana;
+			if(remainingMana < toCast.Cost)
+			{
+				ErrorLogUI.Instance.LogError("There is not enough mana to cast " + toCast.Name);
+				return;
 			}
+			
+			//Actually cast the spell
+			remainingMana -= toCast.Cost;
+			holder.PlayAnimation(toCast.AnimationType.ToString());
+
+			//Determines which type of spell is being cast and chose the target accordingly.
+			if (toCast.TargetsSelf)
+				toCast.Cast(holder.gameObject, holder.facingRight, damageModifier);
+			else if (!toCast.RequiresTarget)
+				toCast.Cast(magicAttackPoint, holder.facingRight, damageModifier);
+			else if (toCast.RequiresTarget)
+			{
+				//We know there is a target from the first check.
+				toCast.Cast(target, holder.facingRight, damageModifier);
+			}
+
+			if (manaUI != null)
+				manaUI.value = remainingMana;
+			else
+				mana = remainingMana;
 		}
 
 		void Update() {
