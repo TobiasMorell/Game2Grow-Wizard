@@ -5,10 +5,6 @@ using Assets.Scripts.UI;
 
 namespace Spells 
 {
-	public enum SpellAnimationType
-	{
-		Swing, FrontalSpell
-	}
 	public class SpellCaster : MonoBehaviour {
 		private Spell[] spells;
 		[HideInInspector] public float mana;

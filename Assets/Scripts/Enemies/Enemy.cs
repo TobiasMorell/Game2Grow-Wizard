@@ -38,7 +38,8 @@ public abstract class Enemy : Entity
 	public override void Update()
 	{
 		base.Update ();
-		currentState.Execute();
+		if(currentState != null)
+			currentState.Execute();
 	}
 
 	public void ChangeState(IEnemyState newState)

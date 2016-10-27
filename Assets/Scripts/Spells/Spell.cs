@@ -11,6 +11,11 @@ namespace Spells
 	{
 		Fire, Water, Life, Death, None
 	}
+	public enum SpellAnimationType
+	{
+		Swing, FrontalSpell, UpwardsSpell
+	}
+
 	[System.Serializable]
 	public class Spell
 	{

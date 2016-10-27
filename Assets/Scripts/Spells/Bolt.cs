@@ -10,7 +10,7 @@ namespace Spells
 		// Use this for initialization
 		protected virtual void Start()
 		{
-			this.lifetime = range / speed;
+			this.lifetime = range / Speed;
 			Destroy(this.gameObject, lifetime);
 
 			if (!movingRight)
@@ -19,15 +19,15 @@ namespace Spells
 		// Update is called once per frame
 		protected virtual void Update()
 		{
-			transform.position += Vector3.right * speed * Time.deltaTime;
+			transform.position += Vector3.right * Speed * Time.deltaTime;
 		}
 
 		protected virtual void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.tag == "Hostile" && !other.isTrigger)
+			if (other.CompareTag("Hostile") && !other.isTrigger)
 			{
-				if(particleEffect != null)
-					Instantiate(particleEffect, transform.position, Quaternion.identity);
+				if(particleEffect != null) 
+					Instantiate(particleEffect, other.transform.position, Quaternion.identity);
 				other.GetComponent<Enemy>().TakeDamage(calculateDamage());
 			}
 		}

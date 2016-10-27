@@ -41,7 +41,6 @@ namespace Assets.Scripts.Effects {
 		}
 
 		public virtual void onEffectEnded() {
-			bearer.effectUpdate -= onUpdate;
 			bearer.RemoveEffect(this);
 		}
 	}

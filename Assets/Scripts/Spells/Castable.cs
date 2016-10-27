@@ -7,7 +7,7 @@ namespace Spells
 	{
 		protected GameObject target;
 		[SerializeField] protected int BaseDamage;
-		[SerializeField]protected float speed;
+		public float Speed;
 		[SerializeField]protected float lifetime;
 		[SerializeField]protected GameObject particleEffect;
 
@@ -18,7 +18,7 @@ namespace Spells
 		{
 			Vector3 scale = transform.localScale;
 			scale.x *= -1;
-			speed *= -1;
+			Speed *= -1;
 			this.transform.localScale = scale;
 		}
 

@@ -29,11 +29,23 @@ public class Inventory : MonoBehaviour {
 		bearer = GetComponentInParent<Entity> ();
 
 		//Crystals and motes (ONLY FOR DEBUG!!)
-		AddItem (16);
-		AddItem(17);
-		AddItem(18);
-		AddItem (19);
-		AddItem(20);
+		Item i1 = GameRegistry.ItemDatabase()["Power Crystal"].Clone();
+		i1.AddValueToSchool (Spells.School.Fire, 1);
+		AddItem (i1);
+
+		//Crystals and motes (ONLY FOR DEBUG!!)
+		Item i2 = GameRegistry.ItemDatabase()["Power Crystal"].Clone();
+		i2.AddValueToSchool (Spells.School.Fire, 2);
+		AddItem (i2);
+
+		Item i3 = GameRegistry.ItemDatabase () ["Power Crystal"].Clone ();
+		i3.AddValueToSchool (Spells.School.Fire, 3);
+		AddItem (i3);
+
+		Item i4 = GameRegistry.ItemDatabase () ["Power Crystal"].Clone ();
+		i4.AddValueToSchool (Spells.School.Fire, 4);
+		AddItem (i4);
+
 		//Armor and weapons (ONLY FOR DEBUG!!)
 		AddItem(26);
 	}

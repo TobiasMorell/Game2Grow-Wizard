@@ -6,12 +6,15 @@ namespace Spells
 	{
 		protected override void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.tag == "Hostile" && !other.isTrigger)
-			{
-				if (other.GetComponent<Entity>().HasEffect(Assets.Scripts.Effects.EffectSchool.Fire))
-					damageModifier *= 2.0f;
-				other.GetComponent<Enemy>().TakeDamage(calculateDamage());
+			var ent = other.GetComponent<Entity> ();
+			float prev = damageModifier;
+
+			if(ent != null && ent.HasEffect(Assets.Scripts.Effects.EffectSchool.Fire)) {
+				damageModifier *= 2.0f;
 			}
+			base.OnTriggerEnter2D (other);
+			damageModifier = prev;
+			Destroy (this.gameObject);
 		}
 	}
 }

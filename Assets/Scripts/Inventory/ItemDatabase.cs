@@ -127,6 +127,11 @@ namespace ItemClasses {
 			Name = name;
 			Value = value;
 		}
+
+		public AttributeTag(AttributeTag clonedFrom) {
+			Name = clonedFrom.Name;
+			Value = clonedFrom.Value;
+		}
 	}
 
 	[System.Serializable]
@@ -157,10 +162,18 @@ namespace ItemClasses {
 		}
 
 		public Item (Item clonedFrom) : this(clonedFrom.ItemName, clonedFrom.Description, 
-			clonedFrom.Value, clonedFrom.Type, clonedFrom.maxStackSize, clonedFrom.Id, clonedFrom.Attributes) 
+			clonedFrom.Value, clonedFrom.Type, clonedFrom.maxStackSize, clonedFrom.Id, null) 
 		{
 			this.icon = clonedFrom.icon;
 			this.prefab = clonedFrom.prefab;
+
+			var attrs = new AttributeTag[clonedFrom.Attributes.Length];
+			//Clone attributes
+			for (int i = 0; i < clonedFrom.Attributes.Length; i++) {
+				attrs [i] = new AttributeTag (clonedFrom.Attributes [i]);
+			}
+			Attributes = attrs;
+
 			if (prefab != null) {
 				var inGame = prefab.GetComponent<Assets.Scripts.Weapon.Displayable> ();
 				inGame.RegisterToItemID (Id);
@@ -172,12 +185,12 @@ namespace ItemClasses {
 		}
 			
 		public void AddValueToTag(string tag, int value) {
-			for (int i = 0; i < Attributes.Length; i++) {
-				if(Attributes[i].Name.Equals(tag)) {
-					Attributes[i].Value += value;
-					return;
+				for (int i = 0; i < Attributes.Length; i++) {
+					if (Attributes [i].Name.Equals (tag)) {
+						Attributes [i].Value += value;
+						return;
+					}
 				}
-			}
 		}
 
 		public void AddValueToSchool(School schl, int value) {

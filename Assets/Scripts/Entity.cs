@@ -32,12 +32,14 @@ public abstract class Entity : MonoBehaviour
 		animator = this.GetComponent<Animator> ();
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 		rb = this.GetComponent<Rigidbody2D>();
-		activeEffectSchools = new List<EffectSchool>();
+		activeEffects = new List<Effect>();
 	}
 
 	public virtual void Start() {
-		this.healthBar.maxValue = HP;
-		this.healthBar.value = HP;
+		if (healthBar != null) {
+			this.healthBar.maxValue = HP;
+			this.healthBar.value = HP;
+		}
 	}
 
 	public virtual void Update() {
@@ -80,6 +82,16 @@ public abstract class Entity : MonoBehaviour
 		}
 	}
 
+	public virtual void Heal(int healing) {
+		if (HP + healing > healthBar.maxValue) {
+			healthBar.value = healthBar.maxValue;
+			HP = Mathf.FloorToInt(healthBar.maxValue);
+		} else {
+			HP += healing;
+			healthBar.value = HP;
+		}
+	}
+
 	public void TakeDamage(int damage) {
 		TakeDamage (damage, false);
 	}
@@ -95,22 +107,49 @@ public abstract class Entity : MonoBehaviour
 	#region Effects
 	public delegate void effectUpdateDelegate();
 	public effectUpdateDelegate effectUpdate;
-	List<EffectSchool> activeEffectSchools;
+	List<Effect> activeEffects;
 
 	public void ApplyEffect(Effect effectToApply)
 	{
 		effectToApply.onApplication (this);
-		activeEffectSchools.Add(effectToApply.School);
+		activeEffects.Add(effectToApply);
 	}
 
 	public void RemoveEffect(Effect effectToRemove)
 	{
-		activeEffectSchools.Remove(effectToRemove.School);
+		effectUpdate -= effectToRemove.onUpdate;
+		sprite_renderer.color = Color.white;
+		activeEffects.Remove(effectToRemove);
 	}
 
-	public bool HasEffect(EffectSchool eff)
+	public bool HasEffect(EffectSchool schl)
 	{
-		return activeEffectSchools.Contains(eff);
+		foreach (var eff in activeEffects) {
+			if (eff.School == schl)
+				return true;
+		}
+
+		return false;
+	}
+
+	public Effect GetEffect(EffectSchool schl) {
+		foreach (var eff in activeEffects) {
+			if (eff.School == schl)
+				return eff;
+		}
+
+		return null;
+	}
+
+	public List<Effect> GetAllEffects(EffectSchool schl) {
+		List<Effect> effcts = new List<Effect> ();
+
+		foreach (var eff in activeEffects) {
+			if (eff.School == schl)
+				effcts.Add (eff);
+		}
+
+		return effcts;
 	}
 	#endregion
 
