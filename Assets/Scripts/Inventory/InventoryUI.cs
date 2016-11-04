@@ -2,6 +2,7 @@
 using ItemClasses;
 using Assets.Scripts.UI;
 
+namespace Assets.Scripts.Inventory {
 public class InventoryUI : MonoBehaviour
 {
 	//Reference to UI slots and inventory
@@ -84,9 +85,9 @@ public class InventoryUI : MonoBehaviour
 			else
 				draggedFrom.Place (draggedItem);
 		}
-		//If the released the drag outside a slot, place the item where it came from.
+		//If the released the drag outside a slot, drop the item into the world
 		else {
-			draggedFrom.Place(draggedItem);
+				GameRegistry.ItemDropFabric.Drop (draggedItem, inventory.transform.position + new Vector3(2, 1.5f));
 		}
 
 		//Update the inventory with said change.
@@ -101,5 +102,6 @@ public class InventoryUI : MonoBehaviour
 		//Ask inventory what to do when the item has been right-clicked.
 		inventory.UseItem (slot);
 	}
+}
 }
 

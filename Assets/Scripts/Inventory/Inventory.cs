@@ -4,7 +4,9 @@ using System;
 using System.Text;
 using UnityEngine.UI;
 using ItemClasses;
+using Assets.Scripts.UI;
 
+namespace Assets.Scripts.Inventory {
 public class Inventory : MonoBehaviour {
 	#region Variables
 	//Actual inventory
@@ -22,32 +24,35 @@ public class Inventory : MonoBehaviour {
 	#endregion
 	#region Unity methods
 	void Start () {
-		database = GameRegistry.ItemDatabase();
+		database = GameRegistry.ItemDatabase;
 		if (database == null)
 			Debug.LogAssertion ("FATAL ERROR: Could not find item database!");
 		//Find the entity that carries this script.
 		bearer = GetComponentInParent<Entity> ();
 
 		//Crystals and motes (ONLY FOR DEBUG!!)
-		Item i1 = GameRegistry.ItemDatabase()["Power Crystal"].Clone();
+		Item i1 = GameRegistry.ItemDatabase["Power Crystal"].Clone();
 		i1.AddValueToSchool (Spells.School.Fire, 1);
+			i1.AddValueToSchool (Spells.School.Death, 1);
 		AddItem (i1);
 
-		//Crystals and motes (ONLY FOR DEBUG!!)
-		Item i2 = GameRegistry.ItemDatabase()["Power Crystal"].Clone();
+		Item i2 = GameRegistry.ItemDatabase["Power Crystal"].Clone();
 		i2.AddValueToSchool (Spells.School.Fire, 2);
+			i2.AddValueToSchool (Spells.School.Death, 2);
 		AddItem (i2);
 
-		Item i3 = GameRegistry.ItemDatabase () ["Power Crystal"].Clone ();
+		Item i3 = GameRegistry.ItemDatabase["Power Crystal"].Clone ();
 		i3.AddValueToSchool (Spells.School.Fire, 3);
+			i3.AddValueToSchool (Spells.School.Death, 3);
 		AddItem (i3);
 
-		Item i4 = GameRegistry.ItemDatabase () ["Power Crystal"].Clone ();
+		Item i4 = GameRegistry.ItemDatabase["Power Crystal"].Clone ();
 		i4.AddValueToSchool (Spells.School.Fire, 4);
+			i4.AddValueToSchool (Spells.School.Death, 4);
 		AddItem (i4);
 
 		//Armor and weapons (ONLY FOR DEBUG!!)
-		AddItem(26);
+		AddItem(1);
 	}
 	#endregion
 	#region Inventory manipulaiton
@@ -79,7 +84,7 @@ public class Inventory : MonoBehaviour {
 	/// </summary>
 	/// <param name="item">Item to add.</param>
 	/// <param name="quantity">Stacksize of the item.</param>
-	private void AddItem(Item item, int quantity) {
+	public void AddItem(Item item, int quantity) {
 		int availIndex = inventory.Length;
 		//Run through inventory to find an available slot
 		for (int index = 0; index < inventory.Length; index++) {
@@ -108,7 +113,7 @@ public class Inventory : MonoBehaviour {
 			UI.UpdateItems (inventory);
 		}
 		else
-			Debug.Log ("Inventory is full");
+			ErrorLogUI.Instance.LogError ("Inventory is full");
 	}
 	/// <summary>
 	/// Adds a stack of some item specified by name.
@@ -313,4 +318,5 @@ public class Inventory : MonoBehaviour {
 		reader.ReadEndElement ();
 	}
 	#endregion
+}
 }

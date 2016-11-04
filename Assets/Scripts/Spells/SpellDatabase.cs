@@ -219,50 +219,16 @@ namespace Spells
 		}
 
 		#endregion
-		void Start()
+		void Awake()
 		{
 			GameRegistry.AssignSpellDatabase (this);
 
-			/* Spells are now created via inspector, due to WebGL issues.
-			 * spells = new List<Spell>();
-			 * LoadSpells();*/
-		}
-
-        public void LoadSpells()
-        {
-			string fullPath = Directory.GetCurrentDirectory() + "/Assets/Resources/Spells.xml";
-			if(File.Exists(fullPath))
-			{
-				Uri basePath = new Uri(fullPath);
-				using (XmlReader reader = XmlReader.Create(basePath.AbsoluteUri))
-				{
-					reader.ReadToFollowing("SpellDatabase");
-					bool moreSpells = reader.ReadToDescendant("Spell");
-					while(moreSpells)
-					{
-						readSpell(reader);
-						//Read end element and check if there are more spells
-						reader.ReadEndElement();
-						moreSpells = reader.ReadToNextSibling("Spell");
-					}
+			foreach (var spell in spells) {
+				if (spell.Prefab != null) {
+					Debug.Log ("Bound prefab to database");
+					spell.Prefab.GetComponent<Castable> ().BindCastableToSpell (spell);
 				}
 			}
-        }
-
-		private void readSpell(XmlReader reader)
-		{
-			reader.ReadToDescendant("Id");
-			int id = reader.ReadElementContentAsInt();
-			reader.ReadToNextSibling("Name");
-			string name = reader.ReadElementContentAsString();
-			reader.ReadToNextSibling("Description");
-			string desc = reader.ReadElementContentAsString();
-			reader.ReadToNextSibling("Cost");
-			int cost = reader.ReadElementContentAsInt();
-			reader.ReadToNextSibling("Cooldown");
-			float cd = reader.ReadElementContentAsFloat();
-
-			spells.Add(new Spell(id, name, desc, cost, cd));
 		}
     }
 }

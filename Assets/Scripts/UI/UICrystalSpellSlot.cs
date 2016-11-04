@@ -16,7 +16,7 @@ namespace Assets.Scripts.UI {
 			base.Place (content);
 			if (content != null) {
 				var highest = findHighestSchools (content);
-				Spell newSpell = GameRegistry.SpellDatabase ().GetSpellFromCrystal (highest);
+				Spell newSpell = GameRegistry.SpellDatabase.GetSpellFromCrystal (highest);
 
 				Debug.Log ("Should assign: " + newSpell.Name);
 

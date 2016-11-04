@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Assets.Scripts.UI;
 
 namespace Assets.Scripts.Effects {
 	public enum EffectSchool { Fire, Life, Water, Ice, Death, Poison };

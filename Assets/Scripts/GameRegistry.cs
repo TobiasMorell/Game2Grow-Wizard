@@ -1,30 +1,42 @@
 ﻿using System;
 using ItemClasses;
 using Spells;
+using Assets.Scripts.Inventory;
 
 public static class GameRegistry
 {
-	private static ItemDatabase _itemDatabase;
-	private static SpellDatabase _spellDatabase;
+	private static ItemDropFabric _itemFabric;
 
-	public static ItemDatabase ItemDatabase() {
-		return _itemDatabase;
+	public static ItemDatabase ItemDatabase {
+		get;
+		private set;
 	}
 	public static void AssignItemDatabase(ItemDatabase instance) {
-		if (_itemDatabase != null)
+		if (ItemDatabase != null)
 			throw new AccessViolationException ("The game may only have one ItemDatabase!");
 
-		_itemDatabase = instance;
+		ItemDatabase = instance;
 	}
 
-	public static SpellDatabase SpellDatabase() {
-		return _spellDatabase;
+	public static SpellDatabase SpellDatabase {
+		get;
+		private set;
 	}
 	public static void AssignSpellDatabase(SpellDatabase instance) {
-		if (_spellDatabase != null)
+		if (SpellDatabase != null)
 			throw new AccessViolationException ("The game may only have one SpellDatabase!");
 
-		_spellDatabase = instance;
+		SpellDatabase = instance;
+	}
+
+	public static ItemDropFabric ItemDropFabric {
+		get;
+		private set;
+	}
+	public static void AssignItemDropFabric(ItemDropFabric instance) {
+		if (ItemDropFabric != null)
+			throw new AccessViolationException ("The game may only have one ItemDropFabric!");
+		ItemDropFabric = instance;
 	}
 }
 

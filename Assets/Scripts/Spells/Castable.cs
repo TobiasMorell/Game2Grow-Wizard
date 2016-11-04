@@ -5,6 +5,11 @@ namespace Spells
 {
 	public abstract class Castable : MonoBehaviour
 	{
+		[SerializeField] protected Spell DatabaseInstance;
+		public void BindCastableToSpell(Spell spell) {
+			DatabaseInstance = spell;
+		}
+
 		protected GameObject target;
 		[SerializeField] protected int BaseDamage;
 		public float Speed;

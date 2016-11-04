@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Assets.Scripts.UI;
 using ItemClasses;
 using Assets.Scripts.Weapon;
+using Assets.Scripts.Inventory;
 
 public class Wizard : Entity {
 	#region variables
@@ -310,7 +311,7 @@ public class Wizard : Entity {
 			var wep = weaponSlot.GetComponentInChildren<Weapon> ();
 			if (wep != null) {
 				Destroy (wep.gameObject);
-				attributes.RegisterUnequip(GameRegistry.ItemDatabase()[wep.Id]);
+				attributes.RegisterUnequip(GameRegistry.ItemDatabase[wep.Id]);
 			}
 		}
 	}

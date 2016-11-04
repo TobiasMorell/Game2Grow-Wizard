@@ -2,6 +2,7 @@
 using ItemClasses;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using Assets.Scripts.Inventory;
 
 namespace Assets.Scripts.UI
 {

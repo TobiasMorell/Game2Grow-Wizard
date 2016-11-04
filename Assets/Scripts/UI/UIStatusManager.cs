@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Assets.Scripts.UI;
 
+namespace Assets.Scripts.UI {
 public class UIStatusManager : MonoBehaviour {
 	public static UIStatusManager Instance {
 		get;
@@ -14,11 +16,18 @@ public class UIStatusManager : MonoBehaviour {
 		public float timer;
 		public Sprite icon;
 		public Color color;
+		public string Description;
 
 		public StatusQueueElement(float t, Sprite s, Color c) {
 			timer = t;
 			icon = s;
 			color = c;
+			Description = "";
+		}
+
+		public StatusQueueElement (float t, Sprite s, Color c, string desc) : this(t, s, c)
+		{
+			Description = desc;
 		}
 	};
 	private Queue<StatusQueueElement> pendingEffects;
@@ -54,6 +63,8 @@ public class UIStatusManager : MonoBehaviour {
 		//Set up the timer
 		nextIcon.maxValue = sqe.timer;
 		nextIcon.value = 0;
+		//Add the hover-description
+		nextIcon.GetComponent<TooltipText>().SetDescription(sqe.Description);
 
 		//Set position
 		nextIcon.transform.SetParent (this.gameObject.transform, false);
@@ -85,8 +96,13 @@ public class UIStatusManager : MonoBehaviour {
 		pendingEffects.Enqueue (new StatusQueueElement (duration, icon, Color.green));
 	}
 
+	public void AddBuff(Sprite icon, float duration, string description) {
+		pendingEffects.Enqueue (new StatusQueueElement (duration, icon, Color.green, description));
+	}
+
 	public void debug(Sprite icon) {
 		AddDebuff (icon, 2f);
 		//AddBuff (icon, 2f);
 	}
+}
 }
