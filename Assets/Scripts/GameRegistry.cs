@@ -38,5 +38,7 @@ public static class GameRegistry
 			throw new AccessViolationException ("The game may only have one ItemDropFabric!");
 		ItemDropFabric = instance;
 	}
+
+	public static bool Typing = false;
 }
 

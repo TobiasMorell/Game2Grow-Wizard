@@ -19,7 +19,7 @@ namespace Spells
 		// Update is called once per frame
 		protected virtual void Update()
 		{
-			transform.position += Vector3.right * Speed * Time.deltaTime;
+			transform.position += transform.right * Speed * Time.deltaTime;
 		}
 
 		protected virtual void OnTriggerEnter2D(Collider2D other)

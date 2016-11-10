@@ -13,6 +13,7 @@ namespace Assets.Scripts.Effects {
 		protected Entity bearer;
 		[SerializeField] protected Sprite icon;
 		public EffectSchool School;
+		protected string description;
 
 
 		public Effect(float duration, Sprite icon) {
@@ -38,7 +39,7 @@ namespace Assets.Scripts.Effects {
 			bearer.effectUpdate += onUpdate;
 
 			if (entity.CompareTag("Player"))
-				UIStatusManager.Instance.AddDebuff(icon, duration);
+				UIStatusManager.Instance.AddDebuff(icon, duration, description);
 		}
 
 		public virtual void onEffectEnded() {

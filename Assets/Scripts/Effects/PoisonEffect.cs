@@ -6,7 +6,9 @@ namespace Assets.Scripts.Effects
 	public class PoisonEffect : PeriodicDamageEffect
 	{
 		public PoisonEffect (float effectTime, float totalDamage, Sprite icon) : base (effectTime, totalDamage, icon)
-		{		}
+		{
+			this.description = "You have been hit by foul poison, that deals damage each second.";
+		}
 
 		public override void onApplication (Entity entity)
 		{

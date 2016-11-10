@@ -23,7 +23,7 @@ namespace Assets.Scripts.Inventory
 
 		public void PickUp(Inventory collector) {
 			collector.AddItem (heldItem, stacksize);
-			Destroy (this.gameObject);
+			GetComponent<SpriteRenderer> ().enabled = false;
 		}
 
 		void Update() {

@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
-[ExecuteInEditMode]
 public class PlayerCleanup : MonoBehaviour {
 	
-	// Update is called once per frame
+	// Update is called once per frame'
+	[ExecuteInEditMode]
 	void Update () {
 		foreach (var clone in GameObject.FindGameObjectsWithTag("Player"))
 		{

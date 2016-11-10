@@ -22,7 +22,6 @@ public class AttributeManager : MonoBehaviour{
 		consumeSkillpoint ();
 	}
 	public void ChangeVitality(int value) {
-		Debug.Log("ChangeVitality");
 		increaseVitality(value);
 		consumeSkillpoint ();
 	}

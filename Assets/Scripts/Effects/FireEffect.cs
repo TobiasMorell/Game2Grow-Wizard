@@ -10,7 +10,7 @@ namespace Assets.Scripts.Effects
 	{
 		public FireEffect(float duration, float totalDamage, Sprite icon) : base(duration, totalDamage, icon)
 		{
-			
+			this.description = "You are burning alive! You take damage each second and you are extra vulnerable to fire attacks";
 		}
 
 		public override void onApplication(Entity entity)

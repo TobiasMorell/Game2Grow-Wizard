@@ -7,7 +7,7 @@ public class TargetDummy : Enemy
 	{
 		//Do nothing, the dummy does not take damage
 		Debug.Log("TargetDummy took " + damage + " damage");
-		GameRegistry.ItemDropFabric.Drop (GameRegistry.ItemDatabase ["Mote of Fire"], 1, transform.position);
+		//	GameRegistry.ItemDropFabric.Drop (GameRegistry.ItemDatabase ["Mote of Fire"], 1, transform.position);
 	}
 }
 

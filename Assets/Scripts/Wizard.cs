@@ -65,6 +65,11 @@ public class Wizard : Entity {
 	// Update is called once per frame
 	public override void Update () {
 		base.Update ();
+		regenMana ();
+
+		if (GameRegistry.Typing)
+			return;
+		
 		handleMovement ();
 		handleMagicAttack ();
 
@@ -73,7 +78,7 @@ public class Wizard : Entity {
 		else if (Input.GetButtonDown ("TargetLeft"))
 			handleTargetLeft ();
 
-		regenMana ();
+
 	}
 
 	/// <summary>

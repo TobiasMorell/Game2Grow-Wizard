@@ -10,7 +10,9 @@ namespace Assets.Scripts.UI {
 
 		void Start() {
 			HideCanvas ();
-			this.GetComponent<Button> ().onClick.AddListener (Toggle);
+			var but = this.GetComponent<Button> ();
+			if(but != null)
+				but.onClick.AddListener (Toggle);
 		}
 
 		// Use this for initialization
