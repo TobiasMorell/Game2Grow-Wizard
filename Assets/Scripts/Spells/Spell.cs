@@ -13,7 +13,7 @@ namespace Spells
 	}
 	public enum SpellAnimationType
 	{
-		Swing, FrontalSpell, UpwardsSpell
+		Swing, FrontalSpell, UpwardsSpell, Flying
 	}
 
 	[System.Serializable]
@@ -28,6 +28,7 @@ namespace Spells
 		public GameObject Prefab;
 		public bool RequiresTarget;
 		public bool TargetsSelf;
+		public bool Channeled;
 		public SpellAnimationType AnimationType;
 
 		/// <summary>
@@ -39,12 +40,18 @@ namespace Spells
 			return cooldownTimer > 0;
 		}
 
+		private Castable inst;
+
 		public void Cast(GameObject target, bool facingRight, float mod) {
 			cooldownTimer = Cooldown;
-			var inst = UnityEngine.Object.Instantiate(Prefab).GetComponent<Castable>();
+			inst = UnityEngine.Object.Instantiate(Prefab).GetComponent<Castable>();
 			inst.movingRight = facingRight;
 			inst.AssignModifier(mod);
 			inst.Cast(target);
+		}
+
+		public void StopCast() {
+			inst.StopCast ();
 		}
 
 		#region Tooltip

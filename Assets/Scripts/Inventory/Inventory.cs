@@ -32,22 +32,23 @@ public class Inventory : MonoBehaviour {
 
 		//Crystals and motes (ONLY FOR DEBUG!!)
 		Item i1 = GameRegistry.ItemDatabase["Power Crystal"].Clone();
-		i1.AddValueToSchool (Spells.School.Fire, 1);
+		//i1.AddValueToSchool (Spells.School.Fire, 1);
+			i1.AddValueToSchool (Spells.School.Water, 1);
 		AddItem (i1);
 
 		Item i2 = GameRegistry.ItemDatabase["Power Crystal"].Clone();
-		i2.AddValueToSchool (Spells.School.Fire, 2);
-		//i2.AddValueToSchool (Spells.School.Life, 2);
+		//i2.AddValueToSchool (Spells.School.Fire, 2);
+		i2.AddValueToSchool (Spells.School.Water, 2);
 		AddItem (i2);
 
 		Item i3 = GameRegistry.ItemDatabase["Power Crystal"].Clone ();
-		i3.AddValueToSchool (Spells.School.Fire, 3);
-		//i3.AddValueToSchool (Spells.School.Death, 3);
+		//i3.AddValueToSchool (Spells.School.Fire, 3);
+		i3.AddValueToSchool (Spells.School.Water, 3);
 		AddItem (i3);
 
 		Item i4 = GameRegistry.ItemDatabase["Power Crystal"].Clone ();
-		i4.AddValueToSchool (Spells.School.Fire, 4);
-		//i4.AddValueToSchool (Spells.School.Death, 4);
+		//i4.AddValueToSchool (Spells.School.Fire, 4);
+		i4.AddValueToSchool (Spells.School.Water, 4);
 		AddItem (i4);
 
 		//Armor and weapons (ONLY FOR DEBUG!!)

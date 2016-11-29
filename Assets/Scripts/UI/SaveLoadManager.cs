@@ -5,6 +5,7 @@ using System.Xml;
 using System.Text;
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.Enemies;
 
 public class SaveLoadManager : MonoBehaviour {
 	private GameObject _player;

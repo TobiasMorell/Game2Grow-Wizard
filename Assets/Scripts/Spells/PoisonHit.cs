@@ -11,6 +11,8 @@ public class PoisonHit : Castable {
 	// Use this for initialization
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D> ();
+		if (rb == null)
+			Debug.LogAssertion ("DID NOT FIND A RIGIDBODY ON THE POISON BOLT");
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

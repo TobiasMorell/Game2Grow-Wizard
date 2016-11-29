@@ -4,35 +4,42 @@ using UnityEngine;
 
 namespace Spells
 {
-	public class VolcanicActivity : SpellInstantiator
+	public class VolcanicActivity : Castable
 	{
-		float remaining = 2.75f;
-		[SerializeField] float ascendSpeed;
+		float remaining = 2.75f, timer = 0, lifeTimer = 0;
+		[SerializeField] Castable boltPrefab;
+		[SerializeField] float ascendSpeed, timeBetweenShots;
 
 		public override void Cast (UnityEngine.GameObject primaryTarget)
 		{
 			transform.position = primaryTarget.transform.position - new UnityEngine.Vector3(0, 3);
-			StartCoroutine (ascend());
-			Destroy (this.gameObject, lifetime);
 		}
 
-		IEnumerator ascend() {
+		void Update() {
 			if (remaining > 0) {
 				float step = ascendSpeed * Time.deltaTime;
 				this.transform.position += new UnityEngine.Vector3 (0, step);
 				remaining -= step;
-
-				yield return null;
 			} else {
-				//Just keep spawning until destoyed by destroy called in Cast.
-				StartCoroutine (spawnInstances (1000));
+				if (timer > timeBetweenShots) {
+					timer = 0;
+					var inst = Instantiate (boltPrefab);
+					formatSpawn (inst);
+				}
+				timer += Time.deltaTime;
 			}
+
+			if (lifeTimer > lifetime)
+				Destroy (this.gameObject);
+			else
+				lifeTimer += Time.deltaTime;
 		}
 
-		protected override void formatSpawn (Castable spawn)
+		protected void formatSpawn (Castable spawn)
 		{
+			spawn.AssignModifier (damageModifier);
 			//Move bolt to top of volcano
-			spawn.transform.position += new Vector3(0, 1.5f);
+			spawn.transform.position = transform.position + new Vector3(0, 1.5f);
 
 			//Calculate a random direction to shoot the bolt.
 			float angle = -Mathf.Deg2Rad * UnityEngine.Random.Range (0, 180);

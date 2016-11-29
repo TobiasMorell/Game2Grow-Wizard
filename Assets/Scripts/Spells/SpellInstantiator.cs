@@ -12,8 +12,8 @@ namespace Spells
 		public override void Cast (GameObject primaryTarget)
 		{
 			base.Cast (primaryTarget);
-
 			int numBolts = Random.Range (minInstances, maxInstances + 1);
+			Debug.Log (name + " should spawn: " + numBolts);
 			StartCoroutine (spawnInstances (numBolts));
 		}
 
@@ -24,10 +24,13 @@ namespace Spells
 				inst.transform.position = transform.position;
 				inst.AssignModifier (damageModifier);
 				formatSpawn (inst);
+				inst.Cast (this.gameObject);
 
-				yield return new WaitForSeconds (timeBetweenSpawns);
+				if (timeBetweenSpawns > 0) {
+					yield return new WaitForSeconds (timeBetweenSpawns);
+				}
 			}
-			//Destroy (this.gameObject);
+			Destroy (this.gameObject);
 		}
 
 		/// <summary>

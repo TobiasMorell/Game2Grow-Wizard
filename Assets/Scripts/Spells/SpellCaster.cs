@@ -7,22 +7,35 @@ namespace Spells
 {
 	public class SpellCaster : MonoBehaviour {
 		private Spell[] spells;
+
 		[HideInInspector] public float mana;
-		private Entity holder;
+		float maxMana;
 		public Slider manaUI;
+
+		private Entity holder;
 		[SerializeField] GameObject magicAttackPoint;
 
-		public float damageModifier { get; set; }
+		IEnumerator channelManaDrain;
+		bool channeling;
+
+		public float DamageModifier;
+		public float ManaRegenPrTick;
+		[SerializeField] float ManaRegenInterval;
 
 		public void Initialize(Entity holder, Spell[] newSpells, float maxMana) {
 			spells = newSpells;
 			this.holder = holder;
 			mana = maxMana;
+			this.maxMana = mana;
+			StartCoroutine (generateMana ());
 		}
 		public void Initialize(Entity holder, Spell[] newSpells, Slider manaUI) {
 			spells = newSpells;
 			this.holder = holder;
 			this.manaUI = manaUI;
+			this.mana = manaUI.maxValue;
+			this.maxMana = mana;
+			StartCoroutine (generateMana ());
 		}
 		public void UpdateSpells(Spell newSpell, int slot) {
 			spells[slot] = newSpell;
@@ -33,54 +46,80 @@ namespace Spells
 		public void Cast(int index, GameObject target) {
 			Spell toCast = spells [index];
 
-			//Check for errors that prevent spell-casting
-			if (toCast == null)
-			{
-				ErrorLogUI.Instance.LogError("There is no spell in that slot.");
-				return;
-			}
-			if(toCast.OnCooldown())
-			{
-				ErrorLogUI.Instance.LogError(toCast.Name + " is on cooldown.");
-				return;
-			}
-			if (toCast.RequiresTarget && target == null)
-			{
-				ErrorLogUI.Instance.LogError("This spell requires a target to cast.");
-				return;
-			}
-
-			//Find out if there is enough mana for a spellcast and display eventual errors.
-			float remainingMana;
-			if(manaUI != null)
-				remainingMana = manaUI.value;
-			else
-				remainingMana = mana;
-			if(remainingMana < toCast.Cost)
-			{
-				ErrorLogUI.Instance.LogError("There is not enough mana to cast " + toCast.Name);
-				return;
+			//Check for errors that prevent spell-casting (only if player)
+			if (holder is Wizard) {
+				if (toCast == null)
+					return;
+				if (toCast.OnCooldown ()) {
+					ErrorLogUI.Instance.LogError (toCast.Name + " is on cooldown.");
+					return;
+				}
+				if (toCast.RequiresTarget && target == null) {
+					ErrorLogUI.Instance.LogError ("This spell requires a target to cast.");
+					return;
+				}
+				//Find out if there is enough mana for a spellcast and display eventual errors.
+				if (mana < toCast.Cost) {
+					ErrorLogUI.Instance.LogError ("There is not enough mana to cast " + toCast.Name);
+					return;
+				}
+				if (channeling) {
+					ErrorLogUI.Instance.LogError ("Cannot cast spells while channeling");
+					return;
+				}
 			}
 			
 			//Actually cast the spell
-			remainingMana -= toCast.Cost;
+			mana -= toCast.Cost;
 			holder.PlayAnimation(toCast.AnimationType.ToString());
 
 			//Determines which type of spell is being cast and chose the target accordingly.
 			if (toCast.TargetsSelf)
-				toCast.Cast(holder.gameObject, holder.facingRight, damageModifier);
+				toCast.Cast(holder.gameObject, holder.facingRight, DamageModifier);
 			else if (!toCast.RequiresTarget)
-				toCast.Cast(magicAttackPoint, holder.facingRight, damageModifier);
+				toCast.Cast(magicAttackPoint, holder.facingRight, DamageModifier);
 			else if (toCast.RequiresTarget)
 			{
 				//We know there is a target from the first check.
-				toCast.Cast(target, holder.facingRight, damageModifier);
+				toCast.Cast(target, holder.facingRight, DamageModifier);
 			}
 
-			if (manaUI != null)
-				manaUI.value = remainingMana;
-			else
-				mana = remainingMana;
+			if (toCast.Channeled) {
+				channelManaDrain = drainMana (toCast.Cost);
+				StartCoroutine (channelManaDrain);
+				channeling = true;
+			}
+		}
+
+		IEnumerator drainMana (float manaPrSec) {
+			while (true) {
+				yield return new WaitForSeconds (1);
+				mana -= manaPrSec;
+			}
+		}
+		IEnumerator generateMana() {
+			while (true) {
+				if (!channeling) {
+					if (mana + ManaRegenPrTick >= maxMana)
+						mana = maxMana;
+					else
+						mana += ManaRegenPrTick;
+				}
+				yield return new WaitForSeconds (ManaRegenInterval);
+			}
+		}
+
+		public void StopCast(int index) {
+			Spell toStop = spells [index];
+
+			if (toStop == null)
+				return;
+
+			if (toStop.Channeled) {
+				toStop.StopCast ();
+				StopCoroutine (channelManaDrain);
+				channeling = false;
+			}
 		}
 
 		void Update() {
@@ -88,6 +127,9 @@ namespace Spells
 				if(spell != null)
 					spell.cooldownTimer -= Time.deltaTime;
 			}
+
+			if (manaUI)
+				manaUI.value = mana;
 		}
 	}
 }

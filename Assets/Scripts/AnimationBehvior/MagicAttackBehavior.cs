@@ -3,16 +3,18 @@ using System.Collections;
 using System;
 using Spells;
 
-public class MagicAttackBehavior : StateMachineBehaviour {
-	private Wizard wizz;
+namespace SMBehaviours{
+	public class MagicAttackBehavior : StateMachineBehaviour {
+		private Wizard wizz;
 
-	public override void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-	{
-		wizz = animator.GetComponent<Wizard> ();
-		animator.SetBool ("Walking", false);
-	}
+		public override void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+		{
+			wizz = animator.GetComponent<Wizard> ();
+			animator.SetBool ("Walking", false);
+		}
 
-	public override void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-	{
+		public override void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+		{
+		}
 	}
 }

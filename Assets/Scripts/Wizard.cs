@@ -20,7 +20,7 @@ public class Wizard : Entity {
 
 	public Transform BoltSpawnpoint;
 	//public GameObject Bolt;
-	public float jumpForce;
+	public float jumpSpeed;
 	public Slider mana;
 
 	private float manaTimer = 0f;
@@ -65,7 +65,6 @@ public class Wizard : Entity {
 	// Update is called once per frame
 	public override void Update () {
 		base.Update ();
-		regenMana ();
 
 		if (GameRegistry.Typing)
 			return;
@@ -77,31 +76,20 @@ public class Wizard : Entity {
 			handleTargetRight ();
 		else if (Input.GetButtonDown ("TargetLeft"))
 			handleTargetLeft ();
-
-
-	}
-
-	/// <summary>
-	/// Regens the mana - also handles the timer.
-	/// </summary>
-	private void regenMana() {
-		//Generates one mana every third second
-		if (mana.value < mana.maxValue && manaTimer >= attributes.manaRegenInterval) {
-			mana.value += attributes.mana_regen_multiplier;
-			manaTimer = 0;
-		}
-		else
-			manaTimer += Time.deltaTime;
 	}
 
 	void FixedUpdate(){
 		if (Input.GetButtonDown("Jump") && !jumping)
 		{
 			jumping = true;
-			rb.AddForce(Vector2.up * jumpForce);
+			rb.velocity += Vector2.up * jumpSpeed;
+			animator.SetBool ("Jumping", true);
 		}
-		else if (!Input.GetButton("Jump") && rb.velocity.y < Mathf.Epsilon) //small mistake here, the wizard may double-jump
-			jumping = false;
+	}
+
+	public void HitGround() {
+		animator.SetBool("Jumping", false);
+		jumping = false;
 	}
 	#endregion
 	#region Control
@@ -129,14 +117,23 @@ public class Wizard : Entity {
 	/// </summary>
 	void handleMagicAttack()
 	{
-		if (Input.GetButtonUp ("Spell1"))
+		if (Input.GetButtonDown ("Spell1"))
 			caster.Cast (0, target);
-		else if (Input.GetButtonUp ("Spell2"))
+		else if (Input.GetButtonDown ("Spell2"))
 			caster.Cast(1, target);
-		else if (Input.GetButtonUp ("Spell3"))
+		else if (Input.GetButtonDown ("Spell3"))
 			caster.Cast (2, target);
-		else if (Input.GetButtonUp ("Spell4"))
+		else if (Input.GetButtonDown ("Spell4"))
 			caster.Cast(3, target);
+
+		if (Input.GetButtonUp ("Spell1"))
+			caster.StopCast (0);
+		else if (Input.GetButtonUp ("Spell2"))
+			caster.StopCast(1);
+		else if (Input.GetButtonUp ("Spell3"))
+			caster.StopCast (1);
+		else if (Input.GetButtonUp ("Spell4"))
+			caster.StopCast(2);
 	}
 
 	void melee() {
@@ -254,7 +251,7 @@ public class Wizard : Entity {
 		//Add new arrow to target
 		arrow = Instantiate (targetArrow);
 		arrow.transform.localScale = new Vector3 (3f, 3f, 1);
-		arrow.transform.position = new Vector3 (target.transform.position.x, target.transform.position.y + 3.5f, 0);
+		arrow.transform.position = new Vector3 (target.transform.position.x, target.transform.position.y + 6f, 0);
 		arrow.transform.parent = target.transform;
 	}
 	#endregion

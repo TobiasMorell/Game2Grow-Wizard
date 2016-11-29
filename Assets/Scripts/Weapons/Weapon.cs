@@ -2,6 +2,7 @@
 using UnityEngine;
 using Assets.Scripts.Effects;
 using System.Collections;
+using Assets.Scripts.Enemies;
 
 namespace Assets.Scripts.Weapon {
 	public class Weapon : Displayable

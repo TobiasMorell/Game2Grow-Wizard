@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Enemies;
 
 namespace Spells
 {
@@ -7,9 +8,9 @@ namespace Spells
 		[SerializeField]
 		float range;
 
-		// Use this for initialization
-		protected virtual void Start()
+		public override void Cast (GameObject primaryTarget)
 		{
+			transform.position = primaryTarget.transform.position;
 			this.lifetime = range / Speed;
 			Destroy(this.gameObject, lifetime);
 

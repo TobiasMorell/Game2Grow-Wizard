@@ -8,8 +8,8 @@ public class Star : Bolt {
 	float omegaY = 8.0f;
 	float index;
 
-	protected override void Start() {
-		base.Start ();
+	public override void Cast (GameObject primaryTarget) {
+		base.Cast (primaryTarget);
 		baseY = this.transform.position.y;
 	}
 

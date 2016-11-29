@@ -4,9 +4,6 @@ using ItemClasses;
 using Spells;
 
 public class AttributeManager : MonoBehaviour{
-	public int mana_regen_multiplier = 1;
-	public float manaRegenInterval;
-
 	public int strength, intellect, vitality;
 	[SerializeField] Text strTxt, intTxt, vitTxt;
 	private int remainingSkillpoints;
@@ -44,10 +41,10 @@ public class AttributeManager : MonoBehaviour{
 	}
 	private void updateInt()
 	{
-		mana_regen_multiplier = intellect;
 		var sc = GameObject.FindGameObjectWithTag("Player").GetComponent<SpellCaster>();
-		sc.damageModifier = 1 + (0.2f * Mathf.Pow(intellect, 2));
+		sc.DamageModifier = 1 + (0.2f * Mathf.Pow(intellect, 2));
 		sc.manaUI.maxValue = 10 + 2 * intellect;
+		sc.ManaRegenPrTick = intellect;
 	}
 	private void increaseVitality(int value)
 	{

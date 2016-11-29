@@ -29,7 +29,11 @@ namespace Spells
 
 		public virtual void Cast(GameObject primaryTarget) {
 			this.target = primaryTarget;
-			transform.position = target.transform.position;
+			transform.position = target.gameObject.transform.position;
+		}
+
+		public virtual void StopCast() {
+
 		}
 
 		public void AssignModifier(float mod)

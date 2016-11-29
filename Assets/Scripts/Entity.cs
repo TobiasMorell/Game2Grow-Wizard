@@ -15,14 +15,21 @@ public abstract class Entity : MonoBehaviour
 	public float MeleeDamageModifier;
 
 	public Slider healthBar;
-	[SerializeField] protected float MoveSpeed;
+	[SerializeField] private float BaseSpeed;
+	protected float MoveSpeed { 
+		get {
+			return ((100 - slowDownPercentage) / 100) * BaseSpeed;
+		}
+	}
+	private float slowDownPercentage = 0;
+
 	[HideInInspector] public SpriteRenderer sprite_renderer;
 	protected Rigidbody2D rb;
 
 	[HideInInspector] public bool facingRight;
 	protected Animator animator;
 
-	protected Vector2 Direction {
+	public Vector3 Direction {
 		get { return this.facingRight ? Vector2.right : Vector2.left; }
 	}
 	#endregion
@@ -94,6 +101,13 @@ public abstract class Entity : MonoBehaviour
 
 	public void TakeDamage(int damage) {
 		TakeDamage (damage, false);
+	}
+
+	public void SlowDown(float percentage) {
+		this.slowDownPercentage += percentage;
+	}
+	public void SpeedUp(float percentage) {
+		this.slowDownPercentage -= percentage;
 	}
 
 	public void Flip()
