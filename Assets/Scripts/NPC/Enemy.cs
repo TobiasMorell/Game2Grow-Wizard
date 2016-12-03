@@ -40,7 +40,8 @@ namespace Assets.Scripts.Enemies {
 		public virtual void Move()
 		{
 			animator.SetBool ("Moving", true);
-			transform.position += Direction * MoveSpeed * Time.deltaTime;
+			if(canMove)
+				transform.position += Direction * MoveSpeed * Time.deltaTime;
 		}
 		public virtual void StopMove() {
 			animator.SetBool ("Moving", false);

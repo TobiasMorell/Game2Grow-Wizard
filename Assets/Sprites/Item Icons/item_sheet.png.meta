@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d5b82e273ecb8482992cb432a2d541b7
-timeCreated: 1479141219
+timeCreated: 1480503180
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -4323,19 +4323,19 @@ TextureImporter:
         y: 272
         width: 34
         height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 11, y: 6, z: 10, w: 18}
       outline:
-      - - {x: -11, y: 17}
-        - {x: -13, y: 13}
-        - {x: -13, y: -1}
-        - {x: -11, y: -3}
-        - {x: -11, y: -16}
-        - {x: -7, y: -17}
-        - {x: 9, y: -17}
-        - {x: 14, y: -3}
-        - {x: 14, y: 17}
+      - - {x: -11, y: 34}
+        - {x: -13, y: 30}
+        - {x: -13, y: 16}
+        - {x: -11, y: 14}
+        - {x: -11, y: 1}
+        - {x: -7, y: 0}
+        - {x: 9, y: 0}
+        - {x: 14, y: 14}
+        - {x: 14, y: 34}
       tessellationDetail: -1
     - name: item_sheet_293
       rect:

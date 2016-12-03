@@ -5,15 +5,16 @@ namespace Spells
 {
 	public abstract class SpellInstantiator : Castable
 	{
+		#pragma warning disable 0649 // Disable 'never assigned' warning --> assign through inspector
 		[SerializeField] int minInstances, maxInstances;
 		[SerializeField] Castable instancePrefab;
 		[SerializeField] float timeBetweenSpawns;
+		#pragma warning restore 0649
 
 		public override void Cast (GameObject primaryTarget)
 		{
 			base.Cast (primaryTarget);
 			int numBolts = Random.Range (minInstances, maxInstances + 1);
-			Debug.Log (name + " should spawn: " + numBolts);
 			StartCoroutine (spawnInstances (numBolts));
 		}
 
@@ -23,8 +24,8 @@ namespace Spells
 				inst.movingRight = movingRight;
 				inst.transform.position = transform.position;
 				inst.AssignModifier (damageModifier);
-				formatSpawn (inst);
 				inst.Cast (this.gameObject);
+				formatSpawn (inst);
 
 				if (timeBetweenSpawns > 0) {
 					yield return new WaitForSeconds (timeBetweenSpawns);

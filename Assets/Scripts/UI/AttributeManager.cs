@@ -5,10 +5,12 @@ using Spells;
 
 public class AttributeManager : MonoBehaviour{
 	public int strength, intellect, vitality;
-	[SerializeField] Text strTxt, intTxt, vitTxt;
 	private int remainingSkillpoints;
+	#pragma warning disable 0649
+	[SerializeField] Text strTxt, intTxt, vitTxt;
 	[SerializeField] private int skillpointsPrLevel;
 	[SerializeField] private Button[] skillUpButtons;
+	#pragma warning restore 0649
 
 	public void ChangeStrength(int value){
 		increaseStrength(value);

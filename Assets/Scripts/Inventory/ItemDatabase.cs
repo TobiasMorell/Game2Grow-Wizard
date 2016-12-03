@@ -33,6 +33,7 @@ namespace ItemClasses {
 		}
 		#endregion
 
+		#if false
 		#region Fill database
 		private void fillDatabase() {
 			//Open and xml-reader to the Items.xml file, which contains all items
@@ -107,6 +108,7 @@ namespace ItemClasses {
 			//i.AssignAttributes (inte, str, vit);
 		}
 		#endregion
+		#endif
 	}
 
 	public enum ItemType

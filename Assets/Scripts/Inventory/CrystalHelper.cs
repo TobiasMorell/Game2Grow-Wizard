@@ -7,7 +7,9 @@ namespace ItemClasses
 {
 	public class CrystalHelper : MonoBehaviour
 	{
+		#pragma warning disable 0649 // Disable 'never assigned' warning --> assign through inspector
 		[SerializeField] Sprite death, fire, life, water, none;
+		#pragma warning restore 0649
 
 		private Sprite getSchoolSprite(School s) {
 			switch (s) {

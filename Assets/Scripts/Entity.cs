@@ -22,6 +22,7 @@ public abstract class Entity : MonoBehaviour
 		}
 	}
 	private float slowDownPercentage = 0;
+	protected bool canMove = true;
 
 	[HideInInspector] public SpriteRenderer sprite_renderer;
 	protected Rigidbody2D rb;
@@ -88,7 +89,6 @@ public abstract class Entity : MonoBehaviour
 			die ();
 		}
 	}
-
 	public virtual void Heal(int healing) {
 		if (HP + healing > healthBar.maxValue) {
 			healthBar.value = healthBar.maxValue;
@@ -98,11 +98,16 @@ public abstract class Entity : MonoBehaviour
 			healthBar.value = HP;
 		}
 	}
-
 	public void TakeDamage(int damage) {
 		TakeDamage (damage, false);
 	}
 
+	public virtual void HinderMovement() {
+		canMove = false;
+	}
+	public virtual void ResumeMovement() {
+		canMove = true;
+	}
 	public void SlowDown(float percentage) {
 		this.slowDownPercentage += percentage;
 	}
@@ -166,7 +171,7 @@ public abstract class Entity : MonoBehaviour
 		return effcts;
 	}
 	#endregion
-
+	#region Save & Load
 	public virtual void Save(XmlWriter writer) {
 		SavePosition (writer);
 		SaveStatus (writer);
@@ -206,6 +211,7 @@ public abstract class Entity : MonoBehaviour
 		transform.position = loadedPosition;
 		reader.ReadEndElement ();
 	}
+	#endregion
 
 	public virtual void Equip(ItemClasses.Item item) {}
 }

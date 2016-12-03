@@ -25,11 +25,14 @@ namespace Spells
 
 		protected virtual void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.CompareTag("Hostile") && !other.isTrigger)
-			{
-				if(particleEffect != null) 
-					Instantiate(particleEffect, other.transform.position, Quaternion.identity);
-				other.GetComponent<Enemy>().TakeDamage(calculateDamage());
+			Debug.Log ("The bolt hit: " + other.name);
+			if (other.CompareTag ("Hostile") && !other.isTrigger) {
+				if (particleEffect != null)
+					Instantiate (particleEffect, other.transform.position + new Vector3 (0, 2), Quaternion.identity);
+				other.GetComponent<Enemy> ().TakeDamage (calculateDamage ());
+			} else if (other.CompareTag ("Platform")) {
+				Debug.Log ("Hit the platform");
+				Destroy (this.gameObject);
 			}
 		}
 	}

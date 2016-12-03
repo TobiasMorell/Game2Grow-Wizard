@@ -7,8 +7,10 @@ namespace Spells
 	public class VolcanicActivity : Castable
 	{
 		float remaining = 2.75f, timer = 0, lifeTimer = 0;
+		#pragma warning disable 0649
 		[SerializeField] Castable boltPrefab;
 		[SerializeField] float ascendSpeed, timeBetweenShots;
+		#pragma warning restore 0649
 
 		public override void Cast (UnityEngine.GameObject primaryTarget)
 		{

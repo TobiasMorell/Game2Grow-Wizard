@@ -13,7 +13,7 @@ namespace Spells
 	}
 	public enum SpellAnimationType
 	{
-		Swing, FrontalSpell, UpwardsSpell, Flying
+		Swing, FrontalSpell, UpwardsSpell, Flying, Channeled_frontal
 	}
 
 	[System.Serializable]
@@ -29,6 +29,7 @@ namespace Spells
 		public bool RequiresTarget;
 		public bool TargetsSelf;
 		public bool Channeled;
+		public bool Toggled;
 		public SpellAnimationType AnimationType;
 
 		/// <summary>
@@ -51,7 +52,8 @@ namespace Spells
 		}
 
 		public void StopCast() {
-			inst.StopCast ();
+			if (inst)
+				inst.StopCast ();
 		}
 
 		#region Tooltip

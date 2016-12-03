@@ -21,6 +21,9 @@ namespace Spells
 		public float DamageModifier;
 		public float ManaRegenPrTick;
 		[SerializeField] float ManaRegenInterval;
+		bool generatingMana;
+
+		public bool[] SpellToggle = new bool[4] { false, false, false, false };
 
 		public void Initialize(Entity holder, Spell[] newSpells, float maxMana) {
 			spells = newSpells;
@@ -68,6 +71,12 @@ namespace Spells
 					return;
 				}
 			}
+
+			//Check if the spell being cast is toggled and stop it if it is already active
+			if (toCast.Toggled && SpellToggle [index]) {
+				ToggleOff (index);
+				return;
+			}
 			
 			//Actually cast the spell
 			mana -= toCast.Cost;
@@ -88,6 +97,8 @@ namespace Spells
 				channelManaDrain = drainMana (toCast.Cost);
 				StartCoroutine (channelManaDrain);
 				channeling = true;
+			} else if (toCast.Toggled) {
+				SpellToggle [index] = true;
 			}
 		}
 
@@ -98,13 +109,11 @@ namespace Spells
 			}
 		}
 		IEnumerator generateMana() {
-			while (true) {
-				if (!channeling) {
-					if (mana + ManaRegenPrTick >= maxMana)
-						mana = maxMana;
-					else
-						mana += ManaRegenPrTick;
-				}
+			while (generatingMana && !channeling) {
+				if (mana + ManaRegenPrTick >= maxMana)
+					mana = maxMana;
+				else
+					mana += ManaRegenPrTick;
 				yield return new WaitForSeconds (ManaRegenInterval);
 			}
 		}
@@ -119,7 +128,13 @@ namespace Spells
 				toStop.StopCast ();
 				StopCoroutine (channelManaDrain);
 				channeling = false;
-			}
+			} 
+		}
+
+		private void ToggleOff(int index) {
+			Spell spell = spells [index];
+			spell.StopCast ();
+			SpellToggle [index] = false;
 		}
 
 		void Update() {
@@ -130,6 +145,10 @@ namespace Spells
 
 			if (manaUI)
 				manaUI.value = mana;
+		}
+
+		public void ToggleManaRegeneration(bool newState) {
+			generatingMana = newState;
 		}
 	}
 }

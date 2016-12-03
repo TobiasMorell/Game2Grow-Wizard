@@ -19,11 +19,9 @@ public class Wizard : Entity {
 	[HideInInspector] private bool attacking = false;
 
 	public Transform BoltSpawnpoint;
-	//public GameObject Bolt;
 	public float jumpSpeed;
 	public Slider mana;
 
-	private float manaTimer = 0f;
 	private int imuniTimer = 2;
 	private bool immune = false;
 	public Weapon weapon;
@@ -100,7 +98,7 @@ public class Wizard : Entity {
 	{
 		float h = Input.GetAxis ("Horizontal");
 
-		if (h != 0 && !attacking) {
+		if (h != 0 && !attacking && canMove) {
 			animator.SetBool ("Walking", true);
 			transform.position += Vector3.right * h * MoveSpeed * Time.deltaTime;
 		} else
@@ -176,6 +174,10 @@ public class Wizard : Entity {
 		this.immune = false;
 		if(sprite_renderer.color == Color.gray)
 			this.sprite_renderer.color = Color.white;
+	}
+
+	public void ToggleImmunity(bool newState) {
+		immune = newState;
 	}
 
 	/// <summary>

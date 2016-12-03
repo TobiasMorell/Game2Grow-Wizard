@@ -67,8 +67,9 @@ namespace Phoenix {
 				Flip ();
 			else if (!facingRight && direction == Vector3.right)
 				Flip ();
-
-			transform.position += direction * Time.deltaTime * MoveSpeed;
+			
+			if(canMove)
+				transform.position += direction * Time.deltaTime * MoveSpeed;
 		}
 
 		public void SpitFire() {
