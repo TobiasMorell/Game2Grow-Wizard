@@ -14,7 +14,7 @@ namespace Spells
 
 			//Get the burning-effects from the target
 			Entity ent = primaryTarget.GetComponent<Entity> ();
-			var brns = ent.GetAllEffects (Assets.Scripts.Effects.EffectSchool.Fire);
+			var brns = ent.GetAllEffects (Spells.School.Fire);
 			int healing = 0;
 			//Sum the remaining damage of all the burns
 			foreach (var brn in brns) {

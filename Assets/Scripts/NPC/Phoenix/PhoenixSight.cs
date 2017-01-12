@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Phoenix
+namespace Assets.Scripts.NPC.Phoenix
 {
 	public class PhoenixSight : MonoBehaviour
 	{

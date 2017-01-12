@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Assets.Scripts.Enemies;
+using Assets.Scripts.NPC;
 
 public class Platform : MonoBehaviour {
 

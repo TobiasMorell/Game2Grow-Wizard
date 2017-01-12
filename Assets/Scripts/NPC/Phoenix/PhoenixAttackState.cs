@@ -1,8 +1,7 @@
 ﻿using System;
-using Assets.Scripts.Enemies;
 using UnityEngine;
 
-namespace Phoenix
+namespace Assets.Scripts.NPC.Phoenix
 {
 	public class PhoenixAttackState : IAIState<PhoenixController>
 	{

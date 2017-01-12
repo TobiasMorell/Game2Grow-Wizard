@@ -10,7 +10,7 @@ namespace Assets.Scripts.Effects
 		public SpeedReductionEffect (float slowDown, float duration, Sprite icon) : base(duration, icon)
 		{
 			this.slowDown = slowDown;
-			this.School = EffectSchool.Water;
+			this.School = Spells.School.None;
 		}
 
 		public override void onApplication (Entity entity)

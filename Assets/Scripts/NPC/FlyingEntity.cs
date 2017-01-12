@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Scripts.NPC
 {
 	public class FlyingEnemy : Enemy
 	{

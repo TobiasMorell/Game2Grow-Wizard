@@ -1,0 +1,3 @@
+Resistance:
+- Decreases damage taken by spells
+- 10 resistance decreases the spell-damage by 1%

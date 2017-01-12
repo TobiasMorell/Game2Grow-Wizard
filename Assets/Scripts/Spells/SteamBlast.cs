@@ -7,7 +7,7 @@ namespace Spells
 		public override void Cast (UnityEngine.GameObject primaryTarget)
 		{
 			base.Cast (primaryTarget);
-			primaryTarget.GetComponent<Entity> ().TakeDamage (calculateDamage ());
+			primaryTarget.GetComponent<Entity> ().TakeDamage (calculateDamage (), DatabaseInstance.School);
 		}
 	}
 }

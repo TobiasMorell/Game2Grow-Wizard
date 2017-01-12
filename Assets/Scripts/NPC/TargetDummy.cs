@@ -1,10 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using Spells;
 
-namespace Assets.Scripts.Enemies {
+namespace Assets.Scripts.NPC {
 	public class TargetDummy : Enemy
 	{
-		public override void TakeDamage (int damage, bool ignoreImmunity)
+		public override void TakeDamage (float damage, School school, bool ignoreImmunity)
 		{
 			//Do nothing, the dummy does not take damage
 			Debug.Log("TargetDummy took " + damage + " damage");

@@ -7,10 +7,8 @@ using Assets.Scripts.UI;
 
 namespace Spells
 {
-	public enum School
-	{
-		Fire, Water, Life, Death, None
-	}
+	public enum School { Fire, Life, Water, Ice, Death, Poison, Melee, None };
+
 	public enum SpellAnimationType
 	{
 		Swing, FrontalSpell, UpwardsSpell, Flying, Channeled_frontal
@@ -31,6 +29,7 @@ namespace Spells
 		public bool Channeled;
 		public bool Toggled;
 		public SpellAnimationType AnimationType;
+		public School School;
 
 		/// <summary>
 		/// The cooldown timer should be maintained elsewhere.

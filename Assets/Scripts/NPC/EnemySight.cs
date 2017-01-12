@@ -2,7 +2,7 @@
 using System.Collections;
 using Assets.Scripts;
 
-namespace Assets.Scripts.Enemies {
+namespace Assets.Scripts.NPC {
 	public class EnemySight : MonoBehaviour {
 		private Enemy enemy;
 
@@ -14,13 +14,13 @@ namespace Assets.Scripts.Enemies {
 		void OnTriggerEnter2D(Collider2D other)
 		{
 			if (other.tag == "Player")
-				enemy.Target = other.gameObject;
+				enemy.Targets.Add(other.gameObject);
 		}
 
 		void OnTriggerExit2D(Collider2D other)
 		{
 			if (other.tag == "Player")
-				enemy.Target = null;
+				enemy.Targets.Remove(other.gameObject);
 		}
 	}
 }

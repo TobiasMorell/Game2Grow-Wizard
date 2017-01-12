@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Scripts.NPC.Blob
 {
 	public class BlobMoveState : IAIState<Enemy>
 	{
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Enemies
 				enemy.ChangeState (new BlobIdleState ());
 
 			//Change to attack state if blob has found the player
-			if (enemy.Target != null)
+			if (enemy.Targets.Count > 0)
 				enemy.ChangeState (new BlobAttackState ());
 		}
 		public void Enter (Enemy enemy)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Scripts.NPC.Bat
 {
 	class BatMoveState : IAIState<Enemy>
 	{
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Enemies
 
 		public void Execute()
 		{
-			if (enemy.Target == null) {
+			if (enemy.Targets[0] == null) {
 				moveAtRandom();
 			}
 			else

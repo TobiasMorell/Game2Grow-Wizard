@@ -41,10 +41,6 @@ public class Wizard : Entity {
 
 	#endregion
 	#region Unity-methods
-	public override void Awake(){
-		base.Awake ();
-	}
-
 	// Use this for initialization
 	public override void Start ()
     {
@@ -71,9 +67,9 @@ public class Wizard : Entity {
 		handleMagicAttack ();
 
 		if (Input.GetButtonDown ("TargetRight"))
-			handleTargetRight ();
+			handleTargetSwitch (TargetDirection.Right);
 		else if (Input.GetButtonDown ("TargetLeft"))
-			handleTargetLeft ();
+			handleTargetSwitch (TargetDirection.Left);
 	}
 
 	void FixedUpdate(){
@@ -146,10 +142,12 @@ public class Wizard : Entity {
 	/// </summary>
 	/// <param name="damage">Damage to deal to the wizard.</param>
 	/// <param name="ignoreImmunity">If set to <c>true</c> ignore immunity.</param>
-	public override void TakeDamage(int damage, bool ignoreImmunity)
+	public override void TakeDamage(float damage, School school, bool ignoreImmunity)
 	{
+		float scaledDamage = resistance.ScaleDamage (damage, school);
+
 		if (ignoreImmunity || !immune) {
-			this.HP -= damage;
+			this.HP -= scaledDamage;
 			this.healthBar.value = HP;
 
 			if (HP <= 0)
@@ -205,26 +203,13 @@ public class Wizard : Entity {
 		}
 	}
 
-	/// <summary>
-	/// Handle target-switch right.
-	/// </summary>
-	void handleTargetRight() { 
-		handleTargetSwitch (1);
-	}
-
-	/// <summary>
-	/// Handle target-switch left.
-	/// </summary>
-	void handleTargetLeft() {
-		handleTargetSwitch (-1);
-	}
-		
+	private enum TargetDirection { Left = -1, Right = 1 };
 	private GameObject arrow;
 	/// <summary>
 	/// Handles the target switch - targets are sorted by their x-position.
 	/// </summary>
 	/// <param name="moveBy">Move by (-1 means left, 1 means right).</param>
-	void handleTargetSwitch(int moveBy) {
+	void handleTargetSwitch(TargetDirection moveBy) {
 		var enemies = GameObject.FindGameObjectsWithTag ("Hostile");
 
 		//Order by x-coord so first index is lowest x-coord
@@ -241,7 +226,7 @@ public class Wizard : Entity {
 			Destroy(arrow);
 
 			int currIndex = list.FindIndex ((GameObject obj) => obj == target);
-			int nextIndex = Mathf.Abs((currIndex + moveBy) % list.Count);
+			int nextIndex = Mathf.Abs((currIndex + (int) moveBy) % list.Count);
 			target = list [nextIndex];
 			placeArrow ();
 		}

@@ -28,7 +28,7 @@ namespace Assets.Scripts.Effects
 			base.onUpdate();
 			if (dmgTimer >= dmgCooldown)
 			{
-				bearer.TakeDamage(damagePrTick, true);
+				bearer.TakeDamage(damagePrTick, School, true);
 				dmgTimer = 0;
 				RemainingDamage -= damagePrTick;
 			}

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Scripts.NPC.Blob
 {
 	public class BlobFleeState : IAIState<Enemy>
 	{

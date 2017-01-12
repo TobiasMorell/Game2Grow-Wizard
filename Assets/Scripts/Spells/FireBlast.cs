@@ -9,7 +9,7 @@ namespace Spells
 			var ent = other.GetComponent<Entity> ();
 			float prev = damageModifier;
 
-			if(ent != null && ent.HasEffect(Assets.Scripts.Effects.EffectSchool.Fire)) {
+			if(ent != null && ent.HasEffect(Spells.School.Fire)) {
 				damageModifier *= 2.0f;
 			}
 			base.OnTriggerEnter2D (other);

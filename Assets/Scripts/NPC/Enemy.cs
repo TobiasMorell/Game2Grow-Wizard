@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Enemies;
+﻿using Assets.Scripts.NPC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,22 +6,15 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Enemies {
+namespace Assets.Scripts.NPC {
 	public abstract class Enemy : AIEntity<Enemy>
 	{
 		[SerializeField] protected float attackRange;
-		public int EnemyDamage { 
-			get { return this.Damage; }
-			protected set {
-				this.Damage = value;
-			}
-		}
 
-		public GameObject Target { get; set; }
 		public virtual bool inAttackRange{
 			get {
-				if (Target != null) {
-					return Vector2.Distance (transform.position, Target.transform.position) <= attackRange;
+				if (Targets[0] != null) {
+					return Vector2.Distance (transform.position, Targets[0].transform.position) <= attackRange;
 				}
 				//No target:
 				return false;

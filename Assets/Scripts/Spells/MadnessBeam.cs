@@ -1,52 +1,53 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-using Assets.Scripts.Enemies;
+using Assets.Scripts.NPC;
 
-public class MadnessBeam : MonoBehaviour
-{
-	const float dmg_cooldown = 0.2f;
-	public int damage;
-
-	private List<EnemyDmgTimer> touchingEnemies;
-
-	class EnemyDmgTimer
+namespace Spells {
+	public class MadnessBeam : Castable
 	{
-		public float dmg_timer = 3;
-		public Enemy e;
-	}
+		const float dmg_cooldown = 0.2f;
+		private List<EnemyDmgTimer> touchingEnemies;
 
-	void Start() {
-		touchingEnemies = new List<EnemyDmgTimer> ();
-	}
+		class EnemyDmgTimer
+		{
+			public float dmg_timer = 3;
+			public Enemy e;
+		}
 
-	void Update() {
-		foreach (var edt in touchingEnemies) {
-			if (edt.e == null) {
-				touchingEnemies.Remove (edt);
-				break;
-			}
+		public override void Cast(GameObject target) {
+			base.Cast (target);
+			touchingEnemies = new List<EnemyDmgTimer> ();
+		}
 
-			if (edt.dmg_timer >= dmg_cooldown) {
-				edt.e.TakeDamage (damage);
-				edt.dmg_timer = 0;
-			} else {
-				edt.dmg_timer += Time.deltaTime;
+		void Update() {
+			foreach (var edt in touchingEnemies) {
+				if (edt.e == null) {
+					touchingEnemies.Remove (edt);
+					break;
+				}
+
+				if (edt.dmg_timer >= dmg_cooldown) {
+					edt.e.TakeDamage (calculateDamage(), DatabaseInstance.School);
+					edt.dmg_timer = 0;
+				} else {
+					edt.dmg_timer += Time.deltaTime;
+				}
 			}
 		}
-	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		if (!other.isTrigger && other.tag == "Hostile") {
-			EnemyDmgTimer edt = new EnemyDmgTimer ();
-			edt.e = other.GetComponent<Enemy>();
-			touchingEnemies.Add (edt);
+		void OnTriggerEnter2D(Collider2D other) {
+			if (!other.isTrigger && other.CompareTag("Hostile")) {
+				EnemyDmgTimer edt = new EnemyDmgTimer ();
+				edt.e = other.GetComponent<Enemy>();
+				touchingEnemies.Add (edt);
+			}
 		}
-	}
 
-	void OnTriggerExit2D(Collider2D other) {
-		if (!other.isTrigger && other.tag == "Hostile") {
-			touchingEnemies.RemoveAll (edt => edt.e == other.GetComponent<Enemy>() );
+		void OnTriggerExit2D(Collider2D other) {
+			if (!other.isTrigger && other.CompareTag("Hostile")) {
+				touchingEnemies.RemoveAll (edt => edt.e == other.GetComponent<Enemy>() );
+			}
 		}
 	}
 }

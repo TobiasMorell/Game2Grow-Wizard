@@ -43,14 +43,14 @@ namespace Spells
 				//Deal increased damage to the primary target
 				if (other.gameObject == target) {
 					damageModifier *= 1.8f;
-					ent.TakeDamage (calculateDamage ());
+					ent.TakeDamage (calculateDamage (), DatabaseInstance.School);
 					var part = Instantiate (particleEffect);
 					part.transform.position = ent.transform.position;
 					damageModifier /= 1.8f;
 				}
 				//And normal damage to any other target the rock hits.
 				else if (ent) {
-					ent.TakeDamage (calculateDamage());
+					ent.TakeDamage (calculateDamage(), DatabaseInstance.School);
 					var part = Instantiate (particleEffect);
 					part.transform.position = ent.transform.position;
 				}

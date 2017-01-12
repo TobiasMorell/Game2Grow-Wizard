@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Assets.Scripts.Enemies;
+using Assets.Scripts.NPC;
 
 namespace Spells
 {
@@ -29,7 +29,7 @@ namespace Spells
 			if (other.CompareTag ("Hostile") && !other.isTrigger) {
 				if (particleEffect != null)
 					Instantiate (particleEffect, other.transform.position + new Vector3 (0, 2), Quaternion.identity);
-				other.GetComponent<Enemy> ().TakeDamage (calculateDamage ());
+				other.GetComponent<Enemy> ().TakeDamage (calculateDamage (), DatabaseInstance.School);
 			} else if (other.CompareTag ("Platform")) {
 				Debug.Log ("Hit the platform");
 				Destroy (this.gameObject);

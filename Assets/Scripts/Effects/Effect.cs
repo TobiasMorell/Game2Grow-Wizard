@@ -1,10 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using Assets.Scripts.UI;
+using Spells;
 
 namespace Assets.Scripts.Effects {
-	public enum EffectSchool { Fire, Life, Water, Ice, Death, Poison };
-
 	[Serializable]
 	public class Effect
 	{
@@ -12,7 +11,7 @@ namespace Assets.Scripts.Effects {
 		protected float timer;
 		protected Entity bearer;
 		[SerializeField] protected Sprite icon;
-		public EffectSchool School;
+		public School School;
 		protected string description;
 
 

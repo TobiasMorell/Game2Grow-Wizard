@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using Spells;
 using System.Collections.Generic;
-using Assets.Scripts.Enemies;
 
-namespace Phoenix {
+namespace Assets.Scripts.NPC.Phoenix {
 	public class PhoenixController : AIEntity<PhoenixController>
 	{
 		const byte BOLT = 0;
@@ -14,7 +13,6 @@ namespace Phoenix {
 		Spell[] spellPrefabs;
 		[HideInInspector] public SpellCaster spellCaster;
 
-		public List<GameObject> Targets;
 		public float AttackRange { get; private set; }
 
 		IAIState<PhoenixController> state;
@@ -60,16 +58,6 @@ namespace Phoenix {
 					spellCaster.Cast (HEAL, Targets [0]);
 				}
 			}
-		}
-
-		public void Move(Vector3 direction) {
-			if (facingRight && direction == Vector3.left)
-				Flip ();
-			else if (!facingRight && direction == Vector3.right)
-				Flip ();
-			
-			if(canMove)
-				transform.position += direction * Time.deltaTime * MoveSpeed;
 		}
 
 		public void SpitFire() {

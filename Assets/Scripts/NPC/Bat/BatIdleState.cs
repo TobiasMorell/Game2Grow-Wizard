@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Scripts.NPC.Bat
 {
 	class BatIdleState : IAIState<Enemy>
 	{
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Enemies
 		{
 			//Debug.Log("Executing in Idle");
 
-			if (enemy.Target != null)
+			if (enemy.Targets[0] != null)
 				enemy.ChangeState (new BatAttackState ());
 
 			//Add to the timer and give random chance that the bat will start to move

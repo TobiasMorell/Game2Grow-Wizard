@@ -2,7 +2,7 @@
 using UnityEngine;
 using Assets.Scripts.Effects;
 using System.Collections;
-using Assets.Scripts.Enemies;
+using Assets.Scripts.NPC;
 
 namespace Assets.Scripts.Weapon {
 	public class Weapon : Displayable
@@ -53,7 +53,7 @@ namespace Assets.Scripts.Weapon {
 		void OnTriggerEnter2D(Collider2D other) {
 			if (other.tag.Equals ("Hostile") && !other.isTrigger) {
 				var en = other.GetComponent<Enemy> ();
-				en.TakeDamage (damage);
+				en.TakeDamage (damage, Spells.School.Melee);
 				if (_dispenser != null) {
 					en.ApplyEffect (_dispenser.GetEffectInstance ());
 				}

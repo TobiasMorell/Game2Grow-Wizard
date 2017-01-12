@@ -1,14 +1,14 @@
 ﻿using System;
-using Assets.Scripts.Enemies;
+using Assets.Scripts.NPC;
 using UnityEngine;
 
-namespace Phoenix
+namespace Assets.Scripts.NPC.Phoenix
 {
 	public class PhoenixFollowState : IAIState<PhoenixController>
 	{
 		PhoenixController holder;
 		GameObject player;
-		const float FOLLOW_DISTANCE = 3;
+		const float FOLLOW_DISTANCE = 3f;
 
 		public void Enter(PhoenixController pc) {
 			holder = pc;
@@ -23,9 +23,9 @@ namespace Phoenix
 			}
 
 			float distToPlayer = player.transform.position.x - holder.transform.position.x;
-			if (distToPlayer > 3f) {
+			if (distToPlayer > FOLLOW_DISTANCE) {
 				holder.Move (Vector2.right);
-			} else if (distToPlayer < -3f) {
+			} else if (distToPlayer < -FOLLOW_DISTANCE) {
 				holder.Move (Vector2.left);
 			}
 

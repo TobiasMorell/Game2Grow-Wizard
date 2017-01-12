@@ -59,7 +59,7 @@ namespace Spells
 
 		void OnTriggerEnter2D(Collider2D other) {
 			if (other.CompareTag ("Hostile")) {
-				other.GetComponent<Entity> ().TakeDamage (calculateDamage ());
+				other.GetComponent<Entity> ().TakeDamage (calculateDamage (), DatabaseInstance.School);
 			}
 		}
 	}

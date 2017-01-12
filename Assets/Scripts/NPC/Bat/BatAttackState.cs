@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Scripts.NPC.Bat
 {
 	class BatAttackState : IAIState<Enemy>
 	{
@@ -30,7 +30,7 @@ namespace Assets.Scripts.Enemies
 				attack ();
 			else if (onCooldown)
 				cooldown();
-			else if (enemy.Target == null)
+			else if (enemy.Targets[0] == null)
 				enemy.ChangeState (new BatIdleState ());
 			else if (!attacking && !onCooldown) 
 				followPlayer ();
@@ -38,7 +38,7 @@ namespace Assets.Scripts.Enemies
 
 		private void followPlayer()
 		{
-			float xDir = enemy.Target.transform.position.x - enemy.transform.position.x;
+			float xDir = enemy.Targets[0].transform.position.x - enemy.transform.position.x;
 
 			if (xDir < 0 && enemy.facingRight || xDir > 0 && !enemy.facingRight)
 				enemy.Flip ();
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Enemies
 			//Setup target and indicate start of attack
 			if (!attacking) {
 				//Store target and current position (used for a smooth attack animation)
-				targetPosition = enemy.Target.transform.position;
+				targetPosition = enemy.Targets[0].transform.position;
 				previousPosition = enemy.transform.position;
 
 				//Disable ground-checker and physics-based rigidbody to prevents physics going crazy
@@ -94,7 +94,7 @@ namespace Assets.Scripts.Enemies
 		public void OnTriggerEnter(Collider2D other)
 		{
 			if (other.tag == "Player")
-				other.GetComponent<Wizard>().TakeDamage (enemy.EnemyDamage);
+				other.GetComponent<Wizard>().TakeDamage (enemy.Damage, Spells.School.Melee);
 		}
 	}
 }

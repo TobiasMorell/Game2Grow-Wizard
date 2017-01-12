@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using Phoenix;
+using Assets.Scripts.NPC.Phoenix;
 
 namespace SMBehaviours
 {

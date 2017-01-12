@@ -4,15 +4,29 @@ using UnityEngine.UI;
 using Assets.Scripts.Effects;
 using System.Xml;
 using System.Collections.Generic;
+using Spells;
 
 public abstract class Entity : MonoBehaviour
 {
 	#region fields
-	public int HP;
-	[SerializeField] protected int Damage;
+	public float HP;
+	[SerializeField] private float damage;
+	public float Damage {
+		get {
+			return damage * DamageModifier;
+		}
+		protected set {
+			damage = value;
+		}
+	}
+	protected Resistance resistance;
+
 	[SerializeField] protected int expForKill;
 	protected int level;
-	public float MeleeDamageModifier;
+	/// <summary>
+	/// The melee damage modifier, 1 means normal damage.
+	/// </summary>
+	public float DamageModifier = 1;
 
 	public Slider healthBar;
 	[SerializeField] private float BaseSpeed;
@@ -41,6 +55,7 @@ public abstract class Entity : MonoBehaviour
 		sprite_renderer = this.GetComponent<SpriteRenderer> ();
 		rb = this.GetComponent<Rigidbody2D>();
 		activeEffects = new List<Effect>();
+		resistance = GetComponent<Resistance> ();
 	}
 
 	public virtual void Start() {
@@ -56,9 +71,9 @@ public abstract class Entity : MonoBehaviour
 	}
 	#endregion
 
-	public void SetHP(int value)
+	public void SetHP(float value)
 	{
-		int diff = Mathf.CeilToInt(healthBar.maxValue - HP);
+		float diff = healthBar.maxValue - HP;
 
 		healthBar.maxValue = value;
 		HP = value - diff;
@@ -77,29 +92,31 @@ public abstract class Entity : MonoBehaviour
 	}
 	protected virtual void die(){
 		effectUpdate = null;
-		Destroy (this.gameObject, 0f);
+		Destroy (this.gameObject);
 		ExpManager.instance.GiveExp (expForKill);
 	}
 
-	public virtual void TakeDamage(int damage, bool ignoreImmunity) {
-		this.HP -= damage;
+	public virtual void TakeDamage(float damage, School school, bool ignoreImmunity) {
+		float scaledDamage = resistance.ScaleDamage (damage, school);
+
+		this.HP -= scaledDamage;
 		this.healthBar.value = HP;
 
 		if (HP <= 0) {
 			die ();
 		}
 	}
-	public virtual void Heal(int healing) {
+	public virtual void Heal(float healing) {
 		if (HP + healing > healthBar.maxValue) {
 			healthBar.value = healthBar.maxValue;
-			HP = Mathf.FloorToInt(healthBar.maxValue);
+			HP = healthBar.maxValue;
 		} else {
 			HP += healing;
 			healthBar.value = HP;
 		}
 	}
-	public void TakeDamage(int damage) {
-		TakeDamage (damage, false);
+	public void TakeDamage(float damage, School school) {
+		TakeDamage (damage, school, false);
 	}
 
 	public virtual void HinderMovement() {
@@ -141,7 +158,7 @@ public abstract class Entity : MonoBehaviour
 		activeEffects.Remove(effectToRemove);
 	}
 
-	public bool HasEffect(EffectSchool schl)
+	public bool HasEffect(School schl)
 	{
 		foreach (var eff in activeEffects) {
 			if (eff.School == schl)
@@ -151,7 +168,7 @@ public abstract class Entity : MonoBehaviour
 		return false;
 	}
 
-	public Effect GetEffect(EffectSchool schl) {
+	public Effect GetEffect(School schl) {
 		foreach (var eff in activeEffects) {
 			if (eff.School == schl)
 				return eff;
@@ -160,7 +177,7 @@ public abstract class Entity : MonoBehaviour
 		return null;
 	}
 
-	public List<Effect> GetAllEffects(EffectSchool schl) {
+	public List<Effect> GetAllEffects(School schl) {
 		List<Effect> effcts = new List<Effect> ();
 
 		foreach (var eff in activeEffects) {

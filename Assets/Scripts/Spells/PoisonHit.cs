@@ -2,6 +2,7 @@
 using System.Collections;
 using Assets.Scripts.Effects;
 using Spells;
+using Assets.Scripts.NPC.Blob;
 
 public class PoisonHit : Castable {
 	private Rigidbody2D rb;

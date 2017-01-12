@@ -33,7 +33,7 @@ public class AttributeManager : MonoBehaviour{
 	}
 	private void updateDamage()
 	{
-		GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>().MeleeDamageModifier = 1 + (0.2f * Mathf.Pow(strength, 2));
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>().DamageModifier = 1 + (0.2f * Mathf.Pow(strength, 2));
 	}
 	private void increaseIntellect(int value)
 	{
