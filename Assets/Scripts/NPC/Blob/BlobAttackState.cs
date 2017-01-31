@@ -17,13 +17,16 @@ namespace Assets.Scripts.NPC.Blob
 		#region IEnemyState implementation
 		public void Execute ()
 		{
+			if (enemy.Targets.Count == 0) {
+				enemy.ChangeState (new BlobIdleState ());
+				return;
+			}
+
 			if (!onCooldown) {
 				enemy.SpitBolt ();
 				cooldownTimer = 0f;
-			} else if (enemy.Targets[0] != null && Vector2.Distance (enemy.transform.position, enemy.Targets[0].transform.position) <= enemy.minDistToPlayer)
+			} else if (Vector2.Distance (enemy.transform.position, enemy.Targets[0].transform.position) <= enemy.minDistToPlayer)
 				enemy.ChangeState (new BlobFleeState ());
-			else if (enemy.Targets[0] == null)
-				enemy.ChangeState (new BlobIdleState ());
 			else
 				cooldownTimer += Time.deltaTime;
 		}
